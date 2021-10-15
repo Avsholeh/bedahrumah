@@ -17,13 +17,13 @@
     <div class="row justify-content-center text-white py-5">
         <div class="col-md-6 ps-sm-5 ps-md-5 ps-lg-5">
             <h2 class="lh-sm">Sistem Informasi Pengelolaan Bedah Rumah</h2>
-            <p class="py-3 lh-lg">Sistem informasi bedah rumah yang bertujuan untuk mendukung program <strong>Bantuan
+            <p class="py-3 lh-lg">Sistem informasi bedah rumah yang bertujuan untuk mendukung program <strong class="text-warning">Bantuan
                     Stimulan Perumahan
                     Swadaya (BSPS)</strong> pada DINAS. Sistem ini mampu mempermudah proses pengumpulan data
                 dan mempersingkat waktu dalam menentukan penerima bantuan bedah rumah.</p>
             <p>Sistem ini
-                merupakan hasil dari penelitian yang berjudul <strong>"Sistem Informasi Pengelolaan Bedah Rumah"</strong>
-                oleh <strong>Miftha Ainul Chamida</strong> di <strong>Universitas Muria Kudus</strong>.</p>
+                merupakan hasil dari penelitian yang berjudul <strong class="text-warning">"Sistem Informasi Pengelolaan Bedah Rumah"</strong>
+                oleh <strong class="text-warning">Miftha Ainul Chamida</strong> di <strong class="text-warning">Universitas Muria Kudus</strong>.</p>
             <div class="mt-5">
                 <a class="btn btn-secondary" href="<?= base_url('home/daftar') ?>">Daftar</a>
                 <a class="btn btn-secondary" href="<?= base_url('home/login') ?>">Demo</a>
