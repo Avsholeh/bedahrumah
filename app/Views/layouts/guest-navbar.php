@@ -6,7 +6,7 @@
                     <span>Bedah</span><span class="fw-bold text-warning">Rumah</span>
                 </a>
                 <a class="navbar-brand brand-logo-mini fs-4 text-center text-white" href="#">
-                    <span>B</span><span class="fw-bold">R</span>
+                    <span>B</span><span class="fw-bold text-warning">R</span>
                 </a>
             </div>
         </div>
