@@ -11,14 +11,14 @@
 </head>
 <body>
 <div class="container-scroller">
-    <?= $this->include('layouts/dashboard-navbar') ?>
+    <?= $this->include('layouts/app-navbar') ?>
     <div class="container-fluid page-body-wrapper">
-        <?= $this->include('layouts/dashboard-sidebar') ?>
+        <?= $this->include('layouts/app-sidebar') ?>
         <div class="main-panel">
             <div class="content-wrapper">
                 <?= $this->renderSection('content') ?>
             </div>
-            <?= $this->include('layouts/dashboard-footer') ?>
+            <?= $this->include('layouts/app-footer') ?>
         </div>
     </div>
 </div>

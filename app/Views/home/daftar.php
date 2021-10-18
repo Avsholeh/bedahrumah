@@ -6,6 +6,10 @@
         background: url("<?= base_url('public/images/auth/auth.jpg')?>") no-repeat center;
         background-size: cover;
     }
+
+    .form-group > input {
+        margin-bottom: 0.8rem;
+    }
 </style>
 <?= $this->endSection() ?>
 
@@ -19,33 +23,58 @@
                 </div>
                 <h4>Pendaftaran</h4>
                 <h6 class="fw-light">Silahkan isi kolom pada form dibawah.</h6>
-                <form class="pt-3" autocomplete="off">
+
+                <!-- FORM DAFTAR -->
+                <?php $validation = \Config\Services::validation(); ?>
+                <form action="<?= base_url('proses_daftar') ?>" method="post" class="pt-3" autocomplete="off">
+                    <?= csrf_field() ?>
                     <div class="form-group">
-                        <input name="nama_lengkap" type="text" class="form-control form-control-lg"
-                               placeholder="Nama Lengkap" autofocus>
+                        <input type="text" name="nama_lengkap" class="form-control form-control-lg"
+                               placeholder="Nama Lengkap" value="<?= old('nama_lengkap') ?>" autofocus>
+
+                        <?php if ($error = $validation->getError('nama_lengkap')): ?>
+                            <span class="text-danger"><?= $error ?></span>
+                        <?php endif ?>
                     </div>
                     <div class="form-group">
-                        <input name="email" type="email" class="form-control form-control-lg" placeholder="Email">
+                        <input type="email" name="email" class="form-control form-control-lg"
+                               placeholder="Email" value="<?= old('email') ?>">
+
+                        <?php if ($error = $validation->getError('email')): ?>
+                            <span class="text-danger"><?= $error ?></span>
+                        <?php endif ?>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control form-control-lg" placeholder="Password">
+                        <input name="password" type="password" class="form-control form-control-lg"
+                               placeholder="Password" value="">
+
+                        <?php if ($error = $validation->getError('password')): ?>
+                            <span class="text-danger"><?= $error ?></span>
+                        <?php endif ?>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control form-control-lg" placeholder="Konfirmasi Password">
+                        <input name="password_konfirmasi" type="password" class="form-control form-control-lg"
+                               placeholder="Konfirmasi Password" value="">
+
+                        <?php if ($error = $validation->getError('password_konfirmasi')): ?>
+                            <span class="text-danger"><?= $error ?></span>
+                        <?php endif ?>
                     </div>
                     <div class="mt-3">
-                        <a class="btn btn-block btn-primary font-weight-medium"
-                           href="#">DAFTAR</a>
+                        <button class="btn btn-block btn-primary font-weight-medium">DAFTAR</button>
                     </div>
 
                     <div class="text-center mt-4 fw-light">
-                        Sudah punya akun? <a href="<?= base_url('home/login') ?>" class="text-primary">
+                        Sudah punya akun? <a href="<?= base_url('login') ?>" class="text-primary">
                             Login disini</a>
                     </div>
                     <div class="text-center mt-4 fw-light">
                         Kembali ke <a href="<?= base_url('home') ?>" class="text-primary">halaman utama</a>
                     </div>
                 </form>
+                <!-- END FORM DAFTAR -->
+
+
             </div>
         </div>
     </div>

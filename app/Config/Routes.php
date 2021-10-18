@@ -32,7 +32,9 @@ $routes->setAutoRoute(true);
 // Home
 $routes->get('/', 'Home::index');
 $routes->get('/login', 'Home::login');
+$routes->post('/proses_login', 'Home::prosesLogin' );
 $routes->get('/daftar', 'Home::daftar');
+$routes->post('/proses_daftar', 'Home::prosesDaftar');
 
 // Dashboard
 $routes->get('/dashboard', 'Dashboard::index');

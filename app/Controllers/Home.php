@@ -2,8 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
+
 class Home extends BaseController
 {
+    public function __construct()
+    {
+        $this->validator = \Config\Services::validation();
+    }
+
     public function index()
     {
         return view('home/index');
@@ -17,6 +24,56 @@ class Home extends BaseController
     public function daftar()
     {
         return view('home/daftar', ['title' => 'Daftar']);
+    }
 
+    public function prosesDaftar()
+    {
+        $validation = $this->validate([
+            'nama_lengkap' => 'required',
+            'email' => 'required|valid_email|is_unique[users.email]',
+            'password' => 'required|min_length[8]',
+            'password_konfirmasi' => 'required|matches[password]',
+        ]);
+
+        if ($validation) {
+            $user = new User();
+            $hashPassword = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
+            $user->insert([
+                'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+                'email' => $this->request->getPost('email'),
+                'password' => $hashPassword,
+            ]);
+            return redirect('login');
+        }
+        return redirect('daftar')->withInput()->with('validation', $this->validator);
+    }
+
+    public function prosesLogin()
+    {
+        $validation = $this->validate([
+            'email' => 'required|valid_email',
+            'password' => 'required|min_length[8]',
+        ]);
+
+        if ($validation) {
+            $userModel = new User();
+            $user = $userModel
+                ->where('email', $this->request->getPost('email'))
+                ->first();
+            if (!$user) return redirect('login')->withInput()
+                ->with('validation', $this->validator)
+                ->with('error_message', 'Email tidak ditemukan.');
+
+            $isValidPassword = password_verify($this->request->getPost('password'), $user['password']);
+            if (!$isValidPassword) return redirect('login')->withInput()
+                ->with('validation', $this->validator)
+                ->with('error_message', 'Password tidak sesuai.');
+
+            // set login session
+
+            return redirect('dashboard');
+        }
+
+        return redirect('login')->withInput()->with('validation', $this->validator);
     }
 }

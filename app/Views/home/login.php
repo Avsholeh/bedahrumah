@@ -19,21 +19,38 @@
                 </div>
                 <h4>Portal Masuk</h4>
                 <h6 class="fw-light">Silahkan login untuk masuk ke sistem.</h6>
-                <form class="pt-3" autocomplete="off">
+
+                <?php if (session('error_message')): ?>
+                    <div class="alert alert-danger mb-0"><?= session('error_message') ?></div>
+                <?php endif ?>
+
+                <?php $validation = \Config\Services::validation(); ?>
+
+                <form action="<?= base_url('proses_login') ?>" method="post" class="pt-3" autocomplete="off">
+
+                    <?= csrf_field() ?>
+
                     <div class="form-group">
-                        <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
-                               placeholder="Email" autofocus>
+                        <input type="email" name="email" class="form-control form-control-lg mb-3"
+                               placeholder="Email" value="<?= old('email') ?>" autofocus>
+
+                        <?php if ($error = $validation->getError('email')): ?>
+                            <span class="text-danger"><?= $error ?></span>
+                        <?php endif ?>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
+                        <input type="password" name="password" class="form-control form-control-lg mb-3"
                                placeholder="Password">
+
+                        <?php if ($error = $validation->getError('password')): ?>
+                            <span class="text-danger"><?= $error ?></span>
+                        <?php endif ?>
                     </div>
                     <div class="mt-3">
-                        <a class="btn btn-block btn-primary font-weight-medium"
-                           href="<?= base_url('dashboard')?>">LOGIN</a>
+                        <button type="submit" class="btn btn-block btn-primary font-weight-medium">LOGIN</button>
                     </div>
                     <div class="text-center mt-4 fw-light">
-                        Belum punya akun? <a href="<?= base_url('home/daftar') ?>" class="text-primary">Daftar disini</a>
+                        Belum punya akun? <a href="<?= base_url('daftar') ?>" class="text-primary">Daftar disini</a>
                     </div>
                     <div class="text-center mt-4 fw-light">
                         Kembali ke <a href="<?= base_url('home') ?>" class="text-primary">halaman utama</a>

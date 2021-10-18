@@ -5,9 +5,6 @@
     .navbar-bg {
         background: url("<?= base_url('public/images/bg.jpg')?>") no-repeat center;
         background-size: cover;
-        height: 100vh;
-        /*background: rgb(40, 33, 161);*/
-        /*background: linear-gradient(90deg, rgba(40, 33, 161, 1) 0%, rgba(31, 59, 179, 1) 35%, rgba(12, 179, 213, 1) 100%);*/
     }
 </style>
 <?= $this->endSection() ?>
@@ -25,8 +22,8 @@
                 merupakan hasil dari penelitian yang berjudul <strong class="text-warning">"Sistem Informasi Pengelolaan Bedah Rumah"</strong>
                 oleh <strong class="text-warning">Miftha Ainul Chamida</strong> di <strong class="text-warning">Universitas Muria Kudus</strong>.</p>
             <div class="mt-5">
-                <a class="btn btn-secondary" href="<?= base_url('home/daftar') ?>">Daftar</a>
-                <a class="btn btn-secondary" href="<?= base_url('home/login') ?>">Demo</a>
+                <a class="btn btn-secondary" href="<?= base_url('daftar') ?>">Daftar</a>
+                <a class="btn btn-secondary" href="<?= base_url('login') ?>">Demo</a>
             </div>
         </div>
         <div class="col-md-6 text-center pt-3">
