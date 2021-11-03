@@ -26,12 +26,10 @@
 
                 <?php $validation = \Config\Services::validation(); ?>
 
-                <form action="<?= base_url('proses_login') ?>" method="post" class="pt-3" autocomplete="off">
-
-                    <?= csrf_field() ?>
+                <form action="<?= base_url('dashboard') ?>" method="get" class="pt-3" autocomplete="off">
 
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control form-control-lg mb-3"
+                        <input type="email" class="form-control form-control-lg mb-3"
                                placeholder="Email" value="<?= old('email') ?>" autofocus>
 
                         <?php if ($error = $validation->getError('email')): ?>
@@ -39,7 +37,7 @@
                         <?php endif ?>
                     </div>
                     <div class="form-group">
-                        <input type="password" name="password" class="form-control form-control-lg mb-3"
+                        <input type="password" class="form-control form-control-lg mb-3"
                                placeholder="Password">
 
                         <?php if ($error = $validation->getError('password')): ?>
