@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<?= base_url('public/css/vertical-layout-light/style.css')?>">
     <link rel="shortcut icon" href="<?= base_url('public/favicon.ico') ?>">
 </head>
-<body>
+<body style="background-color:white">
 <?= $this->renderSection('css') ?>
 <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
