@@ -21,7 +21,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -43,7 +43,8 @@ $routes->get('/logout', 'Home::logout');
 $routes->get('/dashboard', 'Dashboard::index');
 
 // Data Pengaju
-
+$routes->get('/pengaju', 'Pengaju::index');
+$routes->post('/pengaju/simpan', 'Pengaju::simpan');
 // Data Rumah
 /*
  * --------------------------------------------------------------------
