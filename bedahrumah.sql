@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 13/12/2021 20:32:36
+ Date: 13/12/2021 21:52:28
 */
 
 SET NAMES utf8mb4;
@@ -44,7 +44,7 @@ CREATE TABLE `data_pengaju`  (
   `nama` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `no_ktp` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `no_kk` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `jenis_kelamin` int(11) NULL DEFAULT NULL,
+  `jenis_kelamin` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `tempat_lahir` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `tgl_lahir` date NULL DEFAULT NULL,
   `alamat` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -54,14 +54,15 @@ CREATE TABLE `data_pengaju`  (
   `status_pemilik_tanah` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `bukti_pemilik_tanah` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `status_pemilik_rumah` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `aset_rumah` int(11) NULL DEFAULT NULL,
-  `aset_tanah` int(11) NULL DEFAULT NULL,
+  `aset_rumah` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `aset_tanah` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of data_pengaju
 -- ----------------------------
+INSERT INTO `data_pengaju` VALUES (1, 'Dolore explicabo As', 'Recusandae Sunt sed', 'Omnis labore volupta', 'Laki-laki', 'Enim laborum perspic', '2000-05-04', 'Quis in corporis und', 'Lainnya', '1,2 juta - 1,8 juta', 2, 'Milik Sendiri', 'HGB', 'Bukan Milik Sendiri', 'Tidak Ada', 'Tidak Ada');
 
 -- ----------------------------
 -- Table structure for data_rumah
