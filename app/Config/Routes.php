@@ -31,14 +31,20 @@ $routes->setAutoRoute(true);
 
 // Home
 $routes->get('/', 'Home::index');
+
+// Otentikasi
 $routes->get('/login', 'Home::login');
 $routes->post('/proses_login', 'Home::prosesLogin' );
 $routes->get('/daftar', 'Home::daftar');
 $routes->post('/proses_daftar', 'Home::prosesDaftar');
+$routes->get('/logout', 'Home::logout');
 
 // Dashboard
 $routes->get('/dashboard', 'Dashboard::index');
 
+// Data Pengaju
+
+// Data Rumah
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -21,6 +21,13 @@ class Home extends BaseController
         return view('home/login', ['title' => 'Login']);
     }
 
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+        return redirect()->to('/login');
+    }
+
     public function daftar()
     {
         return view('home/daftar', ['title' => 'Daftar']);
@@ -65,11 +72,19 @@ class Home extends BaseController
                 ->with('error_message', 'Email tidak ditemukan.');
 
             $isValidPassword = password_verify($this->request->getPost('password'), $user['password']);
+
             if (!$isValidPassword) return redirect('login')->withInput()
                 ->with('validation', $this->validator)
                 ->with('error_message', 'Password tidak sesuai.');
 
             // set login session
+            $userData = [
+                'email' => $user['email'],
+                'nama_lengkap' => $user['nama_lengkap'],
+                'aktif' => $user['aktif'] == 1 ? 'Aktif' : 'Tidak Aktif'
+            ];
+
+            session()->set('user', $userData);
 
             return redirect('dashboard');
         }
