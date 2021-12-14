@@ -11,22 +11,31 @@
             </a>
         </div>
     </div>
-    <?php
-    $quotes = [
-        'The secret of getting ahead is getting started. - Mark Twain',
-        'Do what you feel in your heart to be right. - Eleanor Roosevelt',
-        'Whatever you are, be a good one. - Abraham Lincoln',
-        'One day or day one. You decide. – Unknown',
-        'Focus on being productive instead of busy. – Tim Ferriss',
-        'It’s never too late to be what you might’ve been. – George Eliot',
-    ];
-    ?>
+
     <div class="navbar-menu-wrapper d-flex align-items-top">
         <ul class="navbar-nav">
-            <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                <h1 class="welcome-text">Welcome, <span class="text-black fw-bold"><?= session()->user['nama_lengkap'] ?></span></h1>
-                <h3 class="welcome-sub-text"><?php echo $quotes[random_int(0, 5)] ?></h3>
-            </li>
+            <?php if ($title === 'Dashboard'): ?>
+                <?php
+                $quotes = [
+                    'The secret of getting ahead is getting started. - Mark Twain',
+                    'Do what you feel in your heart to be right. - Eleanor Roosevelt',
+                    'Whatever you are, be a good one. - Abraham Lincoln',
+                    'One day or day one. You decide. – Unknown',
+                    'Focus on being productive instead of busy. – Tim Ferriss',
+                    'It’s never too late to be what you might’ve been. – George Eliot',
+                ];
+                ?>
+                <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                    <h1 class="welcome-text">Welcome, <span
+                                class="text-black fw-bold"><?= session()->user['nama_lengkap'] ?></span></h1>
+                    <h3 class="welcome-sub-text"><?php echo $quotes[random_int(0, 5)] ?></h3>
+                </li>
+            <?php else: ?>
+                <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                    <h1 class="welcome-text"><?= $title ?></h1>
+                    <h3 class="welcome-sub-text"><?= isset($desc) ? $desc : ''?></h3>
+                </li>
+            <?php endif; ?>
         </ul>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown d-none d-lg-block user-dropdown">
@@ -40,9 +49,9 @@
                         <p class="mb-1 mt-3 font-weight-semibold"><?= session()->user['nama_lengkap'] ?></p>
                         <p class="fw-light text-muted mb-0"><?= session()->user['email'] ?></p>
                     </div>
-<!--                    <a class="dropdown-item"><i class="dropdown-item-icon icon-user me-2"></i>-->
-<!--                        My Profile-->
-<!--                    </a>-->
+                    <!--                    <a class="dropdown-item"><i class="dropdown-item-icon icon-user me-2"></i>-->
+                    <!--                        My Profile-->
+                    <!--                    </a>-->
                     <a href="<?= base_url('logout') ?>" class="dropdown-item"><i
                                 class="dropdown-item-icon icon-power me-2"></i>
                         Logout

@@ -2,7 +2,7 @@
 
 namespace Config;
 
-use App\Filters\Authenticated;
+use App\Filters\Auth;
 use App\Filters\Guest;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -21,7 +21,7 @@ class Filters extends BaseConfig
         'csrf'     => CSRF::class,
         'toolbar'  => DebugToolbar::class,
         'honeypot' => Honeypot::class,
-        'authenticated' => Authenticated::class,
+        'auth' => Auth::class,
         'guest' => Guest::class
     ];
 

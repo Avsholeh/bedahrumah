@@ -9,14 +9,14 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('pengaju/tambah') ?>">
-                <i class="icon-briefcase me-2"></i>
+            <a class="nav-link" href="<?= base_url('pengajuan') ?>">
+                <i class="icon-note me-2"></i>
                 <span class="menu-title fs-6">Pengajuan</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('seleksi/lihat') ?>">
+            <a class="nav-link" href="<?= base_url('seleksi') ?>">
                 <i class="icon-refresh me-2"></i>
                 <span class="menu-title fs-6">Seleksi</span>
             </a>
@@ -43,5 +43,11 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('logout') ?>">
+                <i class="icon-logout me-2"></i>
+                <span class="menu-title fs-6">Logout</span>
+            </a>
+        </li>
     </ul>
 </nav>

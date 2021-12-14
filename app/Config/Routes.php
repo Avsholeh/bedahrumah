@@ -28,7 +28,7 @@ $routes->setAutoRoute(false);
  * Route Definitions
  * --------------------------------------------------------------------
  */
-// Kelompok URL yg hanya bisa diakses oleh pengguna yang belum login
+// Grup URL yg hanya bisa diakses oleh pengguna yang belum login
 $routes->group('/', ['filter' => 'guest'], function ($routes) {
 
     // === Home & Otentikasi
@@ -40,14 +40,21 @@ $routes->group('/', ['filter' => 'guest'], function ($routes) {
 
 });
 
-// Kelompok URL yg hanya bisa diakses oleh pengguna yang sudah login
-$routes->group('/', ['filter' => 'authenticated'], function ($routes) {
+// Grup URL yg hanya bisa diakses oleh pengguna yang sudah login
+$routes->group('/', ['filter' => 'auth'], function ($routes) {
 
     // === Logout
     $routes->get('logout', 'Home::logout');
 
     // === Dashboard
     $routes->get('dashboard', 'Dashboard::index');
+
+    // === Pengajuan
+    $routes->get('pengajuan', 'Pengajuan::index');
+    $routes->post('pengajuan/simpan', 'Pengajuan::simpan');
+
+    // === Seleksi
+    $routes->get('seleksi', 'Seleksi::index');
 
     // === Data Pengaju
     $routes->get('pengaju/lihat', 'Pengaju::lihat');
@@ -58,11 +65,6 @@ $routes->group('/', ['filter' => 'authenticated'], function ($routes) {
     $routes->get('rumah/lihat', 'Rumah::lihat');
     $routes->get('rumah/tambah', 'Rumah::tambah');
     $routes->post('rumah/simpan', 'Rumah::simpan');
-
-    // === Seleksi
-    $routes->get('seleksi/lihat', 'Seleksi::lihat');
-    $routes->get('pengaju/tambah', 'Pengaju::tambah');
-    $routes->post('pengaju/simpan', 'Pengaju::simpan');
 
 });
 

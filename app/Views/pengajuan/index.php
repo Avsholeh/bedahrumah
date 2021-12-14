@@ -3,23 +3,24 @@
 <?= $this->section('content') ?>
 
     <div class="row">
-        <div class="col-lg-8 col-md-12">
+        <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-sm-flex justify-content-between align-items-start mb-3">
-                        <div>
-                            <span class="badge badge-primary me-2">1</span>
-                            <h4 class="d-inline card-title card-title-dash">Data Pengaju</h4>
-                            <p class="card-subtitle card-subtitle-dash">Silahkan isi form data pengaju dibawah ini</p>
-                        </div>
-                    </div>
-
-                    <!-- buat mekanisme validasi input -->
                     <?php $validation = \Config\Services::validation(); ?>
-                    <form action="<?= base_url('pengaju/simpan') ?>" method="POST" enctype="multipart/form-data"
+                    <form action="<?= base_url('pengajuan/simpan') ?>" method="POST" enctype="multipart/form-data"
                           autocomplete="off">
+
+                        <!-- Data Pengaju -->
+                        <div class="d-sm-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <span class="badge badge-primary me-2">1</span>
+                                <h4 class="d-inline card-title card-title-dash">Data Pengaju</h4>
+                                <p class="card-subtitle card-subtitle-dash">Silahkan isi form data pengaju dibawah ini</p>
+                            </div>
+                        </div>
+
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">Nama Pengaju</label>
                                     <input class="form-control form-control-sm" type="text" name="nama"
@@ -68,6 +69,10 @@
                                     <?php endif ?>
                                 </div>
 
+
+                            </div>
+
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">Tanggal Lahir</label>
                                     <input class="form-control form-control-sm" type="date" name="tgl_lahir">
@@ -103,9 +108,7 @@
                                         <small class="text-danger"><?= $error ?></small>
                                     <?php endif ?>
                                 </div>
-                            </div>
 
-                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Penghasilan Perbulan</label>
                                     <select class="form-select form-select-sm" name="penghasilan">
@@ -136,6 +139,10 @@
                                     <?php endif ?>
                                 </div>
 
+
+                            </div>
+
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">Status Kepemilikan Tanah</label>
                                     <select class="form-select form-select-sm" name="status_pemilik_tanah">
@@ -199,9 +206,17 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
 
+                        <!-- Data Pengaju -->
+                        <div class="d-sm-flex justify-content-between align-items-start my-3">
+                            <div>
+                                <span class="badge badge-primary me-2">2</span>
+                                <h4 class="d-inline card-title card-title-dash">Data Rumah</h4>
+                                <p class="card-subtitle card-subtitle-dash">Silahkan isi form data rumah dibawah ini</p>
+                            </div>
+                        </div>
                         <input class="btn btn-primary mt-3" type="submit" value="Simpan">
-
                     </form>
                 </div>
             </div>

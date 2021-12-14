@@ -1,39 +1,69 @@
-<?= $this->extend('layouts/guest') ?>
-
-<?= $this->section('css') ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><?= isset($title) ? $title . ' - ' : '' ?>Bedah Rumah</title>
+    <link rel="stylesheet" href="<?= base_url('public/vendors/css/vendor.bundle.base.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('public/css/vertical-layout-light/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('public/vendors/simple-line-icons/css/simple-line-icons.css') ?>">
+    <link rel="shortcut icon" href="<?= base_url('public/favicon.ico') ?>">
+</head>
 <style>
     .navbar-bg {
         background: url("<?= base_url('public/images/bg.jpg')?>") no-repeat center;
         background-size: cover;
     }
 </style>
-<?= $this->endSection() ?>
-
-<?= $this->section('navbar-content') ?>
-<div class="container">
-    <div class="row justify-content-center text-white py-5">
-        <div class="col-md-6 ps-sm-5 ps-md-5 ps-lg-5">
-            <h2 class="lh-sm">Sistem Informasi Pengelolaan Bedah Rumah</h2>
-            <p class="py-3 lh-lg">Sistem informasi bedah rumah yang bertujuan untuk mendukung program <strong class="text-warning">Bantuan
-                    Stimulan Perumahan
-                    Swadaya (BSPS)</strong> pada DINAS. Sistem ini mampu mempermudah proses pengumpulan data
-                dan mempersingkat waktu dalam menentukan penerima bantuan bedah rumah.</p>
-            <p>Sistem ini
-                merupakan hasil dari penelitian yang berjudul <strong class="text-warning">"Sistem Informasi Pengelolaan Bedah Rumah"</strong>
-                oleh <strong class="text-warning">Miftha Ainul Chamida</strong> di <strong class="text-warning">Universitas Muria Kudus</strong>.</p>
-            <div class="mt-5">
-                <a class="btn btn-secondary" href="<?= base_url('daftar') ?>">Daftar</a>
-                <a class="btn btn-secondary" href="<?= base_url('login') ?>">Demo</a>
+<body>
+<div class="navbar-bg mb-3 vh-100">
+    <nav class="navbar bg-transparent col-lg-12 col-12 p-0 d-flex align-items-top flex-row">
+        <div class="container">
+            <div class="bg-transparent text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                <div>
+                    <a class="navbar-brand brand-logo fs-4 text-center text-white" href="#">
+                        <span>Bedah</span><span class="fw-bold text-warning">Rumah</span>
+                    </a>
+                    <a class="navbar-brand brand-logo-mini fs-4 text-center text-white" href="#">
+                        <span>B</span><span class="fw-bold text-warning">R</span>
+                    </a>
+                </div>
+            </div>
+            <div class="bg-transparent navbar-menu-wrapper d-flex align-items-top">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item d-lg-block">
+                        <a href="<?= base_url('/') ?>" class="nav-link fs-6 text-white fw-bold">Home</a>
+                    </li>
+                    <li class="nav-item d-lg-block">
+                        <a href="<?= base_url('login') ?>" class="nav-link fs-6 fs-6 text-white">Login</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="col-md-6 text-center pt-3">
-            <img class="d-none d-md-block" width="80%" src="<?= base_url('public/images/home-image.png') ?>">
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center text-white py-5">
+            <div class="col-md-6 ps-sm-5 ps-md-5 ps-lg-5">
+                <h2 class="lh-sm">Sistem Informasi Pengelolaan Bedah Rumah</h2>
+                <p class="py-3 lh-lg">Sistem informasi bedah rumah yang bertujuan untuk mendukung program <strong class="text-warning">Bantuan
+                        Stimulan Perumahan
+                        Swadaya (BSPS)</strong> pada DINAS. Sistem ini mampu mempermudah proses pengumpulan data
+                    dan mempersingkat waktu dalam menentukan penerima bantuan bedah rumah.</p>
+                <p>Sistem ini
+                    merupakan hasil dari penelitian yang berjudul <strong class="text-warning">"Sistem Informasi Pengelolaan Bedah Rumah"</strong>
+                    oleh <strong class="text-warning">Miftha Ainul Chamida</strong> di <strong class="text-warning">Universitas Muria Kudus</strong>.</p>
+                <div class="mt-5">
+                    <a class="btn btn-secondary" href="<?= base_url('daftar') ?>">Daftar</a>
+                    <a class="btn btn-secondary" href="<?= base_url('login') ?>">Demo</a>
+                </div>
+            </div>
+            <div class="col-md-6 text-center pt-3">
+                <img class="d-none d-md-block" width="80%" src="<?= base_url('public/images/home-image.png') ?>">
+            </div>
         </div>
     </div>
 </div>
-<?= $this->endSection() ?>
-
-<?= $this->section('content') ?>
 <div class="container my-5" id="jurnal">
     <div class="row mb-3">
         <div class="col-md-12">
@@ -93,5 +123,6 @@
         </div>
     </div>
 </div>
-
-<?= $this->endSection() ?>
+<script src="<?= base_url('public/vendors/js/vendor.bundle.base.js') ?>"></script>
+</body>
+</html>
