@@ -28,37 +28,44 @@ $routes->setAutoRoute(false);
  * Route Definitions
  * --------------------------------------------------------------------
  */
+// Kelompok URL yg hanya bisa diakses oleh pengguna yang belum login
+$routes->group('/', ['filter' => 'guest'], function ($routes) {
 
-// Home
-$routes->get('/', 'Home::index');
+    // === Home & Otentikasi
+    $routes->get('', 'Home::index');
+    $routes->get('login', 'Home::login');
+    $routes->post('proses_login', 'Home::prosesLogin');
+    $routes->get('daftar', 'Home::daftar');
+    $routes->post('proses_daftar', 'Home::prosesDaftar');
 
-// Otentikasi
-$routes->get('/login', 'Home::login');
-$routes->post('/proses_login', 'Home::prosesLogin' );
-$routes->get('/daftar', 'Home::daftar');
-$routes->post('/proses_daftar', 'Home::prosesDaftar');
-$routes->get('/logout', 'Home::logout');
+});
 
-// Dashboard
-$routes->get('/dashboard', 'Dashboard::index');
+// Kelompok URL yg hanya bisa diakses oleh pengguna yang sudah login
+$routes->group('/', ['filter' => 'authenticated'], function ($routes) {
 
-// Data Pengaju
-$routes->get('/pengaju', 'Pengaju::index');
-$routes->post('/pengaju/simpan', 'Pengaju::simpan');
-// Data Rumah
-/*
- * --------------------------------------------------------------------
- * Additional Routing
- * --------------------------------------------------------------------
- *
- * There will often be times that you need additional routing and you
- * need it to be able to override any defaults in this file. Environment
- * based routes is one such time. require() additional route files here
- * to make that happen.
- *
- * You will have access to the $routes object within that file without
- * needing to reload it.
- */
+    // === Logout
+    $routes->get('logout', 'Home::logout');
+
+    // === Dashboard
+    $routes->get('dashboard', 'Dashboard::index');
+
+    // === Data Pengaju
+    $routes->get('pengaju/lihat', 'Pengaju::lihat');
+    $routes->get('pengaju/tambah', 'Pengaju::tambah');
+    $routes->post('pengaju/simpan', 'Pengaju::simpan');
+
+    // === Data Rumah
+    $routes->get('rumah/lihat', 'Rumah::lihat');
+    $routes->get('rumah/tambah', 'Rumah::tambah');
+    $routes->post('rumah/simpan', 'Rumah::simpan');
+
+    // === Seleksi
+    $routes->get('seleksi/lihat', 'Seleksi::lihat');
+    $routes->get('pengaju/tambah', 'Pengaju::tambah');
+    $routes->post('pengaju/simpan', 'Pengaju::simpan');
+
+});
+
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

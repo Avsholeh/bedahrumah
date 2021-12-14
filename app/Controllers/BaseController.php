@@ -21,6 +21,12 @@ use Psr\Log\LoggerInterface;
  */
 class BaseController extends Controller
 {
+    public function __construct()
+    {
+        $this->validator = \Config\Services::validation();
+//        $this->session = \Config\Services::session();
+    }
+
     /**
      * Instance of the main Request object.
      *

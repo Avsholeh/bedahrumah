@@ -23,8 +23,8 @@
     </div>
 </div>
 <script src="<?= base_url('public/vendors/js/vendor.bundle.base.js') ?>"></script>
-<script src="<?= base_url('public/js/off-canvas.js')?>"></script>
-<script src="<?= base_url('public/js/dashboard.js')?>"></script>
-<script src="<?= base_url('public/js/template.js')?>"></script>
+<!--<script src="--><?//= base_url('public/js/off-canvas.js')?><!--"></script>-->
+<!--<script src="--><?//= base_url('public/js/dashboard.js')?><!--"></script>-->
+<!--<script src="--><?//= base_url('public/js/template.js')?><!--"></script>-->
 </body>
 </html>

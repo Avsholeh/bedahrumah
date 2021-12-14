@@ -51,7 +51,7 @@
                         Belum punya akun? <a href="<?= base_url('daftar') ?>" class="text-primary">Daftar disini</a>
                     </div>
                     <div class="text-center mt-4 fw-light">
-                        Kembali ke <a href="<?= base_url('home') ?>" class="text-primary">halaman utama</a>
+                        Kembali ke <a href="<?= base_url('/') ?>" class="text-primary">halaman utama</a>
                     </div>
                 </form>
             </div>

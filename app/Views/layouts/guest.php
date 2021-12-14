@@ -27,10 +27,10 @@
             <div class="bg-transparent navbar-menu-wrapper d-flex align-items-top">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item d-lg-block">
-                        <a href="<?= base_url('home') ?>" class="nav-link fs-6 text-white fw-bold">Home</a>
+                        <a href="<?= base_url('/') ?>" class="nav-link fs-6 text-white fw-bold">Home</a>
                     </li>
                     <li class="nav-item d-lg-block">
-                        <a href="<?= base_url('home/login') ?>" class="nav-link fs-6 fs-6 text-white">Login</a>
+                        <a href="<?= base_url('login') ?>" class="nav-link fs-6 fs-6 text-white">Login</a>
                     </li>
                 </ul>
             </div>

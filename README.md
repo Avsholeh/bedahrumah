@@ -3,21 +3,21 @@
 ## Timeline
 
 - CRUD Users
-    - Create
-    - Read
-    - Update
-    - Delete
+  - Create/Tambah
+  - Read/Lihat
+  - Update/Edit/Perbarui
+  - Delete/Hapus
     
 - CRUD Data Pengaju
-    - Create [OK]
-    - Read
-    - Update
-    - Delete
+  - Create/Tambah [OK]
+  - Read/Lihat
+  - Update/Edit/Perbarui
+  - Delete/Hapus
     
 - CRUD Data Rumah
-    - Create
-    - Read
-    - Update
-    - Delete
+  - Create/Tambah
+  - Read/Lihat
+  - Update/Edit/Perbarui
+  - Delete/Hapus
     
 - Validasi (Algoritma Naive Bayes)
