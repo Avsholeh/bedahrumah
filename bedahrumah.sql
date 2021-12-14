@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 13/12/2021 21:52:28
+ Date: 14/12/2021 16:36:41
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `data_gambar`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_rumah_gambar`(`id_rumah`) USING BTREE,
   CONSTRAINT `fk_rumah_gambar` FOREIGN KEY (`id_rumah`) REFERENCES `data_rumah` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_gambar
@@ -41,28 +41,28 @@ CREATE TABLE `data_gambar`  (
 DROP TABLE IF EXISTS `data_pengaju`;
 CREATE TABLE `data_pengaju`  (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `no_ktp` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `no_kk` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `jenis_kelamin` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `tempat_lahir` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `tgl_lahir` date NULL DEFAULT NULL,
-  `alamat` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `sektor_pekerjaan` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `penghasilan` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `pengeluaran` int(50) NULL DEFAULT NULL,
-  `status_pemilik_tanah` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `bukti_pemilik_tanah` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `status_pemilik_rumah` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `aset_rumah` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `aset_tanah` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  `nama` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `no_ktp` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `no_kk` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `jenis_kelamin` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `tempat_lahir` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `tgl_lahir` date NOT NULL,
+  `alamat` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `sektor_pekerjaan` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `penghasilan` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `pengeluaran` int(50) NOT NULL,
+  `status_pemilik_tanah` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `bukti_pemilik_tanah` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `status_pemilik_rumah` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `aset_rumah` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `aset_tanah` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `unique_no_ktp`(`no_ktp`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_pengaju
 -- ----------------------------
-INSERT INTO `data_pengaju` VALUES (1, 'Dolore explicabo As', 'Recusandae Sunt sed', 'Omnis labore volupta', 'Laki-laki', 'Enim laborum perspic', '2000-05-04', 'Quis in corporis und', 'Lainnya', '1,2 juta - 1,8 juta', 2, 'Milik Sendiri', 'HGB', 'Bukan Milik Sendiri', 'Tidak Ada', 'Tidak Ada');
 
 -- ----------------------------
 -- Table structure for data_rumah
@@ -96,7 +96,7 @@ CREATE TABLE `data_rumah`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_pengaju_rumah`(`id_pengaju`) USING BTREE,
   CONSTRAINT `fk_pengaju_rumah` FOREIGN KEY (`id_pengaju`) REFERENCES `data_pengaju` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_rumah
@@ -114,7 +114,7 @@ CREATE TABLE `users`  (
   `aktif` int(10) NULL DEFAULT NULL,
   `jenis` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of users
