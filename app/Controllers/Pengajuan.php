@@ -14,7 +14,7 @@ class Pengajuan extends BaseController
 
     public function simpan()
     {
-        $validasiDataPengaju = [
+        $inputDataPengaju = [
             'nama' => 'required',
             'no_ktp' => 'required|is_unique[data_pengaju.no_ktp,id,{id}]',
             'no_kk' => 'required',
@@ -32,11 +32,31 @@ class Pengajuan extends BaseController
             'aset_tanah' => 'required',
         ];
 
-        $validasiDataRumah = [
-
+        $inputDataPengaju = [
+            'pondasi' => 'required',
+            'kolom_balok' => 'required',
+            'konstruksi_atap' => 'required',
+            'pencahayaan' => 'required',
+            'ventilasi' => 'required',
+            'mck' => 'required',
+            'kondisi_mck' => 'required',
+            'pembuangan' => 'required',
+            'kondisi_pembuangan' => 'required',
+            'sumber_air_minum' => 'required',
+            'sumber_listrik' => 'required',
+            'luas_rumah' => 'required',
+            'jumlah_penghuni' => 'required',
+            'tinggi_bangunan' => 'required',
+            'ruangan_lainnya' => 'required',
+            'material_atap' => 'required',
+            'kondisi_atap' => 'required',
+            'material_dinding' => 'required',
+            'kondisi_dinding' => 'required',
+            'material_lantai' => 'required',
+            'kondisi_lantai' => 'required',
+            'luas_lantai' => 'required',
         ];
-
-        $validation = $this->validate(array_merge($validasiDataPengaju, $validasiDataRumah));
+        $validation = $this->validate(array_merge($inputDataPengaju, $inputDataPengaju));
 
         if ($validation) {
             // Proses input data jika form sudah valid.
@@ -58,8 +78,37 @@ class Pengajuan extends BaseController
                 'aset_rumah' => $this->request->getPost('aset_rumah'),
                 'aset_tanah' => $this->request->getPost('aset_tanah'),
             ]);
-            return json_encode(['info' => 'Berhasil ditambahkan']); //redirect('rumah/tambah');
+
+            $rumah = new \App\Models\Rumah();
+            $rumah->insert([
+                'id_pengaju' => $pengaju->getInsertID(),
+                'pondasi' => $this->request->getPost("pondasi"),
+                'kolom_balok' => $this->request->getPost("kolom_balok"),
+                'konstruksi_atap' => $this->request->getPost("konstruksi_atap"),
+                'pencahayaan' => $this->request->getPost("pencahayaan"),
+                'ventilasi' => $this->request->getPost("ventilasi"),
+                'mck' => $this->request->getPost("mck"),
+                'kondisi_mck' => $this->request->getPost("kondisi_mck"),
+                'pembuangan' => $this->request->getPost("pembuangan"),
+                'kondisi_pembuangan' => $this->request->getPost("kondisi_pembuangan"),
+                'sumber_air_minum' => $this->request->getPost("sumber_air_minum"),
+                'sumber_listrik' => $this->request->getPost("sumber_listrik"),
+                'luas_rumah' => $this->request->getPost("luas_rumah"),
+                'jumlah_penghuni' => $this->request->getPost("jumlah_penghuni"),
+                'tinggi_bangunan' => $this->request->getPost("tinggi_bangunan"),
+                'ruangan_lainnya' => $this->request->getPost("ruangan_lainnya"),
+                'material_atap' => $this->request->getPost("material_atap"),
+                'kondisi_atap' => $this->request->getPost("kondisi_atap"),
+                'material_dinding' => $this->request->getPost("material_dinding"),
+                'kondisi_dinding' => $this->request->getPost("kondisi_dinding"),
+                'material_lantai' => $this->request->getPost("material_lantai"),
+                'kondisi_lantai' => $this->request->getPost("kondisi_lantai"),
+                'luas_lantai' => $this->request->getPost("luas_lantai"),
+            ]);
+
+            return json_encode(['info' => 'Berhasil ditambahkan [KEMBALI KE HALAMAN LIHAT PENGAJUAN]']); //redirect('rumah/tambah');
         }
+
         // Menampilkan error pada form input yang tidak valid.
         return redirect('pengajuan')->withInput()->with('validation', $this->validator);
     }

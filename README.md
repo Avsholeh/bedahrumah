@@ -15,9 +15,13 @@
   - Delete/Hapus
     
 - CRUD Data Rumah
-  - Create/Tambah
+  - Create/Tambah [OK]
   - Read/Lihat
   - Update/Edit/Perbarui
   - Delete/Hapus
     
 - Validasi (Algoritma Naive Bayes)
+
+## Notes
+
+1. Tambahkan old() pada masing-masing atribut.

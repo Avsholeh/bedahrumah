@@ -377,8 +377,8 @@
 
                                 <!-- Luas Rumah -->
                                 <div class="form-group">
-                                    <label class="form-label">Luas Rumah</label>
-                                    <input class="form-control" type="text" name="luas_rumah" value="<?= old('luas_rumah') ?>"
+                                    <label class="form-label">Luas Rumah (m<sup>2</sup>)</label>
+                                    <input class="form-control" type="number" name="luas_rumah" value="<?= old('luas_rumah') ?>"
                                            placeholder="Luas Rumah">
                                     <?php if ($error = $validation->getError('luas_rumah')): ?>
                                         <small class="text-danger"><?= $error ?></small>
@@ -388,7 +388,7 @@
                                 <!-- Jumlah Penghuni -->
                                 <div class="form-group">
                                     <label class="form-label">Jumlah Penghuni</label>
-                                    <input class="form-control" type="text" name="jumlah_penghuni" value="<?= old('jumlah_penghuni') ?>"
+                                    <input class="form-control" type="number" name="jumlah_penghuni" value="<?= old('jumlah_penghuni') ?>"
                                            placeholder="Jumlah Penghuni">
                                     <?php if ($error = $validation->getError('jumlah_penghuni')): ?>
                                         <small class="text-danger"><?= $error ?></small>
@@ -400,8 +400,8 @@
                                     <label class="form-label">Tinggi Rata-Rata Bangunan (m<sup>2</sup> )</label>
                                     <select class="form-select form-select-sm" name="tinggi_bangunan">
                                         <option value="" selected disabled>Pilih Rata-Rata Tinggi Bangunan</option>
-                                        <option value="< 2,4 m2">< 2,4 m2</option>
-                                        <option value="> 2,4 m2">> 2,4 m2</option>
+                                        <option value="< 2,4 M2">< 2,4 m2</option>
+                                        <option value="> 2,4 M2">> 2,4 m2</option>
                                     </select>
                                     <?php if ($error = $validation->getError('tinggi_bangunan')): ?>
                                         <small class="text-danger"><?= $error ?></small>
@@ -458,12 +458,15 @@
                                 <!-- Material Dinding -->
                                 <div class="form-group">
                                     <label class="form-label">Material Dinding</label>
-                                    <select class="form-select form-select-sm" name="">
+                                    <select class="form-select form-select-sm" name="material_dinding">
                                         <option value="" selected disabled>Pilih Material Dinding</option>
-                                        <option value=""></option>
-                                        <option value=""></option>
+                                        <option value="Bata/Batako Plester">Bata/Batako Plester</option>
+                                        <option value="Bata/Batako Ekspose">Bata/Batako Ekspose</option>
+                                        <option value="Kayu">Kayu</option>
+                                        <option value="Bilik/Bambu">Bilik/Bambu</option>
+                                        <option value="GRC/Asbes">GRC/Asbes</option>
                                     </select>
-                                    <?php if ($error = $validation->getError('')): ?>
+                                    <?php if ($error = $validation->getError('material_dinding')): ?>
                                         <small class="text-danger"><?= $error ?></small>
                                     <?php endif ?>
                                 </div>
@@ -471,12 +474,13 @@
                                 <!-- Kondisi Dinding -->
                                 <div class="form-group">
                                     <label class="form-label">Kondisi Dinding</label>
-                                    <select class="form-select form-select-sm" name="">
+                                    <select class="form-select form-select-sm" name="kondisi_dinding">
                                         <option value="" selected disabled>Pilih Kondisi Dinding</option>
-                                        <option value=""></option>
-                                        <option value=""></option>
+                                        <option value="Tidak Rusak">Tidak Rusak</option>
+                                        <option value="Rusak Sedang">Rusak Sedang</option>
+                                        <option value="Rusak Berat">Rusak Berat</option>
                                     </select>
-                                    <?php if ($error = $validation->getError('')): ?>
+                                    <?php if ($error = $validation->getError('kondisi_dinding')): ?>
                                         <small class="text-danger"><?= $error ?></small>
                                     <?php endif ?>
                                 </div>
@@ -484,12 +488,16 @@
                                 <!-- Material Lantai -->
                                 <div class="form-group">
                                     <label class="form-label">Material Lantai</label>
-                                    <select class="form-select form-select-sm" name="">
+                                    <select class="form-select form-select-sm" name="material_lantai">
                                         <option value="" selected disabled>Pilih Material Lantai</option>
-                                        <option value=""></option>
-                                        <option value=""></option>
+                                        <option value="Keramik/Marmer">Keramik/Marmer</option>
+                                        <option value="Ubin">Ubin</option>
+                                        <option value="Kayu">Kayu</option>
+                                        <option value="Plester">Plester</option>
+                                        <option value="Bambu">Bambu</option>
+                                        <option value="Tanah">Tanah</option>
                                     </select>
-                                    <?php if ($error = $validation->getError('')): ?>
+                                    <?php if ($error = $validation->getError('material_lantai')): ?>
                                         <small class="text-danger"><?= $error ?></small>
                                     <?php endif ?>
                                 </div>
@@ -497,12 +505,13 @@
                                 <!-- Kondisi Lantai -->
                                 <div class="form-group">
                                     <label class="form-label">Kondisi Lantai</label>
-                                    <select class="form-select form-select-sm" name="">
+                                    <select class="form-select form-select-sm" name="kondisi_lantai">
                                         <option value="" selected disabled>Pilih Kondisi Lantai</option>
-                                        <option value=""></option>
-                                        <option value=""></option>
+                                        <option value="Tidak Rusak">Tidak Rusak</option>
+                                        <option value="Rusak Sedang">Rusak Sedang</option>
+                                        <option value="Rusak Berat">Rusak Berat</option>
                                     </select>
-                                    <?php if ($error = $validation->getError('')): ?>
+                                    <?php if ($error = $validation->getError('kondisi_lantai')): ?>
                                         <small class="text-danger"><?= $error ?></small>
                                     <?php endif ?>
                                 </div>
@@ -510,12 +519,15 @@
                                 <!-- Luas Lantai -->
                                 <div class="form-group">
                                     <label class="form-label">Luas Lantai</label>
-                                    <select class="form-select form-select-sm" name="">
+                                    <select class="form-select form-select-sm" name="luas_lantai">
                                         <option value="" selected disabled>Pilih Luas Lantai</option>
-                                        <option value=""></option>
-                                        <option value=""></option>
+                                        <option value="< 4 M2">Kurang dari 4 m2</option>
+                                        <option value="4 M2 <= X < 7,2 M2">Lebih dari atau sama dengan 4 m2 dan kurang dari 7,2 m2</option>
+                                        <option value="7,2 M2 <= X < 9 M2">Lebih dari atau sama dengan 7,2 m2 dan kurang dari 9 m2</option>
+                                        <option value=">= 9 M2">Lebih dari atau sama dengan 9 m2</option>
+                                        <option value=">= 10 M2">Lebih dari atau sama dengan 10 m2</option>
                                     </select>
-                                    <?php if ($error = $validation->getError('')): ?>
+                                    <?php if ($error = $validation->getError('luas_lantai')): ?>
                                         <small class="text-danger"><?= $error ?></small>
                                     <?php endif ?>
                                 </div>
