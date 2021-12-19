@@ -6,10 +6,10 @@ use App\Models\User;
 
 class Home extends BaseController
 {
-    public function __construct()
-    {
-        $this->validator = \Config\Services::validation();
-    }
+//    public function __construct()
+//    {
+//        $this->validator = \Config\Services::validation();
+//    }
 
     public function index()
     {
@@ -45,11 +45,13 @@ class Home extends BaseController
         if ($validation) {
             $user = new User();
             $hashPassword = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
-            $user->insert([
-                'nama_lengkap' => $this->request->getPost('nama_lengkap'),
-                'email' => $this->request->getPost('email'),
-                'password' => $hashPassword,
-            ]);
+            try {
+                $user->insert([
+                    'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+                    'email' => $this->request->getPost('email'),
+                    'password' => $hashPassword,
+                ]);
+            } catch (\ReflectionException $e) {}
             return redirect('login');
         }
         return redirect('daftar')->withInput()->with('validation', $this->validator);
@@ -79,6 +81,7 @@ class Home extends BaseController
 
             // set login session
             $userData = [
+                'id' => $user['id'],
                 'email' => $user['email'],
                 'nama_lengkap' => $user['nama_lengkap'],
                 'aktif' => $user['aktif'] == 1 ? 'Aktif' : 'Tidak Aktif'

@@ -4,12 +4,16 @@ namespace App\Controllers;
 
 class Pengaju extends BaseController
 {
-    public function lihat()
+    public function index()
     {
-        $pengaju = null;
-        return view('pengaju/lihat', [
+        $builder = $this->db->table('data_pengaju');
+        $builder->select('*');
+        $pengaju = $builder->get()->getResultObject();
+
+        return view('pengaju/index', [
             'title' => 'Data Pengaju',
-            'desc' => 'Data pengaju yang telah terdaftar disistem.'
+            'desc' => 'Data pengaju yang telah terdaftar disistem.',
+            'data' => $pengaju
         ]);
     }
 }

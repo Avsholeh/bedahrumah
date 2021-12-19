@@ -12,7 +12,22 @@ class Pengajuan extends BaseController
         ]);
     }
 
-    public function simpan()
+    public function edit($id)
+    {
+        $builder = $this->db->table('pengajuan');
+        $builder->select('*');
+        $builder->join('data_pengaju', 'data_pengaju.id_pengajuan = pengajuan.id');
+        $builder->join('data_rumah', 'data_rumah.id_pengajuan = pengajuan.id');
+        $builder->where('pengajuan.id', $id);
+        $pengajuan = $builder->get()->getFirstRow('object');
+        return view('pengajuan/edit', [
+            'title' => 'Pengajuan',
+            'desc' => 'Form isian Data Pengaju dan Data Rumah',
+            'pengajuan' => $pengajuan,
+        ]);
+    }
+
+    private function validation()
     {
         $inputDataPengaju = [
             'nama' => 'required',
@@ -32,7 +47,7 @@ class Pengajuan extends BaseController
             'aset_tanah' => 'required',
         ];
 
-        $inputDataPengaju = [
+        $inputDataRumah = [
             'pondasi' => 'required',
             'kolom_balok' => 'required',
             'konstruksi_atap' => 'required',
@@ -56,12 +71,30 @@ class Pengajuan extends BaseController
             'kondisi_lantai' => 'required',
             'luas_lantai' => 'required',
         ];
-        $validation = $this->validate(array_merge($inputDataPengaju, $inputDataPengaju));
+        return $this->validate(array_merge($inputDataPengaju, $inputDataRumah));
+    }
 
+    public function update()
+    {
+
+    }
+
+    public function simpan()
+    {
+        $validation = $this->validation();
         if ($validation) {
             // Proses input data jika form sudah valid.
-            $pengaju = new \App\Models\Pengaju();
-            $pengaju->insert([
+            $pengajuan = new \App\Models\Pengajuan();
+            $pengajuan->insert([
+                'id_user' => (int)$this->session->get('user')['id'],
+                'tanggal' => date('Y-m-d H:m:s'),
+                'status' => 'BELUM DIPROSES',
+            ]);
+
+            // data pengaju
+            $dataPengaju = new \App\Models\Pengaju();
+            $dataPengaju->insert([
+                'id_pengajuan' => (int) $pengajuan->getInsertID(),
                 'nama' => $this->request->getPost('nama'),
                 'no_ktp' => $this->request->getPost('no_ktp'),
                 'no_kk' => $this->request->getPost('no_kk'),
@@ -79,9 +112,10 @@ class Pengajuan extends BaseController
                 'aset_tanah' => $this->request->getPost('aset_tanah'),
             ]);
 
-            $rumah = new \App\Models\Rumah();
-            $rumah->insert([
-                'id_pengaju' => $pengaju->getInsertID(),
+            // data rumah
+            $dataRumah = new \App\Models\Rumah();
+            $dataRumah->insert([
+                'id_pengajuan' => (int) $pengajuan->getInsertID(),
                 'pondasi' => $this->request->getPost("pondasi"),
                 'kolom_balok' => $this->request->getPost("kolom_balok"),
                 'konstruksi_atap' => $this->request->getPost("konstruksi_atap"),
@@ -106,7 +140,39 @@ class Pengajuan extends BaseController
                 'luas_lantai' => $this->request->getPost("luas_lantai"),
             ]);
 
-            return json_encode(['info' => 'Berhasil ditambahkan [KEMBALI KE HALAMAN LIHAT PENGAJUAN]']); //redirect('rumah/tambah');
+            $dataGambar = new \App\Models\Gambar();
+            if ($this->request->getFile('gambar_depan')) {
+                $dataGambar->insert([
+                    'id_pengajuan' => (int) $pengajuan->getInsertID(),
+                    'jenis' => 'BAGIAN DEPAN',
+                    'file' => base64_encode($this->request->getFile('gambar_depan'))
+                ]);
+            }
+
+            if ($this->request->getFile('gambar_samping')) {
+                $dataGambar->insert([
+                    'id_pengajuan' => (int) $pengajuan->getInsertID(),
+                    'jenis' => 'BAGIAN SAMPING',
+                    'file' => base64_encode($this->request->getFile('gambar_samping'))
+                ]);
+            }
+
+            if ($this->request->getFile('gambar_belakang')) {
+                $dataGambar->insert([
+                    'id_pengajuan' => (int) $pengajuan->getInsertID(),
+                    'jenis' => 'BAGIAN BELAKANG',
+                    'file' => base64_encode($this->request->getFile('gambar_belakang'))
+                ]);
+            }
+
+            if ($this->request->getFile('gambar_dalam')) {
+                $dataGambar->insert([
+                    'id_pengajuan' => (int) $pengajuan->getInsertID(),
+                    'jenis' => 'BAGIAN DALAM',
+                    'file' => base64_encode($this->request->getFile('gambar_dalam'))
+                ]);
+            }
+            return redirect('verifikasi');
         }
 
         // Menampilkan error pada form input yang tidak valid.

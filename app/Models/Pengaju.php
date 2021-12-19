@@ -11,6 +11,7 @@ class Pengaju extends Model
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
+        'id_pengajuan',
         'nama',
         'no_ktp',
         'no_kk',

@@ -11,7 +11,7 @@ class Rumah extends Model
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
-        'id_pengaju',
+        'id_pengajuan',
         'pondasi',
         'kolom_balok',
         'konstruksi_atap',

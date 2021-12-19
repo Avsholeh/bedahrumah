@@ -26,5 +26,6 @@
 <!--<script src="--><?//= base_url('public/js/off-canvas.js')?><!--"></script>-->
 <!--<script src="--><?//= base_url('public/js/dashboard.js')?><!--"></script>-->
 <!--<script src="--><?//= base_url('public/js/template.js')?><!--"></script>-->
+<?= $this->renderSection('scripts')?>
 </body>
 </html>

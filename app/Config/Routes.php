@@ -51,18 +51,20 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
 
     // === Pengajuan
     $routes->get('pengajuan', 'Pengajuan::index');
+    $routes->get('pengajuan/edit/(:num)', 'Pengajuan::edit/$1');
+    $routes->post('pengajuan/update', 'Pengajuan::update');
     $routes->post('pengajuan/simpan', 'Pengajuan::simpan');
 
-    // === Seleksi
-    $routes->get('seleksi', 'Seleksi::index');
+    // === Verifikasi
+    $routes->get('verifikasi', 'Verifikasi::index');
 
     // === Data Pengaju
-    $routes->get('pengaju/lihat', 'Pengaju::lihat');
+    $routes->get('pengaju', 'Pengaju::index');
     $routes->get('pengaju/tambah', 'Pengaju::tambah');
     $routes->post('pengaju/simpan', 'Pengaju::simpan');
 
     // === Data Rumah
-    $routes->get('rumah/lihat', 'Rumah::lihat');
+    $routes->get('rumah', 'Rumah::index');
     $routes->get('rumah/tambah', 'Rumah::tambah');
     $routes->post('rumah/simpan', 'Rumah::simpan');
 

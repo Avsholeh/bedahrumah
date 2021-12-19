@@ -534,6 +534,44 @@
                             </div>
                         </div>
 
+                        <hr>
+
+                        <!-- Data Rumah -->
+                        <div class="d-sm-flex justify-content-between align-items-start my-3">
+                            <div>
+                                <span class="badge badge-primary me-2">2</span>
+                                <h4 class="d-inline card-title card-title-dash">Data Gambar</h4>
+                                <p class="card-subtitle card-subtitle-dash">Silahkan isi form data gambar dibawah ini</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label">Rumah Tampak Depan</label>
+                                    <input class="form-control-sm" type="file" name="gambar_depan">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label">Rumah Tampak Samping</label>
+                                    <input class="form-control-sm" type="file" name="gambar_samping">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label">Rumah Tampak Belakang</label>
+                                    <input class="form-control-sm" type="file" name="gambar_belakang">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label">Rumah Bagian Dalam</label>
+                                    <input class="form-control-sm" type="file" name="gambar_dalam">
+                                </div>
+                            </div>
+                        </div>
+
                         <input class="btn btn-primary mt-3" type="submit" value="Simpan">
                     </form>
                 </div>

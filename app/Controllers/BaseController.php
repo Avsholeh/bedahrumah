@@ -21,12 +21,6 @@ use Psr\Log\LoggerInterface;
  */
 class BaseController extends Controller
 {
-    public function __construct()
-    {
-        $this->validator = \Config\Services::validation();
-//        $this->session = \Config\Services::session();
-    }
-
     /**
      * Instance of the main Request object.
      *
@@ -53,6 +47,9 @@ class BaseController extends Controller
 
         // Preload any models, libraries, etc, here.
 
-        // E.g.: $this->session = \Config\Services::session();
+        $this->session = \Config\Services::session();
+        $this->validator = \Config\Services::validation();
+        $this->db = \Config\Database::connect();
+
     }
 }

@@ -16,21 +16,21 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('seleksi') ?>">
+            <a class="nav-link" href="<?= base_url('verifikasi') ?>">
                 <i class="icon-refresh me-2"></i>
-                <span class="menu-title fs-6">Seleksi</span>
+                <span class="menu-title fs-6">Verifikasi</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('pengaju/lihat') ?>">
+            <a class="nav-link" href="<?= base_url('pengaju') ?>">
                 <i class="icon-list me-2"></i>
                 <span class="menu-title fs-6">Data Pengaju</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('rumah/lihat') ?>">
+            <a class="nav-link" href="<?= base_url('rumah') ?>">
                 <i class="icon-list me-2"></i>
                 <span class="menu-title fs-6">Data Rumah</span>
             </a>
