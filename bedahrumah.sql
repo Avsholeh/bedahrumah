@@ -11,7 +11,11 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
+<<<<<<< HEAD
  Date: 05/01/2022 21:32:24
+=======
+ Date: 05/01/2022 21:29:27
+>>>>>>> eaa1295630f4241914d83ea028bde1e048604916
 */
 
 SET NAMES utf8mb4;
@@ -27,8 +31,14 @@ CREATE TABLE `data_gambar`  (
   `jenis` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `file` longblob NULL,
   PRIMARY KEY (`id`) USING BTREE,
+<<<<<<< HEAD
   INDEX `fk_rumah_gambar`(`id_pengajuan`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+=======
+  INDEX `fk_rumah_gambar`(`id_pengajuan`) USING BTREE,
+  CONSTRAINT `fk_gambar_pengajuan` FOREIGN KEY (`id_pengajuan`) REFERENCES `pengajuan` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+>>>>>>> eaa1295630f4241914d83ea028bde1e048604916
 
 -- ----------------------------
 -- Records of data_gambar
@@ -61,8 +71,14 @@ CREATE TABLE `data_pengaju`  (
   `aset_rumah` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `aset_tanah` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
+<<<<<<< HEAD
   INDEX `fk_pengaju_pengajuan`(`id_pengajuan`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+=======
+  INDEX `fk_pengaju_pengajuan`(`id_pengajuan`) USING BTREE,
+  CONSTRAINT `fk_pengaju_pengajuan` FOREIGN KEY (`id_pengajuan`) REFERENCES `pengajuan` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+>>>>>>> eaa1295630f4241914d83ea028bde1e048604916
 
 -- ----------------------------
 -- Records of data_pengaju
@@ -99,8 +115,14 @@ CREATE TABLE `data_rumah`  (
   `kondisi_lantai` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `luas_lantai` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
+<<<<<<< HEAD
   INDEX `fk_pengaju_rumah`(`id_pengajuan`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+=======
+  INDEX `fk_pengaju_rumah`(`id_pengajuan`) USING BTREE,
+  CONSTRAINT `fk_rumah_pengajuan` FOREIGN KEY (`id_pengajuan`) REFERENCES `pengajuan` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+>>>>>>> eaa1295630f4241914d83ea028bde1e048604916
 
 -- ----------------------------
 -- Records of data_rumah
@@ -117,8 +139,14 @@ CREATE TABLE `pengajuan`  (
   `tanggal` datetime(0) NOT NULL,
   `status` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
+<<<<<<< HEAD
   INDEX `fk_pengajuan`(`id_user`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
+=======
+  INDEX `fk_pengajuan`(`id_user`) USING BTREE,
+  CONSTRAINT `fk_pengajuan` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+>>>>>>> eaa1295630f4241914d83ea028bde1e048604916
 
 -- ----------------------------
 -- Records of pengajuan
@@ -137,7 +165,7 @@ CREATE TABLE `users`  (
   `aktif` int(10) NULL DEFAULT NULL,
   `jenis` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
