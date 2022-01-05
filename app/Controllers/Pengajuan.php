@@ -94,7 +94,7 @@ class Pengajuan extends BaseController
             // data pengaju
             $dataPengaju = new \App\Models\Pengaju();
             $dataPengaju->insert([
-                'id_pengajuan' => (int) $pengajuan->getInsertID(),
+                'id_pengajuan' => (int)$pengajuan->getInsertID(),
                 'nama' => $this->request->getPost('nama'),
                 'no_ktp' => $this->request->getPost('no_ktp'),
                 'no_kk' => $this->request->getPost('no_kk'),
@@ -115,7 +115,7 @@ class Pengajuan extends BaseController
             // data rumah
             $dataRumah = new \App\Models\Rumah();
             $dataRumah->insert([
-                'id_pengajuan' => (int) $pengajuan->getInsertID(),
+                'id_pengajuan' => (int)$pengajuan->getInsertID(),
                 'pondasi' => $this->request->getPost("pondasi"),
                 'kolom_balok' => $this->request->getPost("kolom_balok"),
                 'konstruksi_atap' => $this->request->getPost("konstruksi_atap"),
@@ -141,9 +141,10 @@ class Pengajuan extends BaseController
             ]);
 
             $dataGambar = new \App\Models\Gambar();
+
             if ($this->request->getFile('gambar_depan')) {
                 $dataGambar->insert([
-                    'id_pengajuan' => (int) $pengajuan->getInsertID(),
+                    'id_pengajuan' => (int)$pengajuan->getInsertID(),
                     'jenis' => 'BAGIAN DEPAN',
                     'file' => base64_encode($this->request->getFile('gambar_depan'))
                 ]);
@@ -151,7 +152,7 @@ class Pengajuan extends BaseController
 
             if ($this->request->getFile('gambar_samping')) {
                 $dataGambar->insert([
-                    'id_pengajuan' => (int) $pengajuan->getInsertID(),
+                    'id_pengajuan' => (int)$pengajuan->getInsertID(),
                     'jenis' => 'BAGIAN SAMPING',
                     'file' => base64_encode($this->request->getFile('gambar_samping'))
                 ]);
@@ -159,7 +160,7 @@ class Pengajuan extends BaseController
 
             if ($this->request->getFile('gambar_belakang')) {
                 $dataGambar->insert([
-                    'id_pengajuan' => (int) $pengajuan->getInsertID(),
+                    'id_pengajuan' => (int)$pengajuan->getInsertID(),
                     'jenis' => 'BAGIAN BELAKANG',
                     'file' => base64_encode($this->request->getFile('gambar_belakang'))
                 ]);
@@ -167,7 +168,7 @@ class Pengajuan extends BaseController
 
             if ($this->request->getFile('gambar_dalam')) {
                 $dataGambar->insert([
-                    'id_pengajuan' => (int) $pengajuan->getInsertID(),
+                    'id_pengajuan' => (int)$pengajuan->getInsertID(),
                     'jenis' => 'BAGIAN DALAM',
                     'file' => base64_encode($this->request->getFile('gambar_dalam'))
                 ]);
