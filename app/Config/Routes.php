@@ -17,7 +17,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('HomeController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -32,11 +32,11 @@ $routes->setAutoRoute(false);
 $routes->group('/', ['filter' => 'guest'], function ($routes) {
 
     // === Home & Otentikasi
-    $routes->get('', 'Home::index');
-    $routes->get('login', 'Home::login');
-    $routes->post('proses_login', 'Home::prosesLogin');
-    $routes->get('daftar', 'Home::daftar');
-    $routes->post('proses_daftar', 'Home::prosesDaftar');
+    $routes->get('', 'HomeController::index');
+    $routes->get('login', 'HomeController::login');
+    $routes->post('proses_login', 'HomeController::prosesLogin');
+    $routes->get('daftar', 'HomeController::daftar');
+    $routes->post('proses_daftar', 'HomeController::prosesDaftar');
 
 });
 
