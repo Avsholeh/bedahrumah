@@ -57,6 +57,8 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
 
     // === Verifikasi
     $routes->get('verifikasi', 'VerifikasiController::index');
+    $routes->post('verifikasi/proses', 'VerifikasiController::verifikasi');
+    $routes->get('naivebayes', 'VerifikasiController::naivebayes');
 
     // === Data Pengaju
     $routes->get('pengaju', 'PengajuController::index');

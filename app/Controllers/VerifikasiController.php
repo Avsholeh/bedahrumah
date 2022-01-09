@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use Phpml\Classification\NaiveBayes;
+use Phpml\Dataset\CsvDataset;
+
 class VerifikasiController extends BaseController
 {
     public function index()
@@ -20,7 +23,18 @@ class VerifikasiController extends BaseController
 
     public function verifikasi()
     {
+        $idPermohonan = $this->request->getPost('id_permohonan');
         
+        return redirect('verifikasi');
+    }
+
+    public function naivebayes($prediction)
+    {
+        if (gettype($prediction) !== 'array') return 'Array Datatype is required';
+        $dataset = new CsvDataset(WRITEPATH . 'uploads/data_bedahrumah.csv',30,true);
+        $naivebayes = new NaiveBayes();
+        $naivebayes->train($dataset->getSamples(), $dataset->getTargets());
+        return $naivebayes->predict($prediction);
     }
 
 }
