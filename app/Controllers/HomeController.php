@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Models\User;
+use App\Models\UserModel;
 
-class Home extends BaseController
+class HomeController extends BaseController
 {
 //    public function __construct()
 //    {
@@ -43,7 +43,7 @@ class Home extends BaseController
         ]);
 
         if ($validation) {
-            $user = new User();
+            $user = new UserModel();
             $hashPassword = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
             try {
                 $user->insert([
@@ -65,7 +65,7 @@ class Home extends BaseController
         ]);
 
         if ($validation) {
-            $userModel = new User();
+            $userModel = new UserModel();
             $user = $userModel
                 ->where('email', $this->request->getPost('email'))
                 ->first();

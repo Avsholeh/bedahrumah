@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body">
                     <?php $validation = \Config\Services::validation(); ?>
-                    <form action="<?= base_url('pengajuan/simpan') ?>" method="POST" enctype="multipart/form-data"
+                    <form action="<?= base_url('permohonan/simpan') ?>" method="POST" enctype="multipart/form-data"
                           autocomplete="off">
 
                         <!-- Data Pengaju -->

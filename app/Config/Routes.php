@@ -47,26 +47,26 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
     $routes->get('logout', 'Home::logout');
 
     // === Dashboard
-    $routes->get('dashboard', 'Dashboard::index');
+    $routes->get('dashboard', 'DashboardController::index');
 
-    // === Pengajuan
-    $routes->get('pengajuan', 'Pengajuan::index');
-    $routes->get('pengajuan/edit/(:num)', 'Pengajuan::edit/$1');
-    $routes->post('pengajuan/update', 'Pengajuan::update');
-    $routes->post('pengajuan/simpan', 'Pengajuan::simpan');
+    // === Permohonan
+    $routes->get('permohonan', 'PermohonanController::index');
+    $routes->get('permohonan/edit/(:num)', 'PermohonanController::edit/$1');
+    $routes->post('permohonan/update', 'PermohonanController::update');
+    $routes->post('permohonan/simpan', 'PermohonanController::simpan');
 
     // === Verifikasi
-    $routes->get('verifikasi', 'Verifikasi::index');
+    $routes->get('verifikasi', 'VerifikasiController::index');
 
     // === Data Pengaju
-    $routes->get('pengaju', 'Pengaju::index');
-    $routes->get('pengaju/tambah', 'Pengaju::tambah');
-    $routes->post('pengaju/simpan', 'Pengaju::simpan');
+    $routes->get('pengaju', 'PengajuController::index');
+    $routes->get('pengaju/tambah', 'PengajuController::tambah');
+    $routes->post('pengaju/simpan', 'PengajuController::simpan');
 
     // === Data Rumah
-    $routes->get('rumah', 'Rumah::index');
-    $routes->get('rumah/tambah', 'Rumah::tambah');
-    $routes->post('rumah/simpan', 'Rumah::simpan');
+    $routes->get('rumah', 'RumahController::index');
+    $routes->get('rumah/tambah', 'RumahController::tambah');
+    $routes->post('rumah/simpan', 'RumahController::simpan');
 
 });
 

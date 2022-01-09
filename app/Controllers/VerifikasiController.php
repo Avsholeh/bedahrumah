@@ -2,20 +2,25 @@
 
 namespace App\Controllers;
 
-class Verifikasi extends BaseController
+class VerifikasiController extends BaseController
 {
     public function index()
     {
-        $builder = $this->db->table('pengajuan');
+        $builder = $this->db->table('permohonan');
         $builder->select('*');
-        $builder->join('data_pengaju', 'data_pengaju.id_pengajuan = pengajuan.id');
-        $builder->orderBy('pengajuan.tanggal', 'desc');
+        $builder->join('data_pengaju', 'data_pengaju.id_permohonan = permohonan.id');
+        $builder->orderBy('permohonan.tanggal', 'desc');
         $data = $builder->get()->getResultObject();
         return view('verifikasi/index', [
             'title' => 'Verifikasi',
             'desc' => 'Proses verifikasi penerimaan bantuan bedah rumah.',
             'data' => $data
         ]);
+    }
+
+    public function verifikasi()
+    {
+        
     }
 
 }

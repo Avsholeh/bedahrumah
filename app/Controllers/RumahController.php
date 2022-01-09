@@ -2,13 +2,13 @@
 
 namespace App\Controllers;
 
-class Rumah extends BaseController
+class RumahController extends BaseController
 {
     public function index()
     {
         $builder = $this->db->table('data_rumah');
         $builder->select('data_rumah.*, data_pengaju.nama');
-        $builder->join('data_pengaju', 'data_pengaju.id_pengajuan = data_rumah.id_pengajuan');
+        $builder->join('data_pengaju', 'data_pengaju.id_permohonan = data_rumah.id_permohonan');
         $rumah = $builder->get()->getResultObject();
 
         return view('rumah/index', [

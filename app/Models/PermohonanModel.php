@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Gambar extends Model
+class PermohonanModel extends Model
 {
     protected $DBGroup = 'default';
-    protected $table = 'data_gambar';
+    protected $table = 'permohonan';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
-        'id_pengajuan',
-        'jenis',
-        'file'
+        'id_user',
+        'tanggal',
+        'status',
     ];
 }

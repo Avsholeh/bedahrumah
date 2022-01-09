@@ -28,22 +28,22 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($data as $pengajuan): ?>
+                        <?php foreach ($data as $permohonan): ?>
                             <tr>
-                                <td class="d-none"><?= $pengajuan->id ?></td class="d-none">
-                                <td><?= $pengajuan->tanggal ?></td>
-                                <td><?= $pengajuan->nama ?></td>
-                                <td><?= $pengajuan->no_ktp ?></td>
-                                <td><?= $pengajuan->alamat ?></td>
-                                <td class="d-none"><?= $pengajuan->sektor_pekerjaan ?></td>
-                                <td class="d-none"><?= $pengajuan->penghasilan ?></td>
-                                <td class="d-none"><?= $pengajuan->pengeluaran ?></td>
-                                <td class="d-none"><?= $pengajuan->status_pemilik_tanah ?></td>
-                                <td class="d-none"><?= $pengajuan->status_pemilik_rumah ?></td>
-                                <td class="d-none"><?= $pengajuan->bukti_pemilik_tanah ?></td>
-                                <td class="d-none"><?= $pengajuan->aset_rumah ?></td>
-                                <td class="d-none"><?= $pengajuan->aset_tanah ?></td>
-                                <td><label class="badge badge-warning"><?= $pengajuan->status ?></label></td>
+                                <td class="d-none"><?= $permohonan->id ?></td class="d-none">
+                                <td><?= $permohonan->tanggal ?></td>
+                                <td><?= $permohonan->nama ?></td>
+                                <td><?= $permohonan->no_ktp ?></td>
+                                <td><?= $permohonan->alamat ?></td>
+                                <td class="d-none"><?= $permohonan->sektor_pekerjaan ?></td>
+                                <td class="d-none"><?= $permohonan->penghasilan ?></td>
+                                <td class="d-none"><?= $permohonan->pengeluaran ?></td>
+                                <td class="d-none"><?= $permohonan->status_pemilik_tanah ?></td>
+                                <td class="d-none"><?= $permohonan->status_pemilik_rumah ?></td>
+                                <td class="d-none"><?= $permohonan->bukti_pemilik_tanah ?></td>
+                                <td class="d-none"><?= $permohonan->aset_rumah ?></td>
+                                <td class="d-none"><?= $permohonan->aset_tanah ?></td>
+                                <td><label class="badge badge-warning"><?= $permohonan->status ?></label></td>
                                 <td>
                                     <a class="btn btn-sm btn-inverse-success lihatBtn" href="#">Lihat</a>
                                     <a class="btn btn-sm btn-inverse-danger" href="#">Edit</a>

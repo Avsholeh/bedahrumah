@@ -4,7 +4,7 @@
 namespace App\Controllers;
 
 
-class Dashboard extends BaseController
+class DashboardController extends BaseController
 {
     public function index()
     {

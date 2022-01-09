@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Rumah extends Model
+class RumahModel extends Model
 {
     protected $DBGroup = 'default';
     protected $table = 'data_rumah';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
-        'id_pengajuan',
+        'id_permohonan',
         'pondasi',
         'kolom_balok',
         'konstruksi_atap',

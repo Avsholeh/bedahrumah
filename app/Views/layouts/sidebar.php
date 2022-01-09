@@ -9,9 +9,9 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('pengajuan') ?>">
+            <a class="nav-link" href="<?= base_url('permohonan') ?>">
                 <i class="icon-note me-2"></i>
-                <span class="menu-title fs-6">Pengajuan</span>
+                <span class="menu-title fs-6">Permohonan</span>
             </a>
         </li>
 

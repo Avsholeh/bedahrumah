@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Pengaju extends BaseController
+class PengajuController extends BaseController
 {
     public function index()
     {

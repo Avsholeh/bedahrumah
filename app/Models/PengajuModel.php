@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Pengaju extends Model
+class PengajuModel extends Model
 {
     protected $DBGroup = 'default';
     protected $table = 'data_pengaju';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
-        'id_pengajuan',
+        'id_permohonan',
         'nama',
         'no_ktp',
         'no_kk',
