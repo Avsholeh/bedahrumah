@@ -61,7 +61,7 @@
                                 <td>
                                     <a class="btn btn-sm btn-primary lihatBtn" href="#">Lihat</a>
                                     <a class="btn btn-sm btn-warning" href="<?= base_url('permohonan/edit/' . $permohonan->id_permohonan) ?>">Edit</a>
-                                    <a class="btn btn-sm btn-danger" href="#">Hapus</a>
+                                    <a class="btn btn-sm btn-danger" href="<?= base_url('permohonan/hapus/' . $permohonan->id_permohonan) ?>">Hapus</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

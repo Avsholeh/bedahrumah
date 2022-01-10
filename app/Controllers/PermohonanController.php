@@ -2,6 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Models\GambarModel;
+use App\Models\PengajuModel;
+use App\Models\PermohonanModel;
+use App\Models\RumahModel;
+
 class PermohonanController extends BaseController
 {
     public function index()
@@ -176,7 +181,6 @@ class PermohonanController extends BaseController
         return redirect('permohonan')->withInput()->with('validation', $this->validator);
     }
 
-
     public function update()
     {
         $validation = $this->validation();
@@ -186,7 +190,7 @@ class PermohonanController extends BaseController
         if ($validation) {
             // Proses input data jika form sudah valid.
             $permohonan = new \App\Models\PermohonanModel();
-            $permohonan->update($idPermohonan, [
+            $permohonan->update(['id' => $idPermohonan], [
                 'id_user' => (int)$this->session->get('user')['id'],
                 'tanggal' => date('Y-m-d H:m:s'),
                 'status' => 'BELUM DIPROSES',
@@ -194,7 +198,8 @@ class PermohonanController extends BaseController
 
             // data pengaju
             $dataPengaju = new \App\Models\PengajuModel();
-            $dataPengaju->update(['id_permohonan' => $idPermohonan], [
+            $dataPengajuId = $dataPengaju->where(['id_permohonan' => $idPermohonan])->get()->getFirstRow()->id;
+            $update = $dataPengaju->update($dataPengajuId, [
                 'nama' => $this->request->getPost('nama'),
                 'no_ktp' => $this->request->getPost('no_ktp'),
                 'no_kk' => $this->request->getPost('no_kk'),
@@ -214,7 +219,8 @@ class PermohonanController extends BaseController
 
             // data rumah
             $dataRumah = new \App\Models\RumahModel();
-            $dataRumah->update(['id_permohonan' => $idPermohonan], [
+            $dataRumahId = $dataRumah->where(['id_permohonan' => $idPermohonan])->get()->getFirstRow()->id;
+            $dataRumah->update($dataRumahId, [
                 'pondasi' => $this->request->getPost("pondasi"),
                 'kolom_balok' => $this->request->getPost("kolom_balok"),
                 'konstruksi_atap' => $this->request->getPost("konstruksi_atap"),
@@ -240,7 +246,7 @@ class PermohonanController extends BaseController
             ]);
 
             $dataGambar = new \App\Models\GambarModel();
-
+            // @TODO perbaiki gambar
             if ($this->request->getFile('gambar_depan')) {
                 $dataGambar->update(['id_permohonan' => $idPermohonan], [
                     'jenis' => 'BAGIAN DEPAN',
@@ -275,6 +281,21 @@ class PermohonanController extends BaseController
 //        dd($route);
         // Menampilkan error pada form input yang tidak valid.
         return redirect()->to(site_url($route))->withInput()->with('validation', $this->validator);
+    }
+
+    public function hapus($id)
+    {
+        $permohonan = new PermohonanModel();
+        $dataPengaju = new PengajuModel();
+        $dataRumah = new RumahModel();
+        $dataGambar = new GambarModel();
+
+        $permohonan->delete($id);
+        $dataPengaju->delete(['id_permohonan' => $id]);
+        $dataRumah->delete(['id_permohonan' => $id]);
+        $dataGambar->delete(['id_permohonan' => $id]);
+
+        return redirect('verifikasi');
     }
 
 }
