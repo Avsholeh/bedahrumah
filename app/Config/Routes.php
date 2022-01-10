@@ -44,7 +44,7 @@ $routes->group('/', ['filter' => 'guest'], function ($routes) {
 $routes->group('/', ['filter' => 'auth'], function ($routes) {
 
     // === Logout
-    $routes->get('logout', 'Home::logout');
+    $routes->get('logout', 'HomeController::logout');
 
     // === Dashboard
     $routes->get('dashboard', 'DashboardController::index');

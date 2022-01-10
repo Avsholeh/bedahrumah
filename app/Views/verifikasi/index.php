@@ -10,9 +10,9 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th class="d-none">ID</th>
+                            <th>ID</th>
                             <th>Tanggal</th>
-                            <th>Nama Pengaju</th>
+                            <th>Pengaju</th>
                             <th>No.KTP</th>
                             <th>Alamat</th>
                             <th class="d-none">Sektor Pekerjaan</th>
@@ -30,7 +30,7 @@
                         <tbody>
                         <?php foreach ($data as $permohonan): ?>
                             <tr>
-                                <td class="d-none"><?= $permohonan->id ?></td class="d-none">
+                                <td><?= $permohonan->id_permohonan ?></td class="d-none">
                                 <td><?= $permohonan->tanggal ?></td>
                                 <td><?= $permohonan->nama ?></td>
                                 <td><?= $permohonan->no_ktp ?></td>
@@ -43,11 +43,25 @@
                                 <td class="d-none"><?= $permohonan->bukti_pemilik_tanah ?></td>
                                 <td class="d-none"><?= $permohonan->aset_rumah ?></td>
                                 <td class="d-none"><?= $permohonan->aset_tanah ?></td>
-                                <td><label class="badge badge-warning"><?= $permohonan->status ?></label></td>
+                                <?php if ($permohonan->status === 'BELUM DIPROSES'): ?>
+                                    <td>
+                                        <form action="<?= base_url('verifikasi/proses') ?>" method="POST"
+                                              enctype="multipart/form-data" autocomplete="off" class="d-inline">
+                                            <input type="hidden" name="id_permohonan"
+                                                   value="<?= $permohonan->id_permohonan ?>">
+                                            <input type="submit" class="btn btn-sm btn-success"
+                                                   value="Verifikasi">
+                                        </form>
+                                    </td>
+                                <?php else: ?>
+                                    <td><label class="badge badge-primary">
+                                            <strong><?= $permohonan->status ?></strong>
+                                        </label></td>
+                                <?php endif; ?>
                                 <td>
-                                    <a class="btn btn-sm btn-inverse-success lihatBtn" href="#">Lihat</a>
-                                    <a class="btn btn-sm btn-inverse-danger" href="#">Edit</a>
-                                    <a class="btn btn-sm btn-inverse-primary" href="#">Verifikasi</a>
+                                    <a class="btn btn-sm btn-primary lihatBtn" href="#">Lihat</a>
+                                    <a class="btn btn-sm btn-warning" href="<?= base_url('permohonan/edit/' . $permohonan->id_permohonan) ?>">Edit</a>
+                                    <a class="btn btn-sm btn-danger" href="#">Hapus</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -58,17 +72,14 @@
         </div>
     </div>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="lihatModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
             </div>
         </div>
     </div>
@@ -77,7 +88,7 @@
 
 <?= $this->section('scripts') ?>
 <script>
-    var lihatModal = new bootstrap.Modal(document.getElementById('lihatModal'), {}); //document.getElementById('lihatModal')
+    var lihatModal = new bootstrap.Modal(document.getElementById('lihatModal'), {});
     var titleModal = $(".modal-title");
     var bodyModal = $(".modal-body");
     var lihatBtn = $(".lihatBtn");
@@ -86,7 +97,6 @@
     lihatBtn.click(function () {
         lihatModal.show();
         var tableBody = $(this).parent().siblings();
-        titleModal.text(tableBody[2].textContent);
         var htmlModal = "";
         for (var i = 0; i < tableHead.length - 1; i++) {
             htmlModal += `
