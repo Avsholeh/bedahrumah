@@ -18,6 +18,14 @@
                             <th>Tempat Lahir</th>
                             <th>Tgl Lahir</th>
                             <th>Alamat</th>
+                            <th class="d-none">Sektor Pekerjaan</th>
+                            <th class="d-none">Penghasilan</th>
+                            <th class="d-none">Pengeluaran</th>
+                            <th class="d-none">Status Kepemilikan Tanah</th>
+                            <th class="d-none">Status Kepemilikan Rumah</th>
+                            <th class="d-none">Bukti Kepemilikan Tanah</th>
+                            <th class="d-none">Aset Rumah</th>
+                            <th class="d-none">Aset Tanah</th>
                             <th>#</th>
                         </tr>
                         </thead>
@@ -32,6 +40,14 @@
                                 <td><?= $pengaju->tempat_lahir ?></td>
                                 <td><?= $pengaju->tgl_lahir ?></td>
                                 <td><?= $pengaju->alamat ?></td>
+                                <td class="d-none"><?= $pengaju->sektor_pekerjaan ?></td>
+                                <td class="d-none"><?= $pengaju->penghasilan ?></td>
+                                <td class="d-none"><?= $pengaju->pengeluaran ?></td>
+                                <td class="d-none"><?= $pengaju->status_pemilik_tanah ?></td>
+                                <td class="d-none"><?= $pengaju->status_pemilik_rumah ?></td>
+                                <td class="d-none"><?= $pengaju->bukti_pemilik_tanah ?></td>
+                                <td class="d-none"><?= $pengaju->aset_rumah ?></td>
+                                <td class="d-none"><?= $pengaju->aset_tanah ?></td>
                                 <td>
                                     <a class="btn btn-sm btn-primary lihatBtn" href="#">Lihat</a>
                                 </td>

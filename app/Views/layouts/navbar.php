@@ -6,7 +6,7 @@
             </button>
         </div>
         <div>
-            <a class="navbar-brand brand-logo fs-4 text-center" href="#">
+            <a class="navbar-brand brand-logo fs-4 text-center" href="<?= base_url() ?>">
                 <span class="text-dark">Bedah</span><span class="fw-bold text-warning">Rumah</span>
             </a>
         </div>

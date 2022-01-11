@@ -13,6 +13,7 @@ class VerifikasiController extends BaseController
         $builder = $this->db->table('permohonan');
         $builder->select('*');
         $builder->join('data_pengaju', 'data_pengaju.id_permohonan = permohonan.id');
+        $builder->join('data_rumah', 'data_rumah.id_permohonan = permohonan.id');
         $builder->orderBy('permohonan.tanggal', 'desc');
         $data = $builder->get()->getResultObject();
         return view('verifikasi/index', [

@@ -12,13 +12,11 @@
                         <tr>
                             <th>ID</th>
                             <th>Pengaju</th>
-                            <th>Jumlah Penghuni</th>
+                            <th>Jml.Penghuni</th>
                             <th>Luas Rumah</th>
                             <th>Luas Lantai</th>
-                            <th>Tinggi Bangunan</th>
-                            <th>Material Atap</th>
-                            <th>Material Dinding</th>
-                            <th>Material Lantai</th>
+                            <th>Tinggi Bangunan
+                            <th>Luas Lantai</th>
                             <th class="d-none">Pondasi</th>
                             <th class="d-none">Kolom dan Balok</th>
                             <th class="d-none">Konstruksi Atap</th>
@@ -30,10 +28,12 @@
                             <th class="d-none">Kondisi Pembuangan Air</th>
                             <th class="d-none">Sumber Air Minum</th>
                             <th class="d-none">Sumber Listrik</th>
+                            <th class="d-none">Material Atap</th>
                             <th class="d-none">Kondisi Atap</th>
+                            <th class="d-none">Material Dinding</th>
                             <th class="d-none">Kondisi Dinding</th>
+                            <th class="d-none">Material Lantai</th>
                             <th class="d-none">Kondisi Lantai</th>
-                            <th class="d-none">Luas Lantai</th>
                             <th>#</th>
                         </tr>
                         </thead>
@@ -46,9 +46,7 @@
                                 <td><?= $rumah->luas_rumah ?></td>
                                 <td><?= $rumah->luas_lantai ?></td>
                                 <td><?= $rumah->tinggi_bangunan ?></td>
-                                <td><?= $rumah->material_atap ?></td>
-                                <td><?= $rumah->material_dinding ?></td>
-                                <td><?= $rumah->material_lantai ?></td>
+                                <td><?= $rumah->luas_lantai ?></td>
                                 <td class="d-none"><?= $rumah->pondasi ?></td>
                                 <td class="d-none"><?= $rumah->kolom_balok ?></td>
                                 <td class="d-none"><?= $rumah->konstruksi_atap ?></td>
@@ -60,10 +58,12 @@
                                 <td class="d-none"><?= $rumah->kondisi_pembuangan ?></td>
                                 <td class="d-none"><?= $rumah->sumber_air_minum ?></td>
                                 <td class="d-none"><?= $rumah->sumber_listrik ?></td>
+                                <td class="d-none"><?= $rumah->material_atap ?></td>
                                 <td class="d-none"><?= $rumah->kondisi_atap ?></td>
+                                <td class="d-none"><?= $rumah->material_dinding ?></td>
                                 <td class="d-none"><?= $rumah->kondisi_dinding ?></td>
+                                <td class="d-none"><?= $rumah->material_lantai ?></td>
                                 <td class="d-none"><?= $rumah->kondisi_lantai ?></td>
-                                <td class="d-none"><?= $rumah->luas_lantai ?></td>
                                 <td>
                                     <a class="btn btn-sm btn-primary lihatBtn" href="#">Lihat</a>
                                 </td>
