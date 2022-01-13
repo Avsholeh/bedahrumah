@@ -1,6 +1,19 @@
 <?= $this->extend('layouts/app') ?>
 
 <?= $this->section('content') ?>
+
+    <ul class="nav nav-pills border-0">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Data Pengaju</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="#">Data Rumah</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="#">Data Gambar</a>
+        </li>
+    </ul>
+
 <!-- @TODO perbarui layout permohonan -->
     <div class="row">
         <div class="col-lg-12 col-md-12">

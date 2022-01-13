@@ -17,7 +17,7 @@
                             <th>Jenis Kelamin</th>
                             <th>Tempat Lahir</th>
                             <th>Tgl Lahir</th>
-                            <th>Alamat</th>
+                            <th class="d-none">Alamat</th>
                             <th class="d-none">Sektor Pekerjaan</th>
                             <th class="d-none">Penghasilan</th>
                             <th class="d-none">Pengeluaran</th>
@@ -39,7 +39,7 @@
                                 <td><?= $pengaju->jenis_kelamin ?></td>
                                 <td><?= $pengaju->tempat_lahir ?></td>
                                 <td><?= $pengaju->tgl_lahir ?></td>
-                                <td><?= $pengaju->alamat ?></td>
+                                <td class="d-none"><?= $pengaju->alamat ?></td>
                                 <td class="d-none"><?= $pengaju->sektor_pekerjaan ?></td>
                                 <td class="d-none"><?= $pengaju->penghasilan ?></td>
                                 <td class="d-none"><?= $pengaju->pengeluaran ?></td>

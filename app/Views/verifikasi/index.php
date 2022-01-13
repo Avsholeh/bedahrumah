@@ -18,7 +18,7 @@
                             <th class="data-pengaju">Jenis Kelamin</th>
                             <th class="d-none data-pengaju">Tempat Lahir</th>
                             <th class="d-none data-pengaju">Tgl Lahir</th>
-                            <th class="data-pengaju">Alamat</th>
+                            <th class="d-none data-pengaju">Alamat</th>
                             <th class="d-none data-pengaju">Sektor Pekerjaan</th>
                             <th class="d-none data-pengaju">Penghasilan</th>
                             <th class="d-none data-pengaju">Pengeluaran</th>
@@ -66,7 +66,7 @@
                                 <td class="data-pengaju"><?= $permohonan->jenis_kelamin ?></td>
                                 <td class="d-none data-pengaju"><?= $permohonan->tempat_lahir ?></td>
                                 <td class="d-none data-pengaju"><?= $permohonan->tgl_lahir ?></td>
-                                <td class="data-pengaju"><?= $permohonan->alamat ?></td>
+                                <td class="d-none data-pengaju"><?= $permohonan->alamat ?></td>
                                 <td class="d-none data-pengaju"><?= $permohonan->sektor_pekerjaan ?></td>
                                 <td class="d-none data-pengaju"><?= $permohonan->penghasilan ?></td>
                                 <td class="d-none data-pengaju"><?= $permohonan->pengeluaran ?></td>
