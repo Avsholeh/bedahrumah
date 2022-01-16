@@ -62,14 +62,18 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
     $routes->get('naivebayes', 'VerifikasiController::naivebayes');
 
     // === Data Pengaju
-    $routes->get('pengaju', 'PengajuController::index');
-    $routes->get('pengaju/tambah', 'PengajuController::tambah');
-    $routes->post('pengaju/simpan', 'PengajuController::simpan');
+    $routes->get('data_pengaju', 'PengajuController::index');
 
     // === Data Rumah
-    $routes->get('rumah', 'RumahController::index');
-    $routes->get('rumah/tambah', 'RumahController::tambah');
-    $routes->post('rumah/simpan', 'RumahController::simpan');
+    $routes->get('data_rumah', 'RumahController::index');
+
+    // === Users
+    $routes->get('users', 'UserController::index');
+    $routes->get('users/tambah', 'UserController::tambah');
+    $routes->get('users/edit/(:num)', 'UserController::edit/$1');
+    $routes->post('users/simpan', 'UserController::simpan');
+    $routes->post('users/update', 'UserController::update');
+    $routes->get('users/hapus/(:num)', 'UserController::hapus/$1');
 
 });
 

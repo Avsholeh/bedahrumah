@@ -50,6 +50,8 @@ class HomeController extends BaseController
                     'nama_lengkap' => $this->request->getPost('nama_lengkap'),
                     'email' => $this->request->getPost('email'),
                     'password' => $hashPassword,
+                    'status' => 0,
+                    'jabatan' => 'Pelapor'
                 ]);
             } catch (\ReflectionException $e) {}
             return redirect('login');
@@ -73,18 +75,22 @@ class HomeController extends BaseController
                 ->with('validation', $this->validator)
                 ->with('error_message', 'Email tidak ditemukan.');
 
-            $isValidPassword = password_verify($this->request->getPost('password'), $user['password']);
+            $isValidPassword = password_verify($this->request->getPost('password'), $user->password);
 
             if (!$isValidPassword) return redirect('login')->withInput()
                 ->with('validation', $this->validator)
                 ->with('error_message', 'Password tidak sesuai.');
 
+            if ($user->status != 1) return redirect('login')->withInput()
+                ->with('validation', $this->validator)
+                ->with('error_message', 'User tidak aktif.');
+
             // set login session
             $userData = [
-                'id' => $user['id'],
-                'email' => $user['email'],
-                'nama_lengkap' => $user['nama_lengkap'],
-                'aktif' => $user['aktif'] == 1 ? 'Aktif' : 'Tidak Aktif'
+                'id' => $user->id,
+                'email' => $user->email,
+                'nama_lengkap' => $user->nama_lengkap,
+                'aktif' => $user->status == 1 ? 'Aktif' : 'Tidak Aktif'
             ];
 
             session()->set('user', $userData);

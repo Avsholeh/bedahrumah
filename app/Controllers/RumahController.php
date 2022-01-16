@@ -13,8 +13,7 @@ class RumahController extends BaseController
 
         return view('rumah/index', [
             'title' => 'Data Rumah',
-            'desc' => 'Data rumah yang telah terdaftar disistem.',
-            'data' => $rumah
+            'rumahs' => $rumah
         ]);
     }
 }

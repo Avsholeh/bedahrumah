@@ -12,7 +12,7 @@
 <body>
 <div class="container-scroller">
     <?= $this->include('layouts/navbar') ?>
-    <div class="container-fluid page-body-wrapper">
+    <div class="container-fluid page-body-wrapper pt-0">
         <?= $this->include('layouts/sidebar') ?>
         <div class="main-panel">
             <div class="content-wrapper">
@@ -23,9 +23,21 @@
     </div>
 </div>
 <script src="<?= base_url('public/vendors/js/vendor.bundle.base.js') ?>"></script>
-<!--<script src="--><?//= base_url('public/js/off-canvas.js')?><!--"></script>-->
-<!--<script src="--><?//= base_url('public/js/dashboard.js')?><!--"></script>-->
-<!--<script src="--><?//= base_url('public/js/template.js')?><!--"></script>-->
-<?= $this->renderSection('scripts')?>
+<script src="<?= base_url('public/js/off-canvas.js') ?>"></script>
+<!--<script src="--><? //= base_url('public/js/dashboard.js')?><!--"></script>-->
+<script src="<?= base_url('public/js/template.js') ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.5/sweetalert2.all.min.js"></script>
+<?php if(session('message-type') && session('message-text')):?>
+<script>
+    Swal.fire({
+        title: '<?php echo ucfirst(session('message-type')) ?>',
+        text: '<?php echo session('message-text') ?>',
+        icon: '<?php echo session('message-type') ?>',
+        confirmButtonText: 'OK',
+        padding: '1.5rem'
+    })
+</script>
+<?php endif?>
+<?= $this->renderSection('scripts') ?>
 </body>
 </html>

@@ -23,21 +23,21 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('pengaju') ?>">
+            <a class="nav-link" href="<?= base_url('data_pengaju') ?>">
                 <i class="icon-list me-2"></i>
                 <span class="menu-title fs-6">Data Pengaju</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('rumah') ?>">
-                <i class="icon-list me-2"></i>
+            <a class="nav-link" href="<?= base_url('data_rumah') ?>">
+                <i class="icon-map me-2"></i>
                 <span class="menu-title fs-6">Data Rumah</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="<?= base_url('users') ?>">
                 <i class="icon-people me-2"></i>
                 <span class="menu-title fs-6">Users</span>
             </a>

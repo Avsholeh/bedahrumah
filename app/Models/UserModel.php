@@ -10,5 +10,6 @@ class UserModel extends Model
     protected $table                = 'users';
     protected $primaryKey           = 'id';
     protected $useAutoIncrement     = true;
-    protected $allowedFields        = ['nama_lengkap', 'email', 'password'];
+    protected $returnType           = 'object';
+    protected $allowedFields        = ['nama_lengkap', 'email', 'password', 'status', 'jabatan'];
 }

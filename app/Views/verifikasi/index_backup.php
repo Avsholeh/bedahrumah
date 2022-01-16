@@ -76,6 +76,22 @@
                                 <td class="data-rumah"><?= $permohonan->kondisi_dinding ?></td>
                                 <td class="data-rumah"><?= $permohonan->jenis_lantai ?></td>
                                 <td class="data-rumah"><?= $permohonan->skor ?></td>
+
+                                <?php if ($permohonan->status === 'BELUM DIPROSES'): ?>
+                                    <td>
+                                        <form action="<?= base_url('verifikasi/proses') ?>" method="POST"
+                                              enctype="multipart/form-data" autocomplete="off" class="d-inline">
+                                            <input type="hidden" name="id_permohonan"
+                                                   value="<?= $permohonan->id_permohonan ?>">
+                                            <input type="submit" class="btn btn-sm btn-success"
+                                                   value="Verifikasi">
+                                        </form>
+                                    </td>
+                                <?php else: ?>
+                                    <td><label class="badge badge-primary">
+                                            <strong><?= $permohonan->status ?></strong>
+                                        </label></td>
+                                <?php endif; ?>
                                 <td>
                                     <a class="btn btn-sm btn-primary lihatBtn" href="#">Lihat</a>
                                     <a class="btn btn-sm btn-warning"

@@ -12,27 +12,12 @@ class RumahModel extends Model
     protected $useAutoIncrement = true;
     protected $allowedFields = [
         'id_permohonan',
-        'pondasi',
-        'kolom_balok',
-        'konstruksi_atap',
         'pencahayaan',
-        'ventilasi',
-        'mck',
-        'kondisi_mck',
-        'pembuangan',
-        'kondisi_pembuangan',
-        'sumber_air_minum',
-        'sumber_listrik',
-        'luas_rumah',
-        'jumlah_penghuni',
-        'tinggi_bangunan',
-        'ruangan_lainnya',
-        'material_atap',
+        'jenis_atap',
         'kondisi_atap',
-        'material_dinding',
+        'jenis_dinding',
         'kondisi_dinding',
-        'material_lantai',
-        'kondisi_lantai',
-        'luas_lantai',
+        'jenis_lantai',
+        'skor'
     ];
 }

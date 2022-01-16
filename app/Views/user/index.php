@@ -2,23 +2,54 @@
 
 <?= $this->section('content') ?>
 
+
+
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col">
+                        <a class="btn btn-primary" href="<?= base_url('users/tambah')?>">
+                            <i class="icon icon-plus me-2"></i>Tambah
+                        </a>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Jabatan</th>
                             <th>#</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($data as $rumah): ?>
+                        <?php foreach ($users as $user): ?>
                             <tr>
-                                <td><?= $rumah->id ?></td>
-                                <td><?= $rumah->nama ?></td>
+                                <td><?= $user->id ?></td>
+                                <td><?= $user->nama_lengkap ?></td>
+                                <td><?= $user->email ?></td>
+                                <td>
+                                    <?php if ($user->status == 1): ?>
+                                        <span class="badge badge-success">Aktif</span>
+                                    <?php endif ?>
+
+                                    <?php if ($user->status == 0): ?>
+                                        <span class="badge badge-danger">Tidak Aktif</span>
+                                    <?php endif ?>
+                                </td>
+                                <td><?= $user->jabatan ?></td>
+                                <td>
+                                    <a class="btn btn-sm btn-warning"
+                                       href="<?= base_url('users/edit/' . $user->id) ?>">Edit</a>
+                                    <a class="btn btn-sm btn-danger"
+                                       href="<?= base_url('users/hapus/' . $user->id) ?>">Hapus</a>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                         </tbody>
