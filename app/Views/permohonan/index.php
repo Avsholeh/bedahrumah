@@ -286,9 +286,9 @@
                                 <label class="form-label">Kondisi Atap</label>
                                 <select class="form-select form-select-sm" name="kondisi_atap">
                                     <option value="" selected disabled>Pilih Kondisi Atap</option>
-                                    <option value="Tidak Bocor">Tidak Bocor</option>
-                                    <option value="Bocor Sedang">Bocor Sedang</option>
-                                    <option value="Bocor Berat">Bocor Berat</option>
+                                    <option value="Baik">Baik</option>
+                                    <option value="Sedang">Sedang</option>
+                                    <option value="Buruk">Buruk</option>
                                 </select>
                                 <?php if ($error = $validation->getError('kondisi_atap')): ?>
                                     <small class="text-danger"><?= $error ?></small>
@@ -318,9 +318,9 @@
                                 <label class="form-label">Kondisi Dinding</label>
                                 <select class="form-select form-select-sm" name="kondisi_dinding">
                                     <option value="" selected disabled>Pilih Kondisi Dinding</option>
-                                    <option value="Tidak Rusak">Tidak Rusak</option>
-                                    <option value="Rusak Sedang">Rusak Sedang</option>
-                                    <option value="Rusak Berat">Rusak Berat</option>
+                                    <option value="Baik">Baik</option>
+                                    <option value="Sedang">Sedang</option>
+                                    <option value="Buruk">Buruk</option>
                                 </select>
                                 <?php if ($error = $validation->getError('kondisi_dinding')): ?>
                                     <small class="text-danger"><?= $error ?></small>

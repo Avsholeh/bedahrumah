@@ -516,7 +516,7 @@
                                 <label class="form-label d-block">Rumah Tampak Samping</label>
                                 <input class="form-control-sm" type="file" name="gambar_samping"
                                        onchange="previewFile(this, 'gambar_samping');">
-                                <img id="preview_gambar_samping" src="<?= base_url('public/transparent.png') ?>">
+                                <img id="preview_gambar_samping" src="data:image/jpeg;base64, <?= $dataGambar['BAGIAN SAMPING']?>">
                             </div>
                         </div>
 
@@ -525,7 +525,7 @@
                                 <label class="form-label d-block">Rumah Tampak Belakang</label>
                                 <input class="form-control-sm" type="file" name="gambar_belakang"
                                        onchange="previewFile(this, 'gambar_belakang');">
-                                <img id="preview_gambar_belakang" src="<?= base_url('public/transparent.png') ?>">
+                                <img id="preview_gambar_belakang" src="data:image/jpeg;base64, <?= $dataGambar['BAGIAN BELAKANG']?>">
                             </div>
                         </div>
 
@@ -534,7 +534,7 @@
                                 <label class="form-label d-block">Rumah Bagian Dalam</label>
                                 <input class="form-control-sm" type="file" name="gambar_dalam"
                                        onchange="previewFile(this, 'gambar_dalam');">
-                                <img id="preview_gambar_dalam" src="<?= base_url('public/transparent.png') ?>">
+                                <img id="preview_gambar_dalam" src="data:image/jpeg;base64, <?= $dataGambar['BAGIAN DALAM']?>">
                             </div>
                         </div>
                     </div>
@@ -544,7 +544,7 @@
                                 <label class="form-label d-block">Foto Lantai</label>
                                 <input class="form-control-sm" type="file" name="foto_lantai"
                                        onchange="previewFile(this, 'foto_lantai');">
-                                <img id="preview_foto_lantai" src="<?= base_url('public/transparent.png') ?>">
+                                <img id="preview_foto_lantai" src="data:image/jpeg;base64, <?= $dataGambar['FOTO LANTAI']?>">
                             </div>
                         </div>
 
@@ -553,7 +553,7 @@
                                 <label class="form-label d-block">Foto Dinding</label>
                                 <input class="form-control-sm" type="file" name="foto_dinding"
                                        onchange="previewFile(this, 'foto_dinding');">
-                                <img id="preview_foto_dinding" src="<?= base_url('public/transparent.png') ?>">
+                                <img id="preview_foto_dinding" src="data:image/jpeg;base64, <?= $dataGambar['FOTO DINDING']?>">
                             </div>
                         </div>
 
@@ -562,7 +562,7 @@
                                 <label class="form-label d-block">Foto Atap</label>
                                 <input class="form-control-sm" type="file" name="foto_atap"
                                        onchange="previewFile(this, 'foto_atap');">
-                                <img id="preview_foto_atap" src="<?= base_url('public/transparent.png') ?>">
+                                <img id="preview_foto_atap" src="data:image/jpeg;base64, <?= $dataGambar['FOTO ATAP']?>">
                             </div>
                         </div>
                     </div>

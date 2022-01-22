@@ -69,6 +69,59 @@ class PermohonanController extends BaseController
         return $this->validate(array_merge($inputDataPengaju, $inputDataRumah));
     }
 
+    private function skor($atribut)
+    {
+        $atributPencahayaan = [
+            'Ada' => 3,
+            'Tidak Ada' => 7,
+        ];
+
+        $atributJenisAtap = [
+            'Beton' => 0,
+            'Genteng' => 2,
+            'Sirap' => 3,
+            'Asbes' => 4,
+            'Seng' => 5,
+            'Rumbia/Daun Kelapa/Daun Aren' => 6
+        ];
+
+        $atributKondisiAtap = [
+            'Baik' => 1,
+            'Sedang' => 3,
+            'Buruk' => 6,
+        ];
+
+        $atributJenisDinding = [
+            'Bata/Batako Plester' => 2,
+            'Bata/Batako Ekspose' => 3,
+            'Kayu' => 4,
+            'Bilik/Bambu' => 5,
+            'GRC/Asbes' => 6,
+        ];
+
+        $atributKondisiDinding = [
+            'Baik' => 1,
+            'Sedang' => 3,
+            'Buruk' => 6,
+        ];
+
+        $atributJenisLantai = [
+            'Keramik/Marmer' => 0,
+            'Ubin' => 0,
+            'Plester' => 1,
+            'Kayu' => 2,
+            'Bambu' => 3,
+            'Tanah' => 4,
+        ];
+
+        return $atributPencahayaan[$atribut['pencahayaan']] +
+            $atributJenisAtap[$atribut['jenis_atap']] +
+            $atributKondisiAtap[$atribut['kondisi_atap']] +
+            $atributJenisDinding[$atribut['jenis_dinding']] +
+            $atributKondisiDinding[$atribut['kondisi_dinding']] +
+            $atributJenisLantai[$atribut['jenis_lantai']];
+    }
+
     public function simpan()
     {
         $validation = $this->validation();
@@ -104,15 +157,32 @@ class PermohonanController extends BaseController
 
             // Data rumah
             $dataRumah = new \App\Models\RumahModel();
+
+            $pencahayaan = $this->request->getPost("pencahayaan");
+            $jenisAtap = $this->request->getPost("jenis_atap");
+            $kondisiAtap = $this->request->getPost("kondisi_atap");
+            $jenisDinding = $this->request->getPost("jenis_dinding");
+            $kondisiDinding = $this->request->getPost("kondisi_dinding");
+            $jenisLantai = $this->request->getPost("jenis_lantai");
+
+            $totalSkor = $this->skor([
+                'pencahayaan' => $pencahayaan,
+                'jenis_atap' => $jenisAtap,
+                'kondisi_atap' => $kondisiAtap,
+                'jenis_dinding' => $jenisDinding,
+                'kondisi_dinding' => $kondisiDinding,
+                'jenis_lantai' => $jenisLantai,
+            ]);
+
             $dataRumah->insert([
                 'id_permohonan' => (int)$permohonan->getInsertID(),
-                'pencahayaan' => $this->request->getPost("pencahayaan"),
-                'jenis_atap' => $this->request->getPost("jenis_atap"),
-                'kondisi_atap' => $this->request->getPost("kondisi_atap"),
-                'jenis_dinding' => $this->request->getPost("jenis_dinding"),
-                'kondisi_dinding' => $this->request->getPost("kondisi_dinding"),
-                'jenis_lantai' => $this->request->getPost("jenis_lantai"),
-                'skor' => 0
+                'pencahayaan' => $pencahayaan,
+                'jenis_atap' => $jenisAtap,
+                'kondisi_atap' => $kondisiAtap,
+                'jenis_dinding' => $jenisDinding,
+                'kondisi_dinding' => $kondisiDinding,
+                'jenis_lantai' => $jenisLantai,
+                'skor' => $totalSkor,
             ]);
 
             $dataGambar = new \App\Models\GambarModel();
@@ -224,12 +294,11 @@ class PermohonanController extends BaseController
             $dataRumahId = $dataRumah->where(['id_permohonan' => $idPermohonan])->get()->getFirstRow()->id;
             $dataRumah->update($dataRumahId, [
                 'pencahayaan' => $this->request->getPost("pencahayaan"),
-                'jenis_atap' => $this->request->getPost("material_atap"),
+                'jenis_atap' => $this->request->getPost("jenis_atap"),
                 'kondisi_atap' => $this->request->getPost("kondisi_atap"),
-                'jenis_dinding' => $this->request->getPost("material_dinding"),
+                'jenis_dinding' => $this->request->getPost("jenis_dinding"),
                 'kondisi_dinding' => $this->request->getPost("kondisi_dinding"),
-                'jenis_lantai' => $this->request->getPost("material_lantai"),
-                'kondisi_lantai' => $this->request->getPost("kondisi_lantai"),
+                'jenis_lantai' => $this->request->getPost("jenis_lantai"),
                 'skor' => 0,
             ]);
 

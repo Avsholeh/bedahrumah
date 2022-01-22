@@ -2,14 +2,18 @@
 
 <?= $this->section('content') ?>
 
-    <ul class="nav nav-pills border-0">
-        <li class="nav-item">
-            <a class="nav-link active" href="#">Tertinggi</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link " href="#">Terendah</a>
-        </li>
-    </ul>
+<ul class="nav nav-pills border-0">
+    <li class="nav-item">
+        <a class="nav-link <?= url_is('verifikasi/tertinggi') ? 'active' : ''?>" href="<?= base_url('verifikasi/tertinggi')?>">
+            Skor Tertinggi
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?= url_is('verifikasi/terendah') ? 'active' : ''?>" href="<?= base_url('verifikasi/terendah')?>">
+            Skor Terendah
+        </a>
+    </li>
+</ul>
 
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
@@ -37,14 +41,15 @@
                             <th class="d-none data-pengaju">Aset Rumah</th>
                             <th class="d-none data-pengaju">Aset Tanah</th>
 
-                            <th class="data-rumah">Pencahayaan</th>
-                            <th class="data-rumah">Jenis Atap</th>
-                            <th class="data-rumah">Kondisi Atap</th>
-                            <th class="data-rumah">Jenis Dinding</th>
-                            <th class="data-rumah">Kondisi Dinding</th>
-                            <th class="data-rumah">Jenis Lantai</th>
+                            <th class="d-none data-rumah">Pencahayaan</th>
+                            <th class="d-none data-rumah">Jenis Atap</th>
+                            <th class="d-none data-rumah">Kondisi Atap</th>
+                            <th class="d-none data-rumah">Jenis Dinding</th>
+                            <th class="d-none data-rumah">Kondisi Dinding</th>
+                            <th class="d-none data-rumah">Jenis Lantai</th>
 
                             <th>Skor</th>
+                            <th>Status</th>
                             <th>#</th>
                         </tr>
                         </thead>
@@ -69,13 +74,28 @@
                                 <td class="d-none data-pengaju"><?= $permohonan->aset_rumah ?></td>
                                 <td class="d-none data-pengaju"><?= $permohonan->aset_tanah ?></td>
 
-                                <td class="data-rumah"><?= $permohonan->pencahayaan ?></td>
-                                <td class="data-rumah"><?= $permohonan->jenis_atap ?></td>
-                                <td class="data-rumah"><?= $permohonan->kondisi_atap ?></td>
-                                <td class="data-rumah"><?= $permohonan->jenis_dinding ?></td>
-                                <td class="data-rumah"><?= $permohonan->kondisi_dinding ?></td>
-                                <td class="data-rumah"><?= $permohonan->jenis_lantai ?></td>
+                                <td class="d-none data-rumah"><?= $permohonan->pencahayaan ?></td>
+                                <td class="d-none data-rumah"><?= $permohonan->jenis_atap ?></td>
+                                <td class="d-none data-rumah"><?= $permohonan->kondisi_atap ?></td>
+                                <td class="d-none data-rumah"><?= $permohonan->jenis_dinding ?></td>
+                                <td class="d-none data-rumah"><?= $permohonan->kondisi_dinding ?></td>
+                                <td class="d-none data-rumah"><?= $permohonan->jenis_lantai ?></td>
                                 <td class="data-rumah"><?= $permohonan->skor ?></td>
+                                <td>
+                                    <?php if ($permohonan->status === 'BELUM DIPROSES'): ?>
+                                        <form action="<?= base_url('verifikasi/proses') ?>" method="POST"
+                                              enctype="multipart/form-data" autocomplete="off" class="d-inline">
+                                            <input type="hidden" name="id_permohonan"
+                                                   value="<?= $permohonan->id_permohonan ?>">
+                                            <input type="submit" class="btn btn-sm btn-success"
+                                                   value="Verifikasi">
+                                        </form>
+                                    <?php else: ?>
+                                        <label class="badge badge-success">
+                                            <strong><?= $permohonan->status ?></strong>
+                                        </label>
+                                    <?php endif; ?>
+                                </td>
                                 <td>
                                     <a class="btn btn-sm btn-primary lihatBtn" href="#">Lihat</a>
                                     <a class="btn btn-sm btn-warning"
