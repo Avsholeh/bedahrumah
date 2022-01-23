@@ -42,7 +42,7 @@ class UserController extends BaseController
             $user->insert([
                 'nama_lengkap' => $this->request->getPost('nama_lengkap'),
                 'email' => $this->request->getPost('email'),
-                'password' => $this->request->getPost('password'),
+                'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
                 'status' => $this->request->getPost('status'),
                 'jabatan' => $this->request->getPost('jabatan'),
             ]);
@@ -75,7 +75,7 @@ class UserController extends BaseController
                 $user->update($this->request->getPost('id'), [
                     'nama_lengkap' => $this->request->getPost('nama_lengkap'),
                     'email' => $this->request->getPost('email'),
-                    'password' => $this->request->getPost('password'),
+                    'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
                     'status' => $this->request->getPost('status'),
                     'jabatan' => $this->request->getPost('jabatan'),
                 ]);

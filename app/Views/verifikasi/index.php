@@ -25,9 +25,9 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>ID</th>
+                            <th class="d-none">ID</th>
                             <th>Tanggal</th>
-                            <th class="data-pengaju">Pengaju</th>
+                            <th class="data-pengaju">Nama</th>
                             <th class="d-none data-pengaju">No.KTP</th>
                             <th class="d-none data-pengaju">No.KK</th>
                             <th class="d-none data-pengaju">Jenis Kelamin</th>
@@ -58,7 +58,7 @@
                         <tbody>
                         <?php foreach ($data as $permohonan): ?>
                             <tr>
-                                <td><?= $permohonan->id_permohonan ?></td>
+                                <td class="d-none"><?= $permohonan->id_permohonan ?></td>
                                 <td><?= $permohonan->tanggal ?></td>
                                 <td class="data-pengaju"><?= $permohonan->nama ?></td>
                                 <td class="d-none data-pengaju"><?= $permohonan->no_ktp ?></td>

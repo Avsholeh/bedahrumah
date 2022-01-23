@@ -90,6 +90,7 @@ class HomeController extends BaseController
                 'id' => $user->id,
                 'email' => $user->email,
                 'nama_lengkap' => $user->nama_lengkap,
+                'jabatan' => $user->jabatan,
                 'aktif' => $user->status == 1 ? 'Aktif' : 'Tidak Aktif'
             ];
 

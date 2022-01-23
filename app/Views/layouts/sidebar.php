@@ -15,12 +15,14 @@
             </a>
         </li>
 
+        <?php if (session('user')['jabatan'] == 'Admin'): ?>
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url('verifikasi') ?>">
                 <i class="icon-refresh me-2"></i>
                 <span class="menu-title fs-6">Verifikasi</span>
             </a>
         </li>
+        <?php endif?>
 
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url('data_pengaju') ?>">

@@ -41,4 +41,78 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-lg-6 mb-3">
+            <div class="card rounded-0">
+                <div class="card-body">
+                    <div class="d-sm-flex justify-content-between align-items-start mb-3">
+                        <h4 class="d-inline card-title card-title-dash text-center">Terakhir Diajukan</h4>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tanggal</th>
+                            <th>Pengaju</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($lastPermohonan as $index => $permohonan): ?>
+                            <tr>
+                                <td><?= ++$index ?></td>
+                                <td><?= $permohonan->tanggal ?></td>
+                                <td><?= $permohonan->nama_lengkap ?></td>
+                                <td>
+                                    <?php if ($permohonan->status == 'SUDAH DIPROSES'): ?>
+                                    <span class="badge badge-success"><?= $permohonan->status ?></span>
+                                    <?php else: ?>
+                                        <span class="badge badge-danger"><?= $permohonan->status ?></span>
+                                    <?php endif ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+            <div class="card rounded-0">
+                <div class="card-body">
+                    <div class="d-sm-flex justify-content-between align-items-start mb-3">
+                        <h4 class="d-inline card-title card-title-dash text-center">Terakhir Diverifikasi</h4>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tanggal</th>
+                            <th>Pengaju</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($lastVerifikasi as $index => $permohonan): ?>
+                            <tr>
+                                <td><?= ++$index ?></td>
+                                <td><?= $permohonan->tanggal ?></td>
+                                <td><?= $permohonan->nama_lengkap ?></td>
+                                <td>
+                                    <?php if ($permohonan->status == 'SUDAH DIPROSES'): ?>
+                                        <span class="badge badge-success"><?= $permohonan->status ?></span>
+                                    <?php else: ?>
+                                        <span class="badge badge-danger"><?= $permohonan->status ?></span>
+                                    <?php endif ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <?php $this->endSection() ?>

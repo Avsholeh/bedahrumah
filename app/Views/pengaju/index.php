@@ -11,7 +11,7 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Pengaju</th>
+                            <th>Nama</th>
                             <th>No.KTP</th>
                             <th>No.KK</th>
                             <th>Jenis Kelamin</th>

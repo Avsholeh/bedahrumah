@@ -11,7 +11,7 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Pengaju</th>
+                            <th>Nama</th>
                             <th>Pencahayaan</th>
                             <th>Jenis Atap</th>
                             <th>Kondisi Atap</th>
