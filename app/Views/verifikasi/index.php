@@ -4,12 +4,14 @@
 
 <ul class="nav nav-pills border-0">
     <li class="nav-item">
-        <a class="nav-link <?= url_is('verifikasi/tertinggi') ? 'active' : ''?>" href="<?= base_url('verifikasi/tertinggi')?>">
+        <a class="nav-link <?= url_is('verifikasi/tertinggi') ? 'active' : '' ?>"
+           href="<?= base_url('verifikasi/tertinggi') ?>">
             Skor Tertinggi
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link <?= url_is('verifikasi/terendah') ? 'active' : ''?>" href="<?= base_url('verifikasi/terendah')?>">
+        <a class="nav-link <?= url_is('verifikasi/terendah') ? 'active' : '' ?>"
+           href="<?= base_url('verifikasi/terendah') ?>">
             Skor Terendah
         </a>
     </li>
@@ -97,11 +99,15 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
+                                    <a class="btn btn-sm btn-primary fotoBtn"
+                                       data-foto="<?= $permohonan->id_permohonan ?>"
+                                       href="#">Foto</a>
                                     <a class="btn btn-sm btn-primary lihatBtn" href="#">Lihat</a>
                                     <a class="btn btn-sm btn-warning"
                                        href="<?= base_url('permohonan/edit/' . $permohonan->id_permohonan) ?>">Edit</a>
-                                    <a class="btn btn-sm btn-danger"
-                                       href="<?= base_url('permohonan/hapus/' . $permohonan->id_permohonan) ?>">Hapus</a>
+                                    <a class="btn btn-sm btn-danger hapusBtn"
+                                       data-hapus="<?= base_url('permohonan/hapus/' . $permohonan->id_permohonan) ?>"
+                                       href="#">Hapus</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -124,14 +130,56 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="fotoModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="fotoModalBody" class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HapusModal -->
+<div class="modal fade" id="hapusModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Apakah anda yakin ingin menghapus ?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btnModalHapus">Ya</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php $this->endSection() ?>
 
 <?= $this->section('scripts') ?>
 <script>
     var lihatModal = new bootstrap.Modal(document.getElementById('lihatModal'), {});
+    var lihatBtn = $(".lihatBtn");
     var titleModal = $(".modal-title");
     var bodyModal = $(".modal-body");
-    var lihatBtn = $(".lihatBtn");
+
+    var hapusBtn = $(".hapusBtn");
+    var hapusModal = new bootstrap.Modal(document.getElementById('hapusModal'), {});
+
+    hapusBtn.click(function (event) {
+        hapusModal.show();
+        $('.btnModalHapus').click(function () {
+            window.location = $(event.target).data('hapus');
+        });
+    });
 
     lihatBtn.click(function () {
         lihatModal.show();
@@ -140,8 +188,7 @@
         var tableBodyPengaju = $(this).parent().siblings('.data-pengaju');
         var htmlModal = "<div class='row'><div class='col-6'>";
         for (var i = 0; i < tableHeadPengaju.length - 1; i++) {
-            htmlModal += `
-            <div class='row mb-3'>
+            htmlModal += `<div class='row mb-3'>
                 <div class='col-6'><strong>${tableHeadPengaju[i].textContent}</strong></div>
                 <div class='col-6'>: ${tableBodyPengaju[i].innerText}</div>
             </div>
@@ -154,8 +201,7 @@
         var tableBodyRumah = $(this).parent().siblings('.data-rumah');
         htmlModal += "<div class='col-6'>";
         for (var i = 0; i < tableHeadRumah.length - 1; i++) {
-            htmlModal += `
-            <div class='row mb-3'>
+            htmlModal += `<div class='row mb-3'>
                 <div class='col-6'><strong>${tableHeadRumah[i].textContent}</strong></div>
                 <div class='col-6'>: ${tableBodyRumah[i].innerText}</div>
             </div>
@@ -166,5 +212,27 @@
 
         bodyModal.html(htmlModal);
     });
+
+    var fotoBtn = $(".fotoBtn");
+    var fotoModal = new bootstrap.Modal(document.getElementById('fotoModal'), {});;
+    var fotoModalBody = $("#fotoModalBody");
+
+    fotoBtn.click(function (event) {
+        fotoModal.show();
+        var idPermohonan = $(event.target).data('foto');
+        $.get("<?= base_url('permohonan/gambar') ?>/" + idPermohonan,
+            function (data, status) {
+                data = JSON.parse(data);
+                data.forEach(function(k, v) {
+                    // console.log(k.jenis);
+                    var dataGambar = `<h3 class="text-center">${k.jenis}</h3>
+                    <img class="text-center mb-5" style="display: block;margin-left: auto;margin-right: auto;width: 50%;"
+                        width="400" src="data:image/jpeg;base64, ${k.file}"/>`;
+                    fotoModalBody.append(dataGambar);
+                });
+            }
+        );
+    });
+
 </script>
 <?php $this->endSection() ?>

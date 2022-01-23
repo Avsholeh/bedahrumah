@@ -47,8 +47,8 @@
                                 <td>
                                     <a class="btn btn-sm btn-warning"
                                        href="<?= base_url('users/edit/' . $user->id) ?>">Edit</a>
-                                    <a class="btn btn-sm btn-danger"
-                                       href="<?= base_url('users/hapus/' . $user->id) ?>">Hapus</a>
+                                    <a class="btn btn-sm btn-danger hapusBtn"
+                                       href="#" data-hapus="<?= base_url('users/hapus/' . $user->id) ?>">Hapus</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -73,6 +73,24 @@
     </div>
 </div>
 
+<!-- HapusModal -->
+<div class="modal fade" id="hapusModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Apakah anda yakin ingin menghapus ?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btnModalHapus">Ya</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php $this->endSection() ?>
 
 
@@ -83,6 +101,16 @@
     var bodyModal = $(".modal-body");
     var lihatBtn = $(".lihatBtn");
     var tableHead = $(".table > thead > tr").children();
+
+    var hapusBtn = $(".hapusBtn");
+    var hapusModal = new bootstrap.Modal(document.getElementById('hapusModal'), {});
+
+    hapusBtn.click(function(event) {
+        hapusModal.show();
+        $('.btnModalHapus').click(function() {
+            window.location = $(event.target).data('hapus');
+        });
+    });
 
     lihatBtn.click(function () {
         lihatModal.show();

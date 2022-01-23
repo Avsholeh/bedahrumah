@@ -55,6 +55,7 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
     $routes->post('permohonan/update', 'PermohonanController::update');
     $routes->post('permohonan/simpan', 'PermohonanController::simpan');
     $routes->get('permohonan/hapus/(:num)', 'PermohonanController::hapus/$1');
+    $routes->get('permohonan/gambar/(:num)', 'PermohonanController::gambar/$1');
 
     // === Verifikasi
     $routes->get('verifikasi', 'VerifikasiController::index');

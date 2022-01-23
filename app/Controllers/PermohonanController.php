@@ -47,6 +47,7 @@ class PermohonanController extends BaseController
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',
+            'status_keluarga' => 'required',
             'alamat' => 'required',
             'sektor_pekerjaan' => 'required',
             'penghasilan' => 'required',
@@ -114,12 +115,46 @@ class PermohonanController extends BaseController
             'Tanah' => 4,
         ];
 
+        $atributSektorPekerjaan = [
+            'PNS' => 0,
+            'BUMN' => 0,
+            'TNI / POLRI' => 0,
+            'Karyawan Swasta' => 1,
+            'Wiraswasta' => 1,
+            'Petani' => 1,
+            'Nelayan' => 1,
+            'Buruh' => 3,
+            'Tidak Bekerja' => 3,
+        ];
+
+        $atributStatusKeluarga = [
+            'Keluarga Utuh' => 3,
+            'Keluarga Tidak Utuh' => 7,
+        ];
+
         return $atributPencahayaan[$atribut['pencahayaan']] +
             $atributJenisAtap[$atribut['jenis_atap']] +
             $atributKondisiAtap[$atribut['kondisi_atap']] +
             $atributJenisDinding[$atribut['jenis_dinding']] +
             $atributKondisiDinding[$atribut['kondisi_dinding']] +
-            $atributJenisLantai[$atribut['jenis_lantai']];
+            $atributJenisLantai[$atribut['jenis_lantai']] +
+            $atributSektorPekerjaan[$atribut['sektor_pekerjaan']] +
+            $atributStatusKeluarga[$atribut['status_keluarga']];
+    }
+
+    public function gambar($idPermohonan)
+    {
+        $dataGambar = new GambarModel();
+        $results = $dataGambar->where('id_permohonan', $idPermohonan)->get()->getResultArray();
+        $gambars = [];
+        foreach ($results as $result) {
+            array_push($gambars, [
+                'jenis' => $result['jenis'],
+                'file' => $result['file'],
+            ]);
+        }
+
+        return json_encode($gambars);
     }
 
     public function simpan()
@@ -144,6 +179,7 @@ class PermohonanController extends BaseController
                 'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
                 'tempat_lahir' => $this->request->getPost('tempat_lahir'),
                 'tgl_lahir' => $this->request->getPost('tgl_lahir'),
+                'status_keluarga' => $this->request->getPost('status_keluarga'),
                 'alamat' => $this->request->getPost('alamat'),
                 'sektor_pekerjaan' => $this->request->getPost('sektor_pekerjaan'),
                 'penghasilan' => $this->request->getPost('penghasilan'),
@@ -164,6 +200,8 @@ class PermohonanController extends BaseController
             $jenisDinding = $this->request->getPost("jenis_dinding");
             $kondisiDinding = $this->request->getPost("kondisi_dinding");
             $jenisLantai = $this->request->getPost("jenis_lantai");
+            $sektorPekerjaan = $this->request->getPost("sektor_pekerjaan");
+            $statusKeluarga = $this->request->getPost("status_keluarga");
 
             $totalSkor = $this->skor([
                 'pencahayaan' => $pencahayaan,
@@ -172,6 +210,8 @@ class PermohonanController extends BaseController
                 'jenis_dinding' => $jenisDinding,
                 'kondisi_dinding' => $kondisiDinding,
                 'jenis_lantai' => $jenisLantai,
+                'sektor_pekerjaan' => $sektorPekerjaan,
+                'status_keluarga' => $statusKeluarga,
             ]);
 
             $dataRumah->insert([
@@ -200,7 +240,7 @@ class PermohonanController extends BaseController
                     $dataGambar->insert([
                         'id_permohonan' => (int)$permohonan->getInsertID(),
                         'jenis' => 'BAGIAN SAMPING',
-                        'file' => base64_encode($this->request->getFile('gambar_samping'))
+                        'file' => base64_encode(file_get_contents($this->request->getFile('gambar_samping')))
                     ]);
                 }
 
@@ -208,7 +248,7 @@ class PermohonanController extends BaseController
                     $dataGambar->insert([
                         'id_permohonan' => (int)$permohonan->getInsertID(),
                         'jenis' => 'BAGIAN BELAKANG',
-                        'file' => base64_encode($this->request->getFile('gambar_belakang'))
+                        'file' => base64_encode(file_get_contents($this->request->getFile('gambar_belakang')))
                     ]);
                 }
 
@@ -216,7 +256,7 @@ class PermohonanController extends BaseController
                     $dataGambar->insert([
                         'id_permohonan' => (int)$permohonan->getInsertID(),
                         'jenis' => 'BAGIAN DALAM',
-                        'file' => base64_encode($this->request->getFile('gambar_dalam'))
+                        'file' => base64_encode(file_get_contents($this->request->getFile('gambar_dalam')))
                     ]);
                 }
 
@@ -224,7 +264,7 @@ class PermohonanController extends BaseController
                     $dataGambar->insert([
                         'id_permohonan' => (int)$permohonan->getInsertID(),
                         'jenis' => 'FOTO LANTAI',
-                        'file' => base64_encode($this->request->getFile('foto_lantai'))
+                        'file' => base64_encode(file_get_contents($this->request->getFile('foto_lantai')))
                     ]);
                 }
 
@@ -232,7 +272,7 @@ class PermohonanController extends BaseController
                     $dataGambar->insert([
                         'id_permohonan' => (int)$permohonan->getInsertID(),
                         'jenis' => 'FOTO DINDING',
-                        'file' => base64_encode($this->request->getFile('foto_dinding'))
+                        'file' => base64_encode(file_get_contents($this->request->getFile('foto_dinding')))
                     ]);
                 }
 
@@ -240,7 +280,7 @@ class PermohonanController extends BaseController
                     $dataGambar->insert([
                         'id_permohonan' => (int)$permohonan->getInsertID(),
                         'jenis' => 'FOTO ATAP',
-                        'file' => base64_encode($this->request->getFile('foto_atap'))
+                        'file' => base64_encode(file_get_contents($this->request->getFile('foto_atap')))
                     ]);
                 }
             } catch (\Exception $e) {
@@ -256,8 +296,7 @@ class PermohonanController extends BaseController
     public function update()
     {
         $validation = $this->validation();
-
-        $idPermohonan = $this->request->getPost('id_permohonan');
+        $idPermohonan = (int)$this->request->getPost('id_permohonan');
 
         if ($validation) {
             // Proses input data jika form sudah valid.
@@ -271,7 +310,7 @@ class PermohonanController extends BaseController
             // data pengaju
             $dataPengaju = new \App\Models\PengajuModel();
             $dataPengajuId = $dataPengaju->where(['id_permohonan' => $idPermohonan])->get()->getFirstRow()->id;
-            $update = $dataPengaju->update($dataPengajuId, [
+            $dataPengaju->update($dataPengajuId, [
                 'nama' => $this->request->getPost('nama'),
                 'no_ktp' => $this->request->getPost('no_ktp'),
                 'no_kk' => $this->request->getPost('no_kk'),
@@ -303,34 +342,57 @@ class PermohonanController extends BaseController
             ]);
 
             $dataGambar = new \App\Models\GambarModel();
-            if ($this->request->getFile('gambar_depan')) {
+            if ($this->request->getFile('gambar_depan') && $this->request->getFile('gambar_depan')->getSize()) {
                 $dataGambar->update(['id_permohonan' => $idPermohonan], [
                     'jenis' => 'BAGIAN DEPAN',
-                    'file' => base64_encode($this->request->getFile('gambar_depan'))
+                    'file' => base64_encode(file_get_contents($this->request->getFile('gambar_depan')))
                 ]);
             }
 
-            if ($this->request->getFile('gambar_samping')) {
+            if ($this->request->getFile('gambar_samping') && $this->request->getFile('gambar_samping')->getSize()) {
                 $dataGambar->update(['id_permohonan' => $idPermohonan], [
                     'jenis' => 'BAGIAN SAMPING',
-                    'file' => base64_encode($this->request->getFile('gambar_samping'))
+                    'file' => base64_encode(file_get_contents($this->request->getFile('gambar_samping')))
                 ]);
             }
 
-            if ($this->request->getFile('gambar_belakang')) {
+            if ($this->request->getFile('gambar_belakang') && $this->request->getFile('gambar_belakang')->getSize()) {
                 $dataGambar->update(['id_permohonan' => $idPermohonan], [
                     'jenis' => 'BAGIAN BELAKANG',
-                    'file' => base64_encode($this->request->getFile('gambar_belakang'))
+                    'file' => base64_encode(file_get_contents($this->request->getFile('gambar_belakang')))
                 ]);
             }
 
-            if ($this->request->getFile('gambar_dalam')) {
+            if ($this->request->getFile('gambar_dalam') && $this->request->getFile('gambar_dalam')->getSize()) {
                 $dataGambar->update(['id_permohonan' => $idPermohonan], [
                     'jenis' => 'BAGIAN DALAM',
-                    'file' => base64_encode($this->request->getFile('gambar_dalam'))
+                    'file' => base64_encode(file_get_contents($this->request->getFile('gambar_dalam')))
                 ]);
             }
-            return redirect('verifikasi');
+
+            if ($this->request->getFile('foto_lantai') && $this->request->getFile('foto_lantai')->getSize()) {
+                $dataGambar->update([
+                    'jenis' => 'FOTO LANTAI',
+                    'file' => base64_encode(file_get_contents($this->request->getFile('foto_lantai')))
+                ]);
+            }
+
+            if ($this->request->getFile('foto_dinding') && $this->request->getFile('foto_dinding')->getSize()) {
+                $dataGambar->update([
+                    'jenis' => 'FOTO DINDING',
+                    'file' => base64_encode(file_get_contents($this->request->getFile('foto_dinding')))
+                ]);
+            }
+
+            if ($this->request->getFile('foto_atap') && $this->request->getFile('foto_atap')->getSize()) {
+                $dataGambar->update([
+                    'jenis' => 'FOTO ATAP',
+                    'file' => base64_encode(file_get_contents($this->request->getFile('foto_atap')))
+                ]);
+            }
+            return redirect('verifikasi')
+                ->with('message-type', 'success')
+                ->with('message-text', 'Permohonan telah berhasil diperbarui.');
         }
 
         $route = 'permohonan/edit/' . $idPermohonan;

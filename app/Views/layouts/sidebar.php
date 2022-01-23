@@ -24,7 +24,7 @@
 
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url('data_pengaju') ?>">
-                <i class="icon-list me-2"></i>
+                <i class="icon-user me-2"></i>
                 <span class="menu-title fs-6">Data Pengaju</span>
             </a>
         </li>

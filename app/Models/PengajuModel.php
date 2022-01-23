@@ -18,6 +18,7 @@ class PengajuModel extends Model
         'jenis_kelamin',
         'tempat_lahir',
         'tgl_lahir',
+        'status_keluarga',
         'alamat',
         'sektor_pekerjaan',
         'penghasilan',
