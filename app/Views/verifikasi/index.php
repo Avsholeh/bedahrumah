@@ -168,8 +168,7 @@
 <script>
     var lihatModal = new bootstrap.Modal(document.getElementById('lihatModal'), {});
     var lihatBtn = $(".lihatBtn");
-    var titleModal = $(".modal-title");
-    var bodyModal = $(".modal-body");
+    var bodyModal = $("#lihatModal .modal-body");
 
     var hapusBtn = $(".hapusBtn");
     var hapusModal = new bootstrap.Modal(document.getElementById('hapusModal'), {});
