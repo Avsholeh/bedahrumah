@@ -2,19 +2,6 @@
 
 <?= $this->section('content') ?>
 
-<!--    <ul class="nav nav-pills border-0">-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link active" href="#">Data Pengaju</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link " href="#">Data Rumah</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link " href="#">Data Gambar</a>-->
-<!--        </li>-->
-<!--    </ul>-->
-
-<!-- @TODO perbarui layout permohonan -->
 <div class="row">
     <div class="col-lg-12 col-md-12">
         <div class="card">
@@ -63,15 +50,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">No KK</label>
-                                <input class="form-control form-control-sm" type="number" name="no_kk"
-                                       value="<?= old('no_kk') ?>" placeholder="No KK">
-                                <?php if ($error = $validation->getError('no_kk')): ?>
-                                    <small class="text-danger"><?= $error ?></small>
-                                <?php endif ?>
-                            </div>
-
-                            <div class="form-group">
                                 <label class="form-label">Tempat Lahir</label>
                                 <input class="form-control form-control-sm" type="text" name="tempat_lahir"
                                        value="<?= old('tempat_lahir') ?>" placeholder="Tempat Lahir">
@@ -88,9 +66,6 @@
                                     <small class="text-danger"><?= $error ?></small>
                                 <?php endif ?>
                             </div>
-                        </div>
-
-                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="form-label">Jenis Kelamin</label>
                                 <select class="form-select form-select-sm" name="jenis_kelamin">
@@ -106,7 +81,9 @@
                                     <small class="text-danger"><?= $error ?></small>
                                 <?php endif ?>
                             </div>
+                        </div>
 
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="form-label">Status Keluarga</label>
                                 <select class="form-select form-select-sm" name="status_keluarga">
@@ -173,8 +150,8 @@
                                 <label class="form-label">Penghasilan Perbulan</label>
                                 <select class="form-select form-select-sm" name="penghasilan">
                                     <option value="" selected disabled>Pilih Penghasilan</option>
-                                    <option <?= old('penghasilan') == '>2,6jt' ? 'selected' : '' ?>
-                                            value=">2,6jt">> 2,6 juta</option>
+                                    <option <?= old('penghasilan') == '> 2,6jt' ? 'selected' : '' ?>
+                                            value="> 2,6jt">> 2,6 juta</option>
                                     <option <?= old('penghasilan') == '1,2 juta - 1,8 juta' ? 'selected' : '' ?>
                                             value="1,2 juta - 1,8 juta">1,2 juta - 1,8 juta</option>
                                     <option <?= old('penghasilan') == '2,1 juta - 2,6 juta' ? 'selected' : '' ?>
@@ -193,8 +170,8 @@
                                 <label class="form-label">Pengeluaran Perbulan</label>
                                 <select class="form-select form-select-sm" name="pengeluaran">
                                     <option value="" selected disabled>Pilih Pengeluaran</option>
-                                    <option <?= old('pengeluaran') == '>2,6jt' ? 'selected' : '' ?>
-                                            value=">2,6jt">> 2,6 juta</option>
+                                    <option <?= old('pengeluaran') == '> 2,6jt' ? 'selected' : '' ?>
+                                            value="> 2,6jt">> 2,6 juta</option>
                                     <option <?= old('pengeluaran') == '1,2 juta - 1,8 juta' ? 'selected' : '' ?>
                                             value="1,2 juta - 1,8 juta">1,2 juta - 1,8 juta</option>
                                     <option <?= old('pengeluaran') == '2,1 juta - 2,6 juta' ? 'selected' : '' ?>
@@ -520,13 +497,11 @@
 <?= $this->section('scripts') ?>
 <script>
     function previewFile(input, id) {
-        var file = $("input[type=file]").get(0).files[0];
+        var file = $(input).get(0).files[0];
         if (file) {
             var reader = new FileReader();
             reader.onload = function () {
-                $("#preview_" + id)
-                    .css('display', 'inline-block')
-                    .attr("src", reader.result);
+                $("#preview_" + id).css('display', 'inline-block').attr("src", reader.result);
             }
             reader.readAsDataURL(file);
         }

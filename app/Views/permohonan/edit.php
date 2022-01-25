@@ -52,24 +52,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">Jenis Kelamin</label>
-                                <select class="form-select form-select-sm" name="jenis_kelamin">
-                                    <option value="" selected disabled>Pilih Jenis Kelamin</option>
-                                    <option value="Laki-laki"
-                                        <?= $permohonan->jenis_kelamin == 'Laki-laki' ? 'selected' : '' ?>
-                                    >Laki-laki
-                                    </option>
-                                    <option value="Perempuan"
-                                        <?= $permohonan->jenis_kelamin == 'Perempuan' ? 'selected' : '' ?>
-                                    >Perempuan
-                                    </option>
-                                </select>
-                                <?php if ($error = $validation->getError('jenis_kelamin')): ?>
-                                    <small class="text-danger"><?= $error ?></small>
-                                <?php endif ?>
-                            </div>
-
-                            <div class="form-group">
                                 <label class="form-label">Tempat Lahir</label>
                                 <input class="form-control form-control-sm" type="text" name="tempat_lahir"
                                        value="<?= $permohonan->tempat_lahir ?>" placeholder="Tempat Lahir">
@@ -88,6 +70,26 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="form-label">Jenis Kelamin</label>
+                                <select class="form-select form-select-sm" name="jenis_kelamin">
+                                    <option value="" selected disabled>Pilih Jenis Kelamin</option>
+                                    <option value="Laki-laki"
+                                        <?= $permohonan->jenis_kelamin == 'Laki-laki' ? 'selected' : '' ?>
+                                    >Laki-laki
+                                    </option>
+                                    <option value="Perempuan"
+                                        <?= $permohonan->jenis_kelamin == 'Perempuan' ? 'selected' : '' ?>
+                                    >Perempuan
+                                    </option>
+                                </select>
+                                <?php if ($error = $validation->getError('jenis_kelamin')): ?>
+                                    <small class="text-danger"><?= $error ?></small>
+                                <?php endif ?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label class="form-label">Status Keluarga</label>
                                 <select class="form-select form-select-sm" name="status_keluarga">
                                     <option value="" selected disabled>Pilih Status Keluarga</option>
@@ -104,11 +106,6 @@
                                     <small class="text-danger"><?= $error ?></small>
                                 <?php endif ?>
                             </div>
-
-                        </div>
-
-                        <div class="col-md-4">
-
 
                             <div class="form-group">
                                 <label class="form-label">Alamat</label>
@@ -527,16 +524,16 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                    <label class="form-label d-block">Rumah Tampak Depan</label>
-                                    <input class="form-control-sm" type="file" name="gambar_depan" accept="image/*"
-                                           onchange="previewFile(this, 'gambar_depan');">
-                                    <?php if (isset($dataGambar['BAGIAN DEPAN'])): ?>
-                                        <img id="preview_gambar_depan" width="500"
-                                             src="data:image/jpeg;base64, <?= $dataGambar['BAGIAN DEPAN'] ?>">
-                                    <?php else: ?>
-                                        <img id="preview_gambar_depan" width="500" style="display: none"
-                                             src="<?= base_url('public/transparent.png') ?>">
-                                    <?php endif ?>
+                                <label class="form-label d-block">Rumah Tampak Depan</label>
+                                <input class="form-control-sm" type="file" name="gambar_depan" accept="image/*"
+                                       onchange="previewFile(this, 'gambar_depan');">
+                                <?php if (isset($dataGambar['BAGIAN DEPAN'])): ?>
+                                    <img id="preview_gambar_depan" width="500"
+                                         src="data:image/jpeg;base64, <?= $dataGambar['BAGIAN DEPAN'] ?>">
+                                <?php else: ?>
+                                    <img id="preview_gambar_depan" width="500" style="display: none"
+                                         src="<?= base_url('public/transparent.png') ?>">
+                                <?php endif ?>
                             </div>
                         </div>
 
@@ -549,7 +546,7 @@
                                     <img id="preview_gambar_samping" width="500"
                                          src="data:image/jpeg;base64, <?= $dataGambar['BAGIAN SAMPING'] ?>">
                                 <?php else: ?>
-                                    <img id="preview_gambar_samping" style="display: none"
+                                    <img id="preview_gambar_samping" width="500" style="display: none"
                                          src="<?= base_url('public/transparent.png') ?>">
                                 <?php endif ?>
                             </div>
@@ -564,7 +561,7 @@
                                     <img id="preview_gambar_belakang" width="500"
                                          src="data:image/jpeg;base64, <?= $dataGambar['BAGIAN BELAKANG'] ?>">
                                 <?php else: ?>
-                                    <img id="preview_gambar_belakang" style="display: none"
+                                    <img id="preview_gambar_belakang" width="500" style="display: none"
                                          src="<?= base_url('public/transparent.png') ?>">
                                 <?php endif ?>
                             </div>
@@ -579,7 +576,7 @@
                                     <img id="preview_gambar_dalam" width="500"
                                          src="data:image/jpeg;base64, <?= $dataGambar['BAGIAN DALAM'] ?>">
                                 <?php else: ?>
-                                    <img id="preview_gambar_dalam" style="display: none"
+                                    <img id="preview_gambar_dalam" width="500" style="display: none"
                                          src="<?= base_url('public/transparent.png') ?>">
                                 <?php endif ?>
                             </div>
@@ -595,7 +592,7 @@
                                     <img id="preview_foto_lantai" width="500"
                                          src="data:image/jpeg;base64, <?= $dataGambar['FOTO LANTAI'] ?>">
                                 <?php else: ?>
-                                    <img id="preview_foto_lantai" style="display: none"
+                                    <img id="preview_foto_lantai" width="500" style="display: none"
                                          src="<?= base_url('public/transparent.png') ?>">
                                 <?php endif ?>
                             </div>
@@ -610,7 +607,7 @@
                                     <img id="preview_foto_dinding" width="500"
                                          src="data:image/jpeg;base64, <?= $dataGambar['FOTO DINDING'] ?>">
                                 <?php else: ?>
-                                    <img id="preview_foto_dinding" style="display: none"
+                                    <img id="preview_foto_dinding" width="500" style="display: none"
                                          src="<?= base_url('public/transparent.png') ?>">
                                 <?php endif ?>
                             </div>
@@ -625,7 +622,7 @@
                                     <img id="preview_foto_atap" width="500"
                                          src="data:image/jpeg;base64, <?= $dataGambar['FOTO ATAP'] ?>">
                                 <?php else: ?>
-                                    <img id="preview_foto_atap" style="display: none"
+                                    <img id="preview_foto_atap" width="500" style="display: none"
                                          src="<?= base_url('public/transparent.png') ?>">
                                 <?php endif ?>
                             </div>
@@ -643,13 +640,13 @@
 <?= $this->section('scripts') ?>
 <script>
     function previewFile(input, id) {
-        var file = $("input[type=file]").get(0).files[0];
+        var file = $(input).get(0).files[0];
         if (file) {
             var reader = new FileReader();
             reader.onload = function () {
                 $("#preview_" + id)
-                    .attr("src", reader.result)
-                    .css('display', 'inline-block');
+                    .css('display', 'inline-block')
+                    .attr("src", reader.result);
             }
             reader.readAsDataURL(file);
         }
