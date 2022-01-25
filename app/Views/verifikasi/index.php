@@ -223,7 +223,6 @@
             function (data, status) {
                 data = JSON.parse(data);
                 data.forEach(function (k, v) {
-                    // console.log(k.jenis);
                     var dataGambar = `<h3 class="text-center">${k.jenis}</h3>
                     <img class="text-center mb-5" style="display: block;margin-left: auto;margin-right: auto;width: 50%;"
                         width="400" src="data:image/jpeg;base64, ${k.file}"/>`;
