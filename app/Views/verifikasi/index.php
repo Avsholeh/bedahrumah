@@ -213,7 +213,7 @@
     });
 
     var fotoBtn = $(".fotoBtn");
-    var fotoModal = new bootstrap.Modal(document.getElementById('fotoModal'), {});;
+    var fotoModal = new bootstrap.Modal(document.getElementById('fotoModal'), {});
     var fotoModalBody = $("#fotoModalBody");
 
     fotoBtn.click(function (event) {
@@ -222,7 +222,7 @@
         $.get("<?= base_url('permohonan/gambar') ?>/" + idPermohonan,
             function (data, status) {
                 data = JSON.parse(data);
-                data.forEach(function(k, v) {
+                data.forEach(function (k, v) {
                     // console.log(k.jenis);
                     var dataGambar = `<h3 class="text-center">${k.jenis}</h3>
                     <img class="text-center mb-5" style="display: block;margin-left: auto;margin-right: auto;width: 50%;"
@@ -235,3 +235,4 @@
 
 </script>
 <?php $this->endSection() ?>
+
