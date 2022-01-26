@@ -12,6 +12,7 @@ class SkoringController extends BaseController
         $atribut = (new AtributModel())
             ->select('skor_atribut.id, skor_atribut.atribut, skor_atribut.bobot, skor_indikator.indikator')
             ->join('skor_indikator', 'skor_indikator.id = skor_atribut.id_indikator')
+            ->orderBy('skor_atribut.id_indikator', 'asc')
             ->get()->getResultObject();
         return view('skoring/index', [
             'title' => 'Skoring',

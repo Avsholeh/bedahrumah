@@ -35,7 +35,6 @@
                                 <th class="d-none data-pengaju">Tempat Lahir</th>
                                 <th class="d-none data-pengaju">Tgl Lahir</th>
                                 <th class="d-none data-pengaju">Alamat</th>
-                                <th class="d-none data-pengaju">Sektor Pekerjaan</th>
                                 <th class="d-none data-pengaju">Penghasilan</th>
                                 <th class="d-none data-pengaju">Pengeluaran</th>
                                 <th class="d-none data-pengaju">Status Kepemilikan Tanah</th>
@@ -51,8 +50,8 @@
                                 <th class="d-none data-rumah">Kondisi Dinding</th>
                                 <th class="d-none data-rumah">Jenis Lantai</th>
 
-                                <th>Skor</th>
-                                <th>Status</th>
+                                <th class="data-rumah">Skor</th>
+                                <th class="data-rumah">Status</th>
                                 <th>#</th>
                             </tr>
                             </thead>
@@ -68,7 +67,6 @@
                                     <td class="d-none data-pengaju"><?= $permohonan->tempat_lahir ?></td>
                                     <td class="d-none data-pengaju"><?= $permohonan->tgl_lahir ?></td>
                                     <td class="d-none data-pengaju"><?= $permohonan->alamat ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->sektor_pekerjaan ?></td>
                                     <td class="d-none data-pengaju"><?= $permohonan->penghasilan ?></td>
                                     <td class="d-none data-pengaju"><?= $permohonan->pengeluaran ?></td>
                                     <td class="d-none data-pengaju"><?= $permohonan->status_pemilik_tanah ?></td>
@@ -176,14 +174,18 @@
     $(document).ready(function () {
         var lihatBtn = $(".lihatBtn");
         var lihatModal = new bootstrap.Modal(document.getElementById('lihatModal'), {});
+        var lihatModalBody = $("#lihatModal .modal-body");
 
         var hapusBtn = $(".hapusBtn");
         var hapusModal = new bootstrap.Modal(document.getElementById('hapusModal'), {});
 
+        var fotoBtn = $(".fotoBtn");
+        var fotoModal = new bootstrap.Modal(document.getElementById('fotoModal'), {});
+        var fotoModalBody = $("#fotoModalBody");
+
         lihatBtn.click(function () {
             lihatModal.show();
 
-            var bodyModal = $("#lihatModal .modal-body");
             var tableHead = $(".table > thead > tr");
             var tableHeadPengaju = tableHead.children('.data-pengaju');
             var tableBodyPengaju = $(this).parent().siblings('.data-pengaju');
@@ -209,8 +211,12 @@
             `;
             }
             htmlModal += "</div></div>";
-            bodyModal.html(htmlModal);
+            lihatModalBody.html(htmlModal);
         });
+
+        document.getElementById('lihatModal').addEventListener('hidden.bs.modal', function (event) {
+            lihatModalBody.html("");
+        })
 
         hapusBtn.click(function (event) {
             hapusModal.show();
@@ -218,10 +224,6 @@
                 window.location = $(event.target).data('hapus');
             });
         });
-
-        var fotoBtn = $(".fotoBtn");
-        var fotoModal = new bootstrap.Modal(document.getElementById('fotoModal'), {});
-        var fotoModalBody = $("#fotoModalBody");
 
         fotoBtn.click(function (event) {
             fotoModal.show();

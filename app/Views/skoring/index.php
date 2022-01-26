@@ -11,16 +11,16 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <button class="nav-link active" id="indikator-tab" data-bs-toggle="tab"
-                                data-bs-target="#indikator" type="button">
+                        <a class="nav-link active" id="indikator-tab" data-bs-toggle="tab"
+                                href="#indikator" data-bs-target="#indikator" type="button">
                             <strong>Indikator</strong>
-                        </button>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link" id="atribut-tab" data-bs-toggle="tab"
-                                data-bs-target="#atribut" type="button">
+                        <a class="nav-link" id="atribut-tab" data-bs-toggle="tab"
+                                href="#atribut" data-bs-target="#atribut" type="button">
                             <strong>Atribut</strong>
-                        </button>
+                        </a>
                     </li>
                 </ul>
 
@@ -107,7 +107,8 @@
 
                                             <div class="form-group">
                                                 <label class="form-label">Nama Atribut</label>
-                                                <input class="form-control" type="text" name="atribut">
+                                                <input class="form-control" type="text" name="atribut"
+                                                       placeholder="Nama Atribut">
                                                 <?php if ($error = $validation->getError('atribut')): ?>
                                                     <small class="text-danger"><?= $error ?></small>
                                                 <?php endif ?>
@@ -115,7 +116,8 @@
 
                                             <div class="form-group">
                                                 <label class="form-label">Bobot Atribut</label>
-                                                <input class="form-control" type="number" name="bobot">
+                                                <input class="form-control" type="number" name="bobot"
+                                                       placeholder="Bobot Atribut">
                                                 <?php if ($error = $validation->getError('bobot')): ?>
                                                     <small class="text-danger"><?= $error ?></small>
                                                 <?php endif ?>
