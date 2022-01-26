@@ -22,8 +22,8 @@
         <div class="card">
             <div class="card-body">
                 <?php if (count($data)): ?>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
+                    <div class="table-responsive-lg">
+                        <table class="table cell-border" style="width:100%">
                             <thead>
                             <tr>
                                 <th class="d-none">ID</th>

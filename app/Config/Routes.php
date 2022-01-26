@@ -62,6 +62,11 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
     $routes->get('verifikasi/(:any)', 'VerifikasiController::index/$1');
     $routes->post('verifikasi/proses', 'VerifikasiController::verifikasi');
 
+    // === Skoring
+    $routes->get('skoring', 'SkoringController::index');
+    $routes->post('skoring/indikator', 'SkoringController::indikator');
+    $routes->post('skoring/atribut', 'SkoringController::atribut');
+
     // === Data Pengaju
     $routes->get('data_pengaju', 'PengajuController::index');
 

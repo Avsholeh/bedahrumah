@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="<?= base_url('public/vendors/css/vendor.bundle.base.css') ?>">
     <link rel="stylesheet" href="<?= base_url('public/css/vertical-layout-light/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('public/vendors/simple-line-icons/css/simple-line-icons.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('public/DataTables/datatables.min.css') ?>">
     <link rel="shortcut icon" href="<?= base_url('public/favicon.ico') ?>">
 </head>
 <body>
@@ -26,7 +27,20 @@
 <script src="<?= base_url('public/js/off-canvas.js') ?>"></script>
 <!--<script src="--><? //= base_url('public/js/dashboard.js')?><!--"></script>-->
 <script src="<?= base_url('public/js/template.js') ?>"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.5/sweetalert2.all.min.js"></script>
+<script src="<?= base_url('public/js/sweetalert2.all.min.js') ?>"></script>
+<script src="<?= base_url('public/DataTables/jQuery-3.6.0/jquery-3.6.0.min.js') ?>"></script>
+<script src="<?= base_url('public/DataTables/datatables.min.js') ?>"></script>
+<script>
+    $(document).ready(function() {
+        $('.table').DataTable({
+            "paging": true,
+            "searching": false,
+            "ordering": false,
+            "lengthChange": false,
+            "info": false,
+        });
+    });
+</script>
 <?php if(session('message-type') && session('message-text')):?>
 <script>
     Swal.fire({

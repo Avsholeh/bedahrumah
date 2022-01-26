@@ -153,7 +153,6 @@ class PermohonanController extends BaseController
                 'file' => $result['file'],
             ]);
         }
-
         return json_encode($gambars);
     }
 

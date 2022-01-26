@@ -14,8 +14,8 @@
                     <div class="d-sm-flex justify-content-between align-items-start mb-3">
                         <div>
                             <span class="badge badge-primary me-2">1</span>
-                            <h4 class="d-inline card-title card-title-dash">Data Pengaju</h4>
-                            <p class="card-subtitle card-subtitle-dash">Silahkan isi form data pengaju dibawah
+                            <h4 class="d-inline card-title card-title-dash">Informasi Pengaju</h4>
+                            <p class="card-subtitle card-subtitle-dash">Silahkan isi form informasi pengaju dibawah
                                 ini</p>
                         </div>
                     </div>
@@ -270,8 +270,8 @@
                     <div class="d-sm-flex justify-content-between align-items-start my-3">
                         <div>
                             <span class="badge badge-primary me-2">2</span>
-                            <h4 class="d-inline card-title card-title-dash">Data Rumah</h4>
-                            <p class="card-subtitle card-subtitle-dash">Silahkan isi form data rumah dibawah ini</p>
+                            <h4 class="d-inline card-title card-title-dash">Informasi Seleksi</h4>
+                            <p class="card-subtitle card-subtitle-dash">Silahkan isi form informasi seleksi dibawah ini</p>
                         </div>
                     </div>
 
@@ -406,9 +406,9 @@
                     <div class="d-sm-flex justify-content-between align-items-start my-3">
                         <div>
                             <span class="badge badge-primary me-2">2</span>
-                            <h4 class="d-inline card-title card-title-dash">Data Gambar</h4>
+                            <h4 class="d-inline card-title card-title-dash">Foto Rumah</h4>
                             <p class="card-subtitle card-subtitle-dash">
-                                Silahkan isi form data gambar dibawah ini.
+                                Silahkan isi form foto rumah dibawah ini.
                             </p>
                         </div>
                     </div>
