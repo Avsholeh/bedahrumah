@@ -371,13 +371,23 @@ class PermohonanController extends BaseController
                 $dataGambarId = $dataGambar->where([
                     'id_permohonan' => $idPermohonan,
                     'jenis' => 'BAGIAN DEPAN',
-                ])->get()->getFirstRow()->id;
+                ])->get();
 
-                $dataGambar->update($dataGambarId, [
-                    'jenis' => 'BAGIAN DEPAN',
-                    'file' => base64_encode(file_get_contents(
-                        $this->request->getFile('gambar_depan')))
-                ]);
+                if ($dataGambarId->getResultArray()) {
+                    $dataGambarId = $dataGambarId->getFirstRow()->id;
+                    $dataGambar->update($dataGambarId, [
+                        'jenis' => 'BAGIAN DEPAN',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('gambar_depan')))
+                    ]);
+                } else {
+                    $dataGambar->insert([
+                        'id_permohonan' => $idPermohonan,
+                        'jenis' => 'BAGIAN DEPAN',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('gambar_depan')))
+                    ]);
+                }
             }
 
             if ($this->request->getFile('gambar_samping')
@@ -386,13 +396,23 @@ class PermohonanController extends BaseController
                 $dataGambarId = $dataGambar->where([
                     'id_permohonan' => $idPermohonan,
                     'jenis' => 'BAGIAN SAMPING',
-                ])->get()->getFirstRow()->id;
+                ])->get();
 
-                $dataGambar->update($dataGambarId, [
-                    'jenis' => 'BAGIAN SAMPING',
-                    'file' => base64_encode(file_get_contents(
-                        $this->request->getFile('gambar_samping')))
-                ]);
+                if ($dataGambarId->getResultArray()) {
+                    $dataGambarId = $dataGambarId->getFirstRow()->id;
+                    $dataGambar->update($dataGambarId, [
+                        'jenis' => 'BAGIAN SAMPING',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('gambar_samping')))
+                    ]);
+                } else {
+                    $dataGambar->insert([
+                        'id_permohonan' => $idPermohonan,
+                        'jenis' => 'BAGIAN SAMPING',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('gambar_samping')))
+                    ]);
+                }
             }
 
             if ($this->request->getFile('gambar_belakang')
@@ -401,13 +421,23 @@ class PermohonanController extends BaseController
                 $dataGambarId = $dataGambar->where([
                     'id_permohonan' => $idPermohonan,
                     'jenis' => 'BAGIAN BELAKANG',
-                ])->get()->getFirstRow()->id;
+                ])->get();
 
-                $dataGambar->update($dataGambarId, [
-                    'jenis' => 'BAGIAN BELAKANG',
-                    'file' => base64_encode(file_get_contents(
-                        $this->request->getFile('gambar_belakang')))
-                ]);
+                if ($dataGambarId->getResultArray()) {
+                    $dataGambarId = $dataGambarId->getFirstRow()->id;
+                    $dataGambar->update($dataGambarId, [
+                        'jenis' => 'BAGIAN BELAKANG',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('gambar_belakang')))
+                    ]);
+                } else {
+                    $dataGambar->insert([
+                        'id_permohonan' => $idPermohonan,
+                        'jenis' => 'BAGIAN BELAKANG',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('gambar_belakang')))
+                    ]);
+                }
             }
 
             if ($this->request->getFile('gambar_dalam')
@@ -416,13 +446,23 @@ class PermohonanController extends BaseController
                 $dataGambarId = $dataGambar->where([
                     'id_permohonan' => $idPermohonan,
                     'jenis' => 'BAGIAN DALAM',
-                ])->get()->getFirstRow()->id;
+                ])->get();
 
-                $dataGambar->update($dataGambarId, [
-                    'jenis' => 'BAGIAN DALAM',
-                    'file' => base64_encode(file_get_contents(
-                        $this->request->getFile('gambar_dalam')))
-                ]);
+                if ($dataGambarId->getResultArray()) {
+                    $dataGambarId = $dataGambarId->getFirstRow()->id;
+                    $dataGambar->update($dataGambarId, [
+                        'jenis' => 'BAGIAN DALAM',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('gambar_dalam')))
+                    ]);
+                } else {
+                    $dataGambar->insert([
+                        'id_permohonan' => $idPermohonan,
+                        'jenis' => 'BAGIAN DALAM',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('gambar_dalam')))
+                    ]);
+                }
             }
 
             if ($this->request->getFile('foto_lantai')
@@ -431,13 +471,23 @@ class PermohonanController extends BaseController
                 $dataGambarId = $dataGambar->where([
                     'id_permohonan' => $idPermohonan,
                     'jenis' => 'FOTO LANTAI',
-                ])->get()->getFirstRow()->id;
+                ])->get();
 
-                $dataGambar->update($dataGambarId, [
-                    'jenis' => 'FOTO LANTAI',
-                    'file' => base64_encode(file_get_contents(
-                        $this->request->getFile('foto_lantai')))
-                ]);
+                if ($dataGambarId->getResultArray()) {
+                    $dataGambarId = $dataGambarId->getFirstRow()->id;
+                    $dataGambar->update($dataGambarId, [
+                        'jenis' => 'FOTO LANTAI',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('foto_lantai')))
+                    ]);
+                } else {
+                    $dataGambar->insert([
+                        'id_permohonan' => $idPermohonan,
+                        'jenis' => 'FOTO LANTAI',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('foto_lantai')))
+                    ]);
+                }
             }
 
             if ($this->request->getFile('foto_dinding')
@@ -446,13 +496,23 @@ class PermohonanController extends BaseController
                 $dataGambarId = $dataGambar->where([
                     'id_permohonan' => $idPermohonan,
                     'jenis' => 'FOTO DINDING',
-                ])->get()->getFirstRow()->id;
+                ])->get();
 
-                $dataGambar->update($dataGambarId, [
-                    'jenis' => 'FOTO DINDING',
-                    'file' => base64_encode(file_get_contents(
-                        $this->request->getFile('foto_dinding')))
-                ]);
+                if ($dataGambarId->getResultArray()) {
+                    $dataGambarId = $dataGambarId->getFirstRow()->id;
+                    $dataGambar->update($dataGambarId, [
+                        'jenis' => 'FOTO DINDING',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('foto_dinding')))
+                    ]);
+                } else {
+                    $dataGambar->insert([
+                        'id_permohonan' => $idPermohonan,
+                        'jenis' => 'FOTO DINDING',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('foto_dinding')))
+                    ]);
+                }
             }
 
             if ($this->request->getFile('foto_atap')
@@ -461,13 +521,23 @@ class PermohonanController extends BaseController
                 $dataGambarId = $dataGambar->where([
                     'id_permohonan' => $idPermohonan,
                     'jenis' => 'FOTO ATAP',
-                ])->get()->getFirstRow()->id;
+                ])->get();
 
-                $dataGambar->update($dataGambarId, [
-                    'jenis' => 'FOTO ATAP',
-                    'file' => base64_encode(file_get_contents(
-                        $this->request->getFile('foto_atap')))
-                ]);
+                if ($dataGambarId->getResultArray()) {
+                    $dataGambarId = $dataGambarId->getFirstRow()->id;
+                    $dataGambar->update($dataGambarId, [
+                        'jenis' => 'FOTO ATAP',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('foto_atap')))
+                    ]);
+                } else {
+                    $dataGambar->insert([
+                        'id_permohonan' => $idPermohonan,
+                        'jenis' => 'FOTO ATAP',
+                        'file' => base64_encode(file_get_contents(
+                            $this->request->getFile('foto_atap')))
+                    ]);
+                }
             }
             return redirect('verifikasi')
                 ->with('message-type', 'success')
@@ -486,9 +556,9 @@ class PermohonanController extends BaseController
         $dataGambar = new GambarModel();
 
         $permohonan->delete($id);
-        $dataPengaju->delete(['id_permohonan' => $id]);
-        $dataRumah->delete(['id_permohonan' => $id]);
-        $dataGambar->delete(['id_permohonan' => $id]);
+        $dataPengaju->where(['id_permohonan' => $id])->delete();
+        $dataRumah->where(['id_permohonan' => $id])->delete();
+        $dataGambar->where(['id_permohonan' => $id])->delete();
 
         return redirect('verifikasi');
     }

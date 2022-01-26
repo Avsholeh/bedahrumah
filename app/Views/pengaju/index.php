@@ -6,56 +6,63 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nama</th>
-                            <th>No.KTP</th>
-                            <th>No.KK</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Tempat Lahir</th>
-                            <th>Tgl Lahir</th>
-                            <th class="d-none">Alamat</th>
-                            <th class="d-none">Sektor Pekerjaan</th>
-                            <th class="d-none">Penghasilan</th>
-                            <th class="d-none">Pengeluaran</th>
-                            <th class="d-none">Status Kepemilikan Tanah</th>
-                            <th class="d-none">Status Kepemilikan Rumah</th>
-                            <th class="d-none">Bukti Kepemilikan Tanah</th>
-                            <th class="d-none">Aset Rumah</th>
-                            <th class="d-none">Aset Tanah</th>
-                            <th>#</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($data as $pengaju): ?>
+                <?php if (count($data)): ?>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
                             <tr>
-                                <td><?= $pengaju->id ?></td>
-                                <td><?= $pengaju->nama ?></td>
-                                <td><?= $pengaju->no_ktp ?></td>
-                                <td><?= $pengaju->no_kk ?></td>
-                                <td><?= $pengaju->jenis_kelamin ?></td>
-                                <td><?= $pengaju->tempat_lahir ?></td>
-                                <td><?= $pengaju->tgl_lahir ?></td>
-                                <td class="d-none"><?= $pengaju->alamat ?></td>
-                                <td class="d-none"><?= $pengaju->sektor_pekerjaan ?></td>
-                                <td class="d-none"><?= $pengaju->penghasilan ?></td>
-                                <td class="d-none"><?= $pengaju->pengeluaran ?></td>
-                                <td class="d-none"><?= $pengaju->status_pemilik_tanah ?></td>
-                                <td class="d-none"><?= $pengaju->status_pemilik_rumah ?></td>
-                                <td class="d-none"><?= $pengaju->bukti_pemilik_tanah ?></td>
-                                <td class="d-none"><?= $pengaju->aset_rumah ?></td>
-                                <td class="d-none"><?= $pengaju->aset_tanah ?></td>
-                                <td>
-                                    <a class="btn btn-sm btn-primary lihatBtn" href="#">Lihat</a>
-                                </td>
+                                <th>ID</th>
+                                <th>Nama</th>
+                                <th>No.KTP</th>
+                                <th>No.KK</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Tempat Lahir</th>
+                                <th>Tgl Lahir</th>
+                                <th class="d-none">Alamat</th>
+                                <th class="d-none">Sektor Pekerjaan</th>
+                                <th class="d-none">Penghasilan</th>
+                                <th class="d-none">Pengeluaran</th>
+                                <th class="d-none">Status Kepemilikan Tanah</th>
+                                <th class="d-none">Status Kepemilikan Rumah</th>
+                                <th class="d-none">Bukti Kepemilikan Tanah</th>
+                                <th class="d-none">Aset Rumah</th>
+                                <th class="d-none">Aset Tanah</th>
+                                <th>#</th>
                             </tr>
-                        <?php endforeach ?>
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($data as $pengaju): ?>
+                                <tr>
+                                    <td><?= $pengaju->id ?></td>
+                                    <td><?= $pengaju->nama ?></td>
+                                    <td><?= $pengaju->no_ktp ?></td>
+                                    <td><?= $pengaju->no_kk ?></td>
+                                    <td><?= $pengaju->jenis_kelamin ?></td>
+                                    <td><?= $pengaju->tempat_lahir ?></td>
+                                    <td><?= $pengaju->tgl_lahir ?></td>
+                                    <td class="d-none"><?= $pengaju->alamat ?></td>
+                                    <td class="d-none"><?= $pengaju->sektor_pekerjaan ?></td>
+                                    <td class="d-none"><?= $pengaju->penghasilan ?></td>
+                                    <td class="d-none"><?= $pengaju->pengeluaran ?></td>
+                                    <td class="d-none"><?= $pengaju->status_pemilik_tanah ?></td>
+                                    <td class="d-none"><?= $pengaju->status_pemilik_rumah ?></td>
+                                    <td class="d-none"><?= $pengaju->bukti_pemilik_tanah ?></td>
+                                    <td class="d-none"><?= $pengaju->aset_rumah ?></td>
+                                    <td class="d-none"><?= $pengaju->aset_tanah ?></td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary lihatBtn" href="#">Lihat</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php else: ?>
+                    <div class="d-flex justify-content-center align-items-center flex-column my-5">
+                        <img src="<?= base_url('public/images/empty.png') ?>" width="400">
+                        <h4>Data pengaju masih kosong.</h4>
+                    </div>
+                <?php endif ?>
             </div>
         </div>
     </div>

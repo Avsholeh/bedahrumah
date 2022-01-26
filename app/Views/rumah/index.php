@@ -6,40 +6,47 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nama</th>
-                            <th>Pencahayaan</th>
-                            <th>Jenis Atap</th>
-                            <th>Kondisi Atap</th>
-                            <th>Jenis Dinding</th>
-                            <th>Kondisi Dinding</th>
-                            <th>Jenis Lantai</th>
-                            <th>#</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($rumahs as $rumah): ?>
+                <?php if (count($rumahs)): ?>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
                             <tr>
-                                <td><?= $rumah->id ?></td>
-                                <td><?= $rumah->nama ?></td>
-                                <td><?= $rumah->pencahayaan ?></td>
-                                <td><?= $rumah->jenis_atap ?></td>
-                                <td><?= $rumah->kondisi_atap ?></td>
-                                <td><?= $rumah->jenis_dinding ?></td>
-                                <td><?= $rumah->kondisi_dinding ?></td>
-                                <td><?= $rumah->jenis_lantai ?></td>
-                                <td>
-                                    <a class="btn btn-sm btn-primary lihatBtn" href="#">Lihat</a>
-                                </td>
+                                <th>ID</th>
+                                <th>Nama</th>
+                                <th>Pencahayaan</th>
+                                <th>Jenis Atap</th>
+                                <th>Kondisi Atap</th>
+                                <th>Jenis Dinding</th>
+                                <th>Kondisi Dinding</th>
+                                <th>Jenis Lantai</th>
+                                <th>#</th>
                             </tr>
-                        <?php endforeach ?>
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($rumahs as $rumah): ?>
+                                <tr>
+                                    <td><?= $rumah->id ?></td>
+                                    <td><?= $rumah->nama ?></td>
+                                    <td><?= $rumah->pencahayaan ?></td>
+                                    <td><?= $rumah->jenis_atap ?></td>
+                                    <td><?= $rumah->kondisi_atap ?></td>
+                                    <td><?= $rumah->jenis_dinding ?></td>
+                                    <td><?= $rumah->kondisi_dinding ?></td>
+                                    <td><?= $rumah->jenis_lantai ?></td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary lihatBtn" href="#">Lihat</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php else: ?>
+                    <div class="d-flex justify-content-center align-items-center flex-column my-5">
+                        <img src="<?= base_url('public/images/empty.png') ?>" width="400">
+                        <h4>Data rumah masih kosong.</h4>
+                    </div>
+                <?php endif ?>
             </div>
         </div>
     </div>
