@@ -7,7 +7,6 @@ use App\Models\GambarModel;
 use App\Models\IndikatorModel;
 use App\Models\PengajuModel;
 use App\Models\PermohonanModel;
-use App\Models\RumahModel;
 use App\Models\SkorModel;
 
 class PermohonanController extends BaseController
