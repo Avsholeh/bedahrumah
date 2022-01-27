@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PermohonanModel;
+use App\Models\SkorModel;
 use Phpml\Classification\NaiveBayes;
 use Phpml\Dataset\CsvDataset;
 
@@ -13,25 +14,30 @@ class VerifikasiController extends BaseController
         $builder = $this->db->table('permohonan');
         $builder->select('*');
         $builder->join('data_pengaju', 'data_pengaju.id_permohonan = permohonan.id');
-        $builder->join('data_rumah', 'data_rumah.id_permohonan = permohonan.id');
 
-        switch ($param) {
-            case "tertinggi":
-                $builder->orderBy('data_rumah.skor', 'desc');
-                break;
-            case "terendah":
-                $builder->orderBy('data_rumah.skor', 'asc');
-                break;
-            default:
-                $builder->orderBy('permohonan.tanggal', 'desc');
-        }
+//        switch ($param) {
+//            case "tertinggi":
+//                $builder->orderBy('data_rumah.skor', 'desc');
+//                break;
+//            case "terendah":
+//                $builder->orderBy('data_rumah.skor', 'asc');
+//                break;
+//            default:
+//                $builder->orderBy('permohonan.tanggal', 'desc');
+//        }
 
         $builder->orderBy('permohonan.tanggal', 'desc');
-        $data = $builder->get()->getResultObject();
+        $permohonans = $builder->get()->getResultObject();
+
+        $skors = (new SkorModel())->select('id_permohonan, sum(skor.bobot) as total_bobot')
+            ->groupBy('id_permohonan')
+            ->get()->getResultArray();
+
         return view('verifikasi/index', [
             'title' => 'Verifikasi',
             'desc' => 'Proses verifikasi penerimaan bantuan bedah rumah.',
-            'data' => $data
+            'permohonans' => $permohonans,
+            'skors' => $skors,
         ]);
     }
 
@@ -44,14 +50,4 @@ class VerifikasiController extends BaseController
         ]);
         return redirect('verifikasi');
     }
-
-    private function naivebayes($prediction)
-    {
-        if (gettype($prediction) !== 'array') return 'Array Datatype is required';
-        $dataset = new CsvDataset(WRITEPATH . 'uploads/data_bedahrumah.csv',28,true);
-        $naivebayes = new NaiveBayes();
-        $naivebayes->train($dataset->getSamples(), $dataset->getTargets());
-        return $naivebayes->predict($prediction);
-    }
-
 }

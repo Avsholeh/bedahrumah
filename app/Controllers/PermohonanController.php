@@ -25,13 +25,23 @@ class PermohonanController extends BaseController
 
     public function edit($id)
     {
-        $builder = $this->db->table('permohonan');
-        $builder->select('*');
-        $builder->join('data_pengaju', 'data_pengaju.id_permohonan = permohonan.id');
-        $builder->join('data_rumah', 'data_rumah.id_permohonan = permohonan.id');
-        $builder->where('permohonan.id', $id);
-        $permohonan = $builder->get()->getFirstRow('object');
+        $permohonan = (new PermohonanModel())
+            ->join('data_pengaju', 'data_pengaju.id_permohonan = permohonan.id')
+            ->where('permohonan.id', $id)
+            ->get()->getFirstRow('object');
 
+        $indikators = (new IndikatorModel())->get()->getResultArray();
+        $atribut = (new AtributModel())->get()->getResultArray();
+
+        $skor = (new SkorModel())->where('id_permohonan', $id)
+            ->get()->getResultArray();
+
+        $skors = [];
+        foreach ($skor as $s) {
+            $skors[strtolower(str_replace(" ", "_", $s["indikator"]))] = $s['atribut'];
+        }
+
+        // Get data_gambar
         $builder = $this->db->table('data_gambar');
         $builder->select('*');
         $builder->where('id_permohonan', $id);
@@ -41,6 +51,9 @@ class PermohonanController extends BaseController
 
         return view('permohonan/edit', [
             'title' => 'Permohonan',
+            'indikators' => $indikators,
+            'atribut' => $atribut,
+            'skors' => $skors,
             'permohonan' => $permohonan,
             'dataGambar' => $dataGambar,
         ]);
@@ -81,7 +94,7 @@ class PermohonanController extends BaseController
             // Insert into permohonan table.
             $permohonan = new \App\Models\PermohonanModel();
             $permohonan->insert([
-                'id_user' => (int) $this->session->get('user')['id'],
+                'id_user' => (int)$this->session->get('user')['id'],
                 'tanggal' => date('Y-m-d H:m:s'),
                 'status' => 'BELUM DIPROSES',
             ]);
@@ -89,7 +102,7 @@ class PermohonanController extends BaseController
             // Insert into data_pengaju table.
             $dataPengaju = new \App\Models\PengajuModel();
             $dataPengaju->insert([
-                'id_permohonan' => (int) $permohonan->getInsertID(),
+                'id_permohonan' => (int)$permohonan->getInsertID(),
                 'nama' => $this->request->getPost('nama'),
                 'no_ktp' => $this->request->getPost('no_ktp'),
                 'no_kk' => $this->request->getPost('no_kk'),
@@ -115,7 +128,7 @@ class PermohonanController extends BaseController
                 $postValue = strtolower(str_replace(" ", "_", $indikator['indikator']));
                 $indikatorPost = explode('|', $this->request->getPost($postValue));
                 $skor->insert([
-                    'id_permohonan' => (int) $permohonan->getInsertID(),
+                    'id_permohonan' => (int)$permohonan->getInsertID(),
                     'indikator' => $indikator['indikator'],
                     'atribut' => $indikatorPost[1],
                     'bobot' => $indikatorPost[0],
@@ -203,7 +216,7 @@ class PermohonanController extends BaseController
                 'status' => 'BELUM DIPROSES',
             ]);
 
-            // data pengaju
+            // Update the data_pengaju table.
             $dataPengaju = new \App\Models\PengajuModel();
             $dataPengajuId = $dataPengaju->where(['id_permohonan' => $idPermohonan])->get()->getFirstRow()->id;
             $dataPengaju->update($dataPengajuId, [
@@ -214,7 +227,6 @@ class PermohonanController extends BaseController
                 'tempat_lahir' => $this->request->getPost('tempat_lahir'),
                 'tgl_lahir' => $this->request->getPost('tgl_lahir'),
                 'alamat' => $this->request->getPost('alamat'),
-                'sektor_pekerjaan' => $this->request->getPost('sektor_pekerjaan'),
                 'penghasilan' => $this->request->getPost('penghasilan'),
                 'pengeluaran' => $this->request->getPost('pengeluaran'),
                 'status_pemilik_tanah' => $this->request->getPost('status_pemilik_tanah'),
@@ -224,43 +236,25 @@ class PermohonanController extends BaseController
                 'aset_tanah' => $this->request->getPost('aset_tanah'),
             ]);
 
-            // data rumah
-            $dataRumah = new \App\Models\RumahModel();
-            $dataRumahId = $dataRumah->where(['id_permohonan' => $idPermohonan])
-                ->get()->getFirstRow()->id;
+            // Update the skor_data table.
+            $indikators = (new IndikatorModel())->select('indikator')
+                ->get()->getResultArray();
+            $skor = new SkorModel();
+            foreach ($indikators as $indikator) {
+                $postValue = strtolower(str_replace(" ", "_", $indikator['indikator']));
+                $indikatorPost = explode('|', $this->request->getPost($postValue));
+                $skorId = $skor->where([
+                    'id_permohonan' => $idPermohonan,
+                    'indikator' => $indikator['indikator'],
+                ])->first()['id'];
+                $skor->update($skorId, [
+                    'atribut' => $indikatorPost[1],
+                    'bobot' => $indikatorPost[0],
+                ]);
+            }
 
-            $pencahayaan = $this->request->getPost("pencahayaan");
-            $jenisAtap = $this->request->getPost("jenis_atap");
-            $kondisiAtap = $this->request->getPost("kondisi_atap");
-            $jenisDinding = $this->request->getPost("jenis_dinding");
-            $kondisiDinding = $this->request->getPost("kondisi_dinding");
-            $jenisLantai = $this->request->getPost("jenis_lantai");
-            $sektorPekerjaan = $this->request->getPost("sektor_pekerjaan");
-            $statusKeluarga = $this->request->getPost("status_keluarga");
-
-            $totalSkor = $this->skor([
-                'pencahayaan' => $pencahayaan,
-                'jenis_atap' => $jenisAtap,
-                'kondisi_atap' => $kondisiAtap,
-                'jenis_dinding' => $jenisDinding,
-                'kondisi_dinding' => $kondisiDinding,
-                'jenis_lantai' => $jenisLantai,
-                'sektor_pekerjaan' => $sektorPekerjaan,
-                'status_keluarga' => $statusKeluarga,
-            ]);
-
-            $dataRumah->update($dataRumahId, [
-                'pencahayaan' => $pencahayaan,
-                'jenis_atap' => $jenisAtap,
-                'kondisi_atap' => $kondisiAtap,
-                'jenis_dinding' => $jenisDinding,
-                'kondisi_dinding' => $kondisiDinding,
-                'jenis_lantai' => $jenisLantai,
-                'skor' => $totalSkor,
-            ]);
-
+            // Update the data_gambar table.
             $dataGambar = new \App\Models\GambarModel();
-
             if ($this->request->getFile('gambar_depan')
                 && $this->request->getFile('gambar_depan')->getSize()) {
 
@@ -448,87 +442,15 @@ class PermohonanController extends BaseController
     {
         $permohonan = new PermohonanModel();
         $dataPengaju = new PengajuModel();
-        $dataRumah = new RumahModel();
         $dataGambar = new GambarModel();
+        $skor = new SkorModel();
 
         $permohonan->delete($id);
         $dataPengaju->where(['id_permohonan' => $id])->delete();
-        $dataRumah->where(['id_permohonan' => $id])->delete();
         $dataGambar->where(['id_permohonan' => $id])->delete();
+        $skor->where(['id_permohonan' => $id])->delete();
 
         return redirect('verifikasi');
-    }
-
-    private function skor($atribut)
-    {
-        $atributPencahayaan = [
-            'Ada' => 3,
-            'Tidak Ada' => 7,
-        ];
-
-        $atributJenisAtap = [
-            'Beton' => 0,
-            'Genteng' => 2,
-            'Sirap' => 3,
-            'Asbes' => 4,
-            'Seng' => 5,
-            'Rumbia/Daun Kelapa/Daun Aren' => 6
-        ];
-
-        $atributKondisiAtap = [
-            'Baik' => 1,
-            'Sedang' => 3,
-            'Buruk' => 6,
-        ];
-
-        $atributJenisDinding = [
-            'Bata/Batako Plester' => 2,
-            'Bata/Batako Ekspose' => 3,
-            'Kayu' => 4,
-            'Bilik/Bambu' => 5,
-            'GRC/Asbes' => 6,
-        ];
-
-        $atributKondisiDinding = [
-            'Baik' => 1,
-            'Sedang' => 3,
-            'Buruk' => 6,
-        ];
-
-        $atributJenisLantai = [
-            'Keramik/Marmer' => 0,
-            'Ubin' => 0,
-            'Plester' => 1,
-            'Kayu' => 2,
-            'Bambu' => 3,
-            'Tanah' => 4,
-        ];
-
-        $atributSektorPekerjaan = [
-            'PNS' => 0,
-            'BUMN' => 0,
-            'TNI / POLRI' => 0,
-            'Karyawan Swasta' => 1,
-            'Wiraswasta' => 1,
-            'Petani' => 1,
-            'Nelayan' => 1,
-            'Buruh' => 3,
-            'Tidak Bekerja' => 3,
-        ];
-
-        $atributStatusKeluarga = [
-            'Keluarga Utuh' => 3,
-            'Keluarga Tidak Utuh' => 7,
-        ];
-
-        return $atributPencahayaan[$atribut['pencahayaan']] +
-            $atributJenisAtap[$atribut['jenis_atap']] +
-            $atributKondisiAtap[$atribut['kondisi_atap']] +
-            $atributJenisDinding[$atribut['jenis_dinding']] +
-            $atributKondisiDinding[$atribut['kondisi_dinding']] +
-            $atributJenisLantai[$atribut['jenis_lantai']] +
-            $atributSektorPekerjaan[$atribut['sektor_pekerjaan']] +
-            $atributStatusKeluarga[$atribut['status_keluarga']];
     }
 
     public function gambar($idPermohonan)
@@ -543,6 +465,13 @@ class PermohonanController extends BaseController
             ]);
         }
         return json_encode($gambars);
+    }
+
+    public function skor($idPermohonan)
+    {
+        $skors = (new SkorModel())->where('id_permohonan', $idPermohonan)
+            ->get()->getResultArray();
+        return json_encode($skors);
     }
 
 }

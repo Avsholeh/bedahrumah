@@ -2,26 +2,26 @@
 
 <?= $this->section('content') ?>
 
-<ul class="nav nav-pills border-0">
-    <li class="nav-item">
-        <a class="nav-link <?= url_is('verifikasi/tertinggi') ? 'active' : '' ?>"
-           href="<?= base_url('verifikasi/tertinggi') ?>">
-            Skor Tertinggi
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link <?= url_is('verifikasi/terendah') ? 'active' : '' ?>"
-           href="<?= base_url('verifikasi/terendah') ?>">
-            Skor Terendah
-        </a>
-    </li>
-</ul>
+<!--<ul class="nav nav-pills border-0">-->
+<!--    <li class="nav-item">-->
+<!--        <a class="nav-link --><?//= url_is('verifikasi/tertinggi') ? 'active' : '' ?><!--"-->
+<!--           href="--><?//= base_url('verifikasi/tertinggi') ?><!--">-->
+<!--            Skor Tertinggi-->
+<!--        </a>-->
+<!--    </li>-->
+<!--    <li class="nav-item">-->
+<!--        <a class="nav-link --><?//= url_is('verifikasi/terendah') ? 'active' : '' ?><!--"-->
+<!--           href="--><?//= base_url('verifikasi/terendah') ?><!--">-->
+<!--            Skor Terendah-->
+<!--        </a>-->
+<!--    </li>-->
+<!--</ul>-->
 
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <?php if (count($data)): ?>
+                <?php if (count($permohonans)): ?>
                     <div class="table-responsive-lg">
                         <table class="table cell-border" style="width:100%">
                             <thead>
@@ -42,21 +42,13 @@
                                 <th class="d-none data-pengaju">Bukti Kepemilikan Tanah</th>
                                 <th class="d-none data-pengaju">Aset Rumah</th>
                                 <th class="d-none data-pengaju">Aset Tanah</th>
-
-                                <th class="d-none data-rumah">Pencahayaan</th>
-                                <th class="d-none data-rumah">Jenis Atap</th>
-                                <th class="d-none data-rumah">Kondisi Atap</th>
-                                <th class="d-none data-rumah">Jenis Dinding</th>
-                                <th class="d-none data-rumah">Kondisi Dinding</th>
-                                <th class="d-none data-rumah">Jenis Lantai</th>
-
-                                <th class="data-rumah">Skor</th>
+                                <th class="data-rumah">Total Skor</th>
                                 <th class="data-rumah">Status</th>
                                 <th>#</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($data as $permohonan): ?>
+                            <?php foreach ($permohonans as $permohonan): ?>
                                 <tr>
                                     <td class="d-none"><?= $permohonan->id_permohonan ?></td>
                                     <td><?= $permohonan->tanggal ?></td>
@@ -74,14 +66,13 @@
                                     <td class="d-none data-pengaju"><?= $permohonan->bukti_pemilik_tanah ?></td>
                                     <td class="d-none data-pengaju"><?= $permohonan->aset_rumah ?></td>
                                     <td class="d-none data-pengaju"><?= $permohonan->aset_tanah ?></td>
-
-                                    <td class="d-none data-rumah"><?= $permohonan->pencahayaan ?></td>
-                                    <td class="d-none data-rumah"><?= $permohonan->jenis_atap ?></td>
-                                    <td class="d-none data-rumah"><?= $permohonan->kondisi_atap ?></td>
-                                    <td class="d-none data-rumah"><?= $permohonan->jenis_dinding ?></td>
-                                    <td class="d-none data-rumah"><?= $permohonan->kondisi_dinding ?></td>
-                                    <td class="d-none data-rumah"><?= $permohonan->jenis_lantai ?></td>
-                                    <td class="data-rumah"><?= $permohonan->skor ?></td>
+                                    <td>
+                                        <?php foreach ($skors as $skor): ?>
+                                            <?php if ($skor['id_permohonan'] == $permohonan->id): ?>
+                                                <?= $skor['total_bobot']?>
+                                            <?php endif ?>
+                                        <?php endforeach; ?>
+                                    </td>
                                     <td>
                                         <?php if ($permohonan->status === 'BELUM DIPROSES'): ?>
                                             <form action="<?= base_url('verifikasi/proses') ?>" method="POST"
@@ -101,7 +92,9 @@
                                         <a class="btn btn-sm btn-primary fotoBtn"
                                            data-foto="<?= $permohonan->id_permohonan ?>"
                                            href="#">Foto</a>
-                                        <a class="btn btn-sm btn-primary lihatBtn" href="#">Lihat</a>
+                                        <a class="btn btn-sm btn-primary lihatBtn"
+                                           data-id-permohonan="<?= $permohonan->id_permohonan ?>"
+                                           href="#">Lihat</a>
                                         <a class="btn btn-sm btn-warning"
                                            href="<?= base_url('permohonan/edit/' . $permohonan->id_permohonan) ?>">Edit</a>
                                         <a class="btn btn-sm btn-danger hapusBtn"
@@ -114,10 +107,10 @@
                         </table>
                     </div>
                 <?php else: ?>
-                <div class="d-flex justify-content-center align-items-center flex-column my-5">
-                    <img src="<?= base_url('public/images/empty.png') ?>" width="400">
-                    <h4>Belum ada permohonan yang diajukan.</h4>
-                </div>
+                    <div class="d-flex justify-content-center align-items-center flex-column my-5">
+                        <img src="<?= base_url('public/images/empty.png') ?>" width="400">
+                        <h4>Belum ada permohonan yang diajukan.</h4>
+                    </div>
                 <?php endif ?>
             </div>
         </div>
@@ -183,7 +176,7 @@
         var fotoModal = new bootstrap.Modal(document.getElementById('fotoModal'), {});
         var fotoModalBody = $("#fotoModalBody");
 
-        lihatBtn.click(function () {
+        lihatBtn.click(function (event) {
             lihatModal.show();
 
             var tableHead = $(".table > thead > tr");
@@ -200,18 +193,25 @@
 
             htmlModal += "</div>";
 
-            var tableHeadRumah = tableHead.children('.data-rumah');
-            var tableBodyRumah = $(this).parent().siblings('.data-rumah');
-            htmlModal += "<div class='col-6'>";
-            for (var i = 0; i < tableHeadRumah.length - 1; i++) {
-                htmlModal += `<div class='row mb-3'>
-                <div class='col-6'><strong>${tableHeadRumah[i].textContent}</strong></div>
-                <div class='col-6'>: ${tableBodyRumah[i].innerText}</div>
-            </div>
-            `;
-            }
-            htmlModal += "</div></div>";
-            lihatModalBody.html(htmlModal);
+            var idPermohonan = $(event.target).data('id-permohonan');
+            console.log(idPermohonan);
+            $.get("<?= base_url('permohonan/skor') ?>/" + idPermohonan,
+                function (data, status) {
+                    data = JSON.parse(data);
+
+                    htmlModal += "<div class='col-6'>";
+
+                    data.forEach(function (k, v) {
+                        htmlModal += `<div class='row mb-3'>
+                            <div class='col-6'><strong>${k.indikator}</strong></div>
+                            <div class='col-6'>: ${k.atribut} (${k.bobot})</div></div>`;
+                        console.log(htmlModal)
+                    });
+
+                    htmlModal += "</div></div>";
+                    lihatModalBody.html(htmlModal);
+                }
+            );
         });
 
         document.getElementById('lihatModal').addEventListener('hidden.bs.modal', function (event) {
@@ -231,12 +231,16 @@
             $.get("<?= base_url('permohonan/gambar') ?>/" + idPermohonan,
                 function (data, status) {
                     data = JSON.parse(data);
-                    data.forEach(function (k, v) {
-                        var dataGambar = `<h3 class="text-center">${k.jenis}</h3>
-                    <img class="text-center mb-5" style="display: block;margin-left: auto;margin-right: auto;width: 50%;"
-                        width="400" src="data:image/jpeg;base64, ${k.file}"/>`;
-                        fotoModalBody.append(dataGambar);
-                    });
+                    if (data.length) {
+                        data.forEach(function (k, v) {
+                            var dataGambar = `<h3 class="text-center">${k.jenis}</h3><img class="text-center mb-5"
+                             style="display: block;margin-left: auto;margin-right: auto;width: 50%;"
+                             width="400" src="data:image/jpeg;base64, ${k.file}"/>`;
+                            fotoModalBody.append(dataGambar);
+                        });
+                    } else {
+                        fotoModalBody.append("<h4 class='text-center'>Belum ada gambar yang diupload.</h4>");
+                    }
                 }
             );
         });

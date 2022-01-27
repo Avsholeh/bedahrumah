@@ -56,6 +56,7 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
     $routes->post('permohonan/simpan', 'PermohonanController::simpan');
     $routes->get('permohonan/hapus/(:num)', 'PermohonanController::hapus/$1');
     $routes->get('permohonan/gambar/(:num)', 'PermohonanController::gambar/$1');
+    $routes->get('permohonan/skor/(:num)', 'PermohonanController::skor/$1');
 
     // === Verifikasi
     $routes->get('verifikasi', 'VerifikasiController::index');
@@ -69,9 +70,6 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
 
     // === Data Pengaju
     $routes->get('data_pengaju', 'PengajuController::index');
-
-    // === Data Rumah
-    $routes->get('data_rumah', 'RumahController::index');
 
     // === Users
     $routes->get('users', 'UserController::index');

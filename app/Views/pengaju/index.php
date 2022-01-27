@@ -7,19 +7,18 @@
         <div class="card">
             <div class="card-body">
                 <?php if (count($data)): ?>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
+                    <div class="">
+                        <table class="table">
                             <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nama</th>
-                                <th>No.KTP</th>
-                                <th>No.KK</th>
+                                <th>No KTP</th>
+                                <th class="d-none">No.KK</th>
                                 <th>Jenis Kelamin</th>
                                 <th>Tempat Lahir</th>
-                                <th>Tgl Lahir</th>
+                                <th>Tanggal Lahir</th>
                                 <th class="d-none">Alamat</th>
-                                <th class="d-none">Sektor Pekerjaan</th>
                                 <th class="d-none">Penghasilan</th>
                                 <th class="d-none">Pengeluaran</th>
                                 <th class="d-none">Status Kepemilikan Tanah</th>
@@ -36,12 +35,11 @@
                                     <td><?= $pengaju->id ?></td>
                                     <td><?= $pengaju->nama ?></td>
                                     <td><?= $pengaju->no_ktp ?></td>
-                                    <td><?= $pengaju->no_kk ?></td>
+                                    <td class="d-none"><?= $pengaju->no_kk ?></td>
                                     <td><?= $pengaju->jenis_kelamin ?></td>
                                     <td><?= $pengaju->tempat_lahir ?></td>
                                     <td><?= $pengaju->tgl_lahir ?></td>
                                     <td class="d-none"><?= $pengaju->alamat ?></td>
-                                    <td class="d-none"><?= $pengaju->sektor_pekerjaan ?></td>
                                     <td class="d-none"><?= $pengaju->penghasilan ?></td>
                                     <td class="d-none"><?= $pengaju->pengeluaran ?></td>
                                     <td class="d-none"><?= $pengaju->status_pemilik_tanah ?></td>

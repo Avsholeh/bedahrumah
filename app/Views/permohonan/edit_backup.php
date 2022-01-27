@@ -90,10 +90,74 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label class="form-label">Status Keluarga</label>
+                                <select class="form-select form-select-sm" name="status_keluarga">
+                                    <option value="" selected disabled>Pilih Status Keluarga</option>
+                                    <option value="Keluarga Utuh"
+                                        <?= $permohonan->status_keluarga == 'Keluarga Utuh' ? 'selected' : '' ?>
+                                    >Keluarga Utuh
+                                    </option>
+                                    <option value="Keluarga Tidak Utuh"
+                                        <?= $permohonan->status_keluarga == 'Keluarga Tidak Utuh' ? 'selected' : '' ?>
+                                    >Keluarga Tidak Utuh
+                                    </option>
+                                </select>
+                                <?php if ($error = $validation->getError('status_keluarga')): ?>
+                                    <small class="text-danger"><?= $error ?></small>
+                                <?php endif ?>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="form-label">Alamat</label>
                                 <input class="form-control form-control-lg p-3" type="text" name="alamat"
                                        value="<?= $permohonan->alamat ?>" placeholder="Alamat">
                                 <?php if ($error = $validation->getError('alamat')): ?>
+                                    <small class="text-danger"><?= $error ?></small>
+                                <?php endif ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Sektor Pekerjaan</label>
+                                <select class="form-select form-select-sm" name="sektor_pekerjaan">
+                                    <option value="" selected disabled>Pilih Sektor Pekerjaan</option>
+                                    <option value="PNS"
+                                        <?= $permohonan->sektor_pekerjaan == 'PNS' ? 'selected' : '' ?>
+                                    >PNS
+                                    </option>
+                                    <option value="BUMN"
+                                        <?= $permohonan->sektor_pekerjaan == 'BUMN' ? 'selected' : '' ?>
+                                    >BUMN
+                                    </option>
+                                    <option value="TNI / POLRI"
+                                        <?= $permohonan->sektor_pekerjaan == 'TNI / POLRI' ? 'selected' : '' ?>
+                                    >TNI / POLRI
+                                    </option>
+                                    <option value="Karyawan Swasta"
+                                        <?= $permohonan->sektor_pekerjaan == 'Karyawan Swasta' ? 'selected' : '' ?>
+                                    >Karyawan Swasta
+                                    </option>
+                                    <option value="Wiraswasta"
+                                        <?= $permohonan->sektor_pekerjaan == 'Wiraswasta' ? 'selected' : '' ?>
+                                    >Wiraswasta
+                                    </option>
+                                    <option value="Petani"
+                                        <?= $permohonan->sektor_pekerjaan == 'Petani' ? 'selected' : '' ?>
+                                    >Petani
+                                    </option>
+                                    <option value="Nelayan"
+                                        <?= $permohonan->sektor_pekerjaan == 'Nelayan' ? 'selected' : '' ?>
+                                    >Nelayan
+                                    </option>
+                                    <option value="Buruh"
+                                        <?= $permohonan->sektor_pekerjaan == 'Buruh' ? 'selected' : '' ?>
+                                    >Buruh
+                                    </option>
+                                    <option value="Tidak Bekerja"
+                                        <?= $permohonan->sektor_pekerjaan == 'Tidak Bekerja' ? 'selected' : '' ?>
+                                    >Tidak Bekerja
+                                    </option>
+                                </select>
+                                <?php if ($error = $validation->getError('sektor_pekerjaan')): ?>
                                     <small class="text-danger"><?= $error ?></small>
                                 <?php endif ?>
                             </div>
@@ -272,27 +336,176 @@
                     </div>
 
                     <div class="row">
-                        <?php foreach ($indikators as $indikator): ?>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="form-label"><?= $indikator['indikator'] ?></label>
-                                    <select class="form-select form-select-sm"
-                                            name="<?= strtolower(str_replace(" ", "_", $indikator['indikator'])) ?>">
-                                        <option value="" selected disabled>Pilih <?= $indikator['indikator'] ?></option>
-                                        <?php foreach (array_filter($atribut, function ($value) use ($indikator) {
-                                            return $value['id_indikator'] == $indikator['id'];
-                                        }) as $item): ?>
-                                            <option <?= $skors[strtolower(str_replace(" ", "_", $indikator['indikator']))]
-                                            == $item['atribut'] ? 'selected' : '' ?>
-                                                    value="<?= $item['bobot'] ?>|<?= $item['atribut'] ?>"><?= $item['atribut'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <?php if ($error = $validation->getError(strtolower(str_replace(" ", "_", $indikator['indikator'])))): ?>
-                                        <small class="text-danger"><?= $error ?></small>
-                                    <?php endif ?>
-                                </div>
+                        <div class="col-md-4">
+                            <!-- Pencahayaan -->
+                            <div class="form-group">
+                                <label class="form-label">Pencahayaan</label>
+                                <select class="form-select form-select-sm" name="pencahayaan">
+                                    <option value="" selected disabled>Pilih Pencahayaan</option>
+                                    <option value="Ada"
+                                        <?= $permohonan->pencahayaan == 'Ada' ? 'selected' : '' ?>
+                                    >Ada
+                                    </option>
+                                    <option value="Tidak Ada"
+                                        <?= $permohonan->pencahayaan == 'Tidak Ada' ? 'selected' : '' ?>
+                                    >Tidak Ada
+                                    </option>
+                                </select>
+                                <?php if ($error = $validation->getError('pencahayaan')): ?>
+                                    <small class="text-danger"><?= $error ?></small>
+                                <?php endif ?>
                             </div>
-                        <?php endforeach; ?>
+
+                            <!-- Jenis Lantai -->
+                            <div class="form-group">
+                                <label class="form-label">Jenis Lantai</label>
+                                <select class="form-select form-select-sm" name="jenis_lantai">
+                                    <option value="" selected disabled>Pilih Jenis Lantai</option>
+                                    <option value="Keramik/Marmer"
+                                        <?= ($permohonan->jenis_lantai == 'Keramik/Marmer') ? 'selected' : '' ?>
+                                    >Keramik/Marmer
+                                    </option>
+                                    <option value="Ubin"
+                                        <?= ($permohonan->jenis_lantai == 'Ubin') ? 'selected' : '' ?>
+                                    >Ubin
+                                    </option>
+                                    <option value="Kayu"
+                                        <?= ($permohonan->jenis_lantai == 'Kayu') ? 'selected' : '' ?>
+                                    >Kayu
+                                    </option>
+                                    <option value="Plester"
+                                        <?= ($permohonan->jenis_lantai == 'Plester') ? 'selected' : '' ?>
+                                    >Plester
+                                    </option>
+                                    <option value="Bambu"
+                                        <?= ($permohonan->jenis_lantai == 'Bambu') ? 'selected' : '' ?>
+                                    >Bambu
+                                    </option>
+                                    <option value="Tanah"
+                                        <?= ($permohonan->jenis_lantai == 'Tanah') ? 'selected' : '' ?>
+                                    >Tanah
+                                    </option>
+                                </select>
+                                <?php if ($error = $validation->getError('jenis_lantai')): ?>
+                                    <small class="text-danger"><?= $error ?></small>
+                                <?php endif ?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <!-- Jenis Atap -->
+                            <div class="form-group">
+                                <label class="form-label">Jenis Atap</label>
+                                <select class="form-select form-select-sm" name="jenis_atap">
+                                    <option value="Beton"
+                                        <?= ($permohonan->jenis_atap == 'Beton') ? 'selected' : '' ?>
+                                    >Beton
+                                    </option>
+                                    <option value="Genteng"
+                                        <?= ($permohonan->jenis_atap == 'Genteng') ? 'selected' : '' ?>
+                                    >Genteng
+                                    </option>
+                                    <option value="Sirap"
+                                        <?= ($permohonan->jenis_atap == 'Sirap') ? 'selected' : '' ?>
+                                    >Sirap
+                                    </option>
+                                    <option value="Asbes"
+                                        <?= ($permohonan->jenis_atap == 'Asbes') ? 'selected' : '' ?>
+                                    >Asbes
+                                    </option>
+                                    <option value="Seng"
+                                        <?= ($permohonan->jenis_atap == 'Seng') ? 'selected' : '' ?>
+                                    >Seng
+                                    </option>
+                                    <option value="Rumbia/Daun Kelapa/Daun Aren"
+                                        <?= ($permohonan->jenis_atap == 'Rumbia/Daun Kelapa/Daun Aren') ? 'selected' : '' ?>
+                                    >Rumbia/Daun Kelapa/Daun Aren
+                                    </option>
+                                </select>
+                                <?php if ($error = $validation->getError('jenis_atap')): ?>
+                                    <small class="text-danger"><?= $error ?></small>
+                                <?php endif ?>
+                            </div>
+
+                            <!-- Kondisi Atap -->
+                            <div class="form-group">
+                                <label class="form-label">Kondisi Atap</label>
+                                <select class="form-select form-select-sm" name="kondisi_atap">
+                                    <option value="" selected disabled>Pilih Kondisi Atap</option>
+                                    <option value="Baik"
+                                        <?= ($permohonan->kondisi_atap == 'Baik') ? 'selected' : '' ?>
+                                    >Baik
+                                    </option>
+                                    <option value="Sedang"
+                                        <?= ($permohonan->kondisi_atap == 'Sedang') ? 'selected' : '' ?>
+                                    >Sedang
+                                    </option>
+                                    <option value="Buruk"
+                                        <?= ($permohonan->kondisi_atap == 'Buruk') ? 'selected' : '' ?>
+                                    >Buruk
+                                    </option>
+                                </select>
+                                <?php if ($error = $validation->getError('kondisi_atap')): ?>
+                                    <small class="text-danger"><?= $error ?></small>
+                                <?php endif ?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <!-- Jenis Dinding -->
+                            <div class="form-group">
+                                <label class="form-label">Jenis Dinding</label>
+                                <select class="form-select form-select-sm" name="jenis_dinding">
+                                    <option value="" selected disabled>Pilih Jenis Dinding</option>
+                                    <option value="Bata/Batako Plester"
+                                        <?= ($permohonan->jenis_dinding == 'Bata/Batako Plester') ? 'selected' : '' ?>
+                                    >Bata/Batako Plester
+                                    </option>
+                                    <option value="Bata/Batako Ekspose"
+                                        <?= ($permohonan->jenis_dinding == 'Bata/Batako Ekspose') ? 'selected' : '' ?>
+                                    >Bata/Batako Ekspose
+                                    </option>
+                                    <option value="Kayu"
+                                        <?= ($permohonan->jenis_dinding == 'Kayu') ? 'selected' : '' ?>
+                                    >Kayu
+                                    </option>
+                                    <option value="Bilik/Bambu"
+                                        <?= ($permohonan->jenis_dinding == 'Bilik/Bambu') ? 'selected' : '' ?>
+                                    >Bilik/Bambu
+                                    </option>
+                                    <option value="GRC/Asbes"
+                                        <?= ($permohonan->jenis_dinding == 'GRC/Asbes') ? 'selected' : '' ?>
+                                    >GRC/Asbes
+                                    </option>
+                                </select>
+                                <?php if ($error = $validation->getError('jenis_dinding')): ?>
+                                    <small class="text-danger"><?= $error ?></small>
+                                <?php endif ?>
+                            </div>
+
+                            <!-- Kondisi Dinding -->
+                            <div class="form-group">
+                                <label class="form-label">Kondisi Dinding</label>
+                                <select class="form-select form-select-sm" name="kondisi_dinding">
+                                    <option value="" selected disabled>Pilih Kondisi Dinding</option>
+                                    <option value="Baik"
+                                        <?= ($permohonan->kondisi_dinding == 'Baik') ? 'selected' : '' ?>
+                                    >Baik
+                                    </option>
+                                    <option value="Sedang"
+                                        <?= ($permohonan->kondisi_dinding == 'Sedang') ? 'selected' : '' ?>
+                                    >Sedang
+                                    </option>
+                                    <option value="Buruk"
+                                        <?= ($permohonan->kondisi_dinding == 'Buruk') ? 'selected' : '' ?>
+                                    >Buruk
+                                    </option>
+                                </select>
+                                <?php if ($error = $validation->getError('kondisi_dinding')): ?>
+                                    <small class="text-danger"><?= $error ?></small>
+                                <?php endif ?>
+                            </div>
+                        </div>
                     </div>
 
                     <hr>
