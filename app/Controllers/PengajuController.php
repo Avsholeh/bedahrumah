@@ -2,18 +2,19 @@
 
 namespace App\Controllers;
 
+use App\Models\PengajuModel;
+
 class PengajuController extends BaseController
 {
     public function index()
     {
-        $builder = $this->db->table('data_pengaju');
-        $builder->select('*');
-        $pengaju = $builder->get()->getResultObject();
+        $pengajus = (new PengajuModel())
+            ->get()->getResultObject();
 
         return view('pengaju/index', [
             'title' => 'Data Pengaju',
             'desc' => 'Data pengaju yang telah terdaftar disistem.',
-            'data' => $pengaju
+            'data' => $pengajus
         ]);
     }
 }

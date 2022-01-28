@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class PengajuModel extends Model
 {
     protected $DBGroup = 'default';
-    protected $table = 'data_pengaju';
+    protected $table = 'pengaju';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $allowedFields = [

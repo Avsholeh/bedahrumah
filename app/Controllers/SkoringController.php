@@ -6,18 +6,25 @@ use App\Models\IndikatorModel;
 
 class SkoringController extends BaseController
 {
-    public function index()
+    private $indikator;
+    private $atribut;
+
+    public function __construct()
     {
-        $indikator = (new IndikatorModel())->get()->getResultObject();
-        $atribut = (new AtributModel())
+        $this->indikator = (new IndikatorModel())->get()->getResultObject();
+        $this->atribut = (new AtributModel())
             ->select('skor_atribut.id, skor_atribut.atribut, skor_atribut.bobot, skor_indikator.indikator')
             ->join('skor_indikator', 'skor_indikator.id = skor_atribut.id_indikator')
             ->orderBy('skor_atribut.id_indikator', 'asc')
             ->get()->getResultObject();
+    }
+
+    public function index()
+    {
         return view('skoring/index', [
             'title' => 'Skoring',
-            'indikator' => $indikator,
-            'atribut' => $atribut,
+            'indikator' => $this->indikator,
+            'atribut' => $this->atribut,
         ]);
     }
 
@@ -42,6 +49,39 @@ class SkoringController extends BaseController
         return redirect('skoring')->withInput()->with('validation', $this->validator);
     }
 
+    public function indikatorEdit($id)
+    {
+        $indikator = (new IndikatorModel())->find($id);
+        return view('skoring/edit', [
+            'title' => 'Skoring',
+            'indikator' => $this->indikator,
+            'atribut' => $this->atribut,
+            'edit' => $indikator,
+        ]);
+    }
+
+    public function indikatorUpdate()
+    {
+        $id = $this->request->getPost('id');
+        $validation = $this->validate([
+            'indikator' => 'required',
+            'bobot' => 'required',
+        ]);
+
+        if ($validation) {
+            (new IndikatorModel())->update($id, [
+                'indikator' => $this->request->getPost('indikator'),
+                'bobot' => $this->request->getPost('bobot'),
+            ]);
+            return redirect('skoring')
+                ->with('message-type', 'success')
+                ->with('message-text', 'Indikator telah berhasil diperbarui.');
+        }
+        return redirect('skoring')
+            ->with('message-type', 'danger')
+            ->with('message-text', 'Indikator gagal diperbarui.');
+    }
+
     public function atribut()
     {
         $validation = $this->validate([
@@ -63,5 +103,25 @@ class SkoringController extends BaseController
         }
 
         return redirect('skoring')->withInput()->with('validation', $this->validator);
+    }
+
+    public function atributEdit($id)
+    {
+        $atribut = (new AtributModel())->find($id);
+        return view('skoring/edit', [
+            'title' => 'Skoring',
+            'indikator' => $this->indikator,
+            'atribut' => $this->atribut,
+            'edit' => $atribut,
+        ]);
+    }
+
+    public function atributUpdate()
+    {
+        $validation = $this->validate([
+            'id_indikator' => 'required',
+            'atribut' => 'required',
+            'bobot' => 'required',
+        ]);
     }
 }

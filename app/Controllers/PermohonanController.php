@@ -25,7 +25,7 @@ class PermohonanController extends BaseController
     public function edit($id)
     {
         $permohonan = (new PermohonanModel())
-            ->join('data_pengaju', 'data_pengaju.id_permohonan = permohonan.id')
+            ->join('pengaju', 'pengaju.id_permohonan = permohonan.id')
             ->where('permohonan.id', $id)
             ->get()->getFirstRow('object');
 
@@ -41,7 +41,7 @@ class PermohonanController extends BaseController
         }
 
         // Get data_gambar
-        $builder = $this->db->table('data_gambar');
+        $builder = $this->db->table('gambar');
         $builder->select('*');
         $builder->where('id_permohonan', $id);
         $builderResult = $builder->get()->getResultArray();
@@ -93,12 +93,12 @@ class PermohonanController extends BaseController
             // Insert into permohonan table.
             $permohonan = new \App\Models\PermohonanModel();
             $permohonan->insert([
-                'id_user' => (int)$this->session->get('user')['id'],
+                'id_user' => $this->session->get('user')['id'],
                 'tanggal' => date('Y-m-d H:m:s'),
                 'status' => 'BELUM DIPROSES',
             ]);
 
-            // Insert into data_pengaju table.
+            // Insert into pengaju table.
             $dataPengaju = new \App\Models\PengajuModel();
             $dataPengaju->insert([
                 'id_permohonan' => (int)$permohonan->getInsertID(),
@@ -209,13 +209,12 @@ class PermohonanController extends BaseController
         if ($this->validation()) {
             // Proses input data jika form sudah valid.
             $permohonan = new \App\Models\PermohonanModel();
-            $permohonan->update(['id' => $idPermohonan], [
+            $permohonan->update($idPermohonan, [
                 'id_user' => (int)$this->session->get('user')['id'],
-                'tanggal' => date('Y-m-d H:m:s'),
                 'status' => 'BELUM DIPROSES',
             ]);
 
-            // Update the data_pengaju table.
+            // Update the pengaju table.
             $dataPengaju = new \App\Models\PengajuModel();
             $dataPengajuId = $dataPengaju->where(['id_permohonan' => $idPermohonan])->get()->getFirstRow()->id;
             $dataPengaju->update($dataPengajuId, [

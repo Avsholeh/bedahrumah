@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class GambarModel extends Model
 {
     protected $DBGroup = 'default';
-    protected $table = 'data_gambar';
+    protected $table = 'gambar';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $allowedFields = [

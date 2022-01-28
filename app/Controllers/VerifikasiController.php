@@ -12,8 +12,11 @@ class VerifikasiController extends BaseController
     public function index($param = null)
     {
         $builder = $this->db->table('permohonan');
-        $builder->select('*');
-        $builder->join('data_pengaju', 'data_pengaju.id_permohonan = permohonan.id');
+        $permohonans = (new PermohonanModel())
+            ->select('*')
+            ->join('pengaju', 'pengaju.id_permohonan = permohonan.id')
+            ->orderBy('permohonan.tanggal', 'desc')
+            ->get()->getResultObject();
 
 //        switch ($param) {
 //            case "tertinggi":
@@ -25,9 +28,6 @@ class VerifikasiController extends BaseController
 //            default:
 //                $builder->orderBy('permohonan.tanggal', 'desc');
 //        }
-
-        $builder->orderBy('permohonan.tanggal', 'desc');
-        $permohonans = $builder->get()->getResultObject();
 
         $skors = (new SkorModel())->select('id_permohonan, sum(skor.bobot) as total_bobot')
             ->groupBy('id_permohonan')
