@@ -6,11 +6,6 @@ use App\Models\UserModel;
 
 class HomeController extends BaseController
 {
-//    public function __construct()
-//    {
-//        $this->validator = \Config\Services::validation();
-//    }
-
     public function index()
     {
         return view('home/index');
@@ -44,12 +39,11 @@ class HomeController extends BaseController
 
         if ($validation) {
             $user = new UserModel();
-            $hashPassword = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
             try {
                 $user->insert([
                     'nama_lengkap' => $this->request->getPost('nama_lengkap'),
                     'email' => $this->request->getPost('email'),
-                    'password' => $hashPassword,
+                    'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
                     'status' => 0,
                     'jabatan' => 'Pelapor'
                 ]);

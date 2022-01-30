@@ -17,17 +17,6 @@ class VerifikasiController extends BaseController
             ->orderBy('permohonan.tanggal', 'desc')
             ->get()->getResultArray();
 
-//        switch ($param) {
-//            case "tertinggi":
-//                $builder->orderBy('data_rumah.skor', 'desc');
-//                break;
-//            case "terendah":
-//                $builder->orderBy('data_rumah.skor', 'asc');
-//                break;
-//            default:
-//                $builder->orderBy('permohonan.tanggal', 'desc');
-//        }
-
         $skors = (new SkorModel())->select('id_permohonan, sum(skor.bobot) as total_bobot')
             ->groupBy('id_permohonan')
             ->get()->getResultArray();
@@ -47,6 +36,8 @@ class VerifikasiController extends BaseController
         $permohonan->update($idPermohonan, [
             'status' => 'SUDAH DIPROSES'
         ]);
-        return redirect('verifikasi');
+        return redirect('verifikasi')
+            ->with('message-type', 'success')
+            ->with('message-text', 'Permohonan telah berhasil diverifikasi.');
     }
 }
