@@ -78,8 +78,18 @@ class SkoringController extends BaseController
                 ->with('message-text', 'Indikator telah berhasil diperbarui.');
         }
         return redirect('skoring')
+            ->with('skoring', 'indikator')
             ->with('message-type', 'danger')
             ->with('message-text', 'Indikator gagal diperbarui.');
+    }
+
+    public function indikatorHapus($id)
+    {
+        (new IndikatorModel())->delete($id);
+        return redirect('skoring')
+            ->with('skoring', 'indikator')
+            ->with('message-type', 'success')
+            ->with('message-text', 'Indikator telah berhasil dihapus.');
     }
 
     public function atribut()
@@ -118,10 +128,36 @@ class SkoringController extends BaseController
 
     public function atributUpdate()
     {
+        $id = $this->request->getPost('id');
         $validation = $this->validate([
             'id_indikator' => 'required',
             'atribut' => 'required',
             'bobot' => 'required',
         ]);
+
+        if ($validation) {
+            (new AtributModel())->update($id, [
+                'id_indikator' => $this->request->getPost('id_indikator'),
+                'atribut' => $this->request->getPost('atribut'),
+                'bobot' => $this->request->getPost('bobot'),
+            ]);
+            return redirect('skoring')
+                ->with('skoring', 'atribut')
+                ->with('message-type', 'success')
+                ->with('message-text', 'Atribut telah berhasil diperbarui.');
+        }
+
+        return redirect('skoring')
+            ->with('message-type', 'danger')
+            ->with('message-text', 'Atribut gagal diperbarui.');
+    }
+
+    public function atributHapus($id)
+    {
+        (new AtributModel())->delete($id);
+        return redirect('skoring')
+            ->with('skoring', 'atribut')
+            ->with('message-type', 'success')
+            ->with('message-text', 'Atribut telah berhasil dihapus.');
     }
 }

@@ -11,21 +11,24 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" id="indikator-tab" data-bs-toggle="tab"
-                                href="#indikator" data-bs-target="#indikator" type="button">
+                        <a class="nav-link <?= session('skoring') && session('skoring') == 'atribut' ? '' : 'active' ?>"
+                           id="indikator-tab" data-bs-toggle="tab"
+                           href="#indikator" data-bs-target="#indikator" type="button">
                             <strong>Indikator</strong>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="atribut-tab" data-bs-toggle="tab"
-                                href="#atribut" data-bs-target="#atribut" type="button">
+                        <a class="nav-link <?= session('skoring') && session('skoring') == 'atribut' ? 'active' : '' ?>"
+                           id="atribut-tab" data-bs-toggle="tab"
+                           href="#atribut" data-bs-target="#atribut" type="button">
                             <strong>Atribut</strong>
                         </a>
                     </li>
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane active" id="indikator">
+                    <div class="tab-pane <?= session('skoring') && session('skoring') == 'atribut' ? '' : 'active' ?>"
+                         id="indikator">
                         <div class="row">
                             <div class="col-md-4 mb-3">
                                 <div class="card rounded-0">
@@ -57,7 +60,7 @@
                             <div class="col-md-8 mb-3">
                                 <?php if (count($indikator)): ?>
                                     <div class="table-responsive">
-                                        <table id="tableIndikator" class="table table-bordered dataTable">
+                                        <table id="tableIndikator" class="table table-bordered dtable">
                                             <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -74,10 +77,11 @@
                                                     <td><?= $i->bobot ?></td>
                                                     <td>
                                                         <a class="btn btn-warning"
-                                                           href="<?= base_url('skoring/indikator/edit/')?>/<?= $i->id ?>">
+                                                           href="<?= base_url('skoring/indikator/edit/' . $i->id) ?>">
                                                             <i class="icon-note"></i>
                                                         </a>
-                                                        <a class="btn btn-danger" href="">
+                                                        <a class="btn btn-danger"
+                                                           href="<?= base_url('skoring/indikator/hapus/' . $i->id) ?>">
                                                             <i class="icon-trash"></i>
                                                         </a>
                                                     </td>
@@ -96,7 +100,8 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="atribut">
+                    <div class="tab-pane <?= session('skoring') && session('skoring') == 'atribut' ? 'active' : '' ?>"
+                         id="atribut">
                         <div class="row">
                             <div class="col-md-4 mb-3">
                                 <div class="card rounded-0">
@@ -142,7 +147,7 @@
                             <div class="col-md-8 mb-3">
                                 <?php if (count($atribut)): ?>
                                     <div class="table-responsive">
-                                        <table id="tableAtribut" class="table table-bordered">
+                                        <table id="tableAtribut" class="table table-bordered dtable">
                                             <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -160,10 +165,12 @@
                                                     <td><?= $a->atribut ?></td>
                                                     <td><?= $a->bobot ?></td>
                                                     <td>
-                                                        <a class="btn btn-warning" href="">
+                                                        <a class="btn btn-warning"
+                                                           href="<?= base_url('skoring/atribut/edit/' . $a->id) ?>">
                                                             <i class="icon-note"></i>
                                                         </a>
-                                                        <a class="btn btn-danger" href="">
+                                                        <a class="btn btn-danger"
+                                                           href="<?= base_url('skoring/atribut/hapus/' . $a->id) ?>">
                                                             <i class="icon-trash"></i>
                                                         </a>
                                                     </td>
@@ -187,4 +194,38 @@
     </div>
 </div>
 
+<div class="modal fade" id="hapusModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Apakah anda yakin ingin menghapus ?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btnModalHapus">Ya</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+<script>
+    $(document).ready(function () {
+        var hapusBtn = $(".hapusBtn");
+        var hapusModal = new bootstrap.Modal(document.getElementById('hapusModal'), {});
+
+        hapusBtn.click(function (event) {
+            hapusModal.show();
+            $('.btnModalHapus').click(function () {
+                window.location = $(event.target).data('hapus');
+            });
+        });
+    });
+
+</script>
 <?php $this->endSection() ?>

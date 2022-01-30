@@ -49,32 +49,34 @@
                     <div class="d-sm-flex justify-content-between align-items-start mb-3">
                         <h4 class="d-inline card-title card-title-dash text-center">Terakhir Diajukan</h4>
                     </div>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Pengaju</th>
-                            <th>Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($lastPermohonan as $index => $permohonan): ?>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                             <tr>
-                                <td><?= ++$index ?></td>
-                                <td><?= $permohonan->tanggal ?></td>
-                                <td><?= $permohonan->nama_lengkap ?></td>
-                                <td>
-                                    <?php if ($permohonan->status == 'SUDAH DIPROSES'): ?>
-                                    <span class="badge badge-success"><?= $permohonan->status ?></span>
-                                    <?php else: ?>
-                                        <span class="badge badge-danger"><?= $permohonan->status ?></span>
-                                    <?php endif ?>
-                                </td>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th class="d-none d-md-table-cell">Pengaju</th>
+                                <th>Status</th>
                             </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($lastPermohonan as $index => $permohonan): ?>
+                                <tr>
+                                    <td><?= ++$index ?></td>
+                                    <td><?= $permohonan->tanggal ?></td>
+                                    <td class="d-none d-md-table-cell"><?= $permohonan->nama_lengkap ?></td>
+                                    <td>
+                                        <?php if ($permohonan->status == 'SUDAH DIPROSES'): ?>
+                                            <span class="badge badge-success"><?= $permohonan->status ?></span>
+                                        <?php else: ?>
+                                            <span class="badge badge-danger"><?= $permohonan->status ?></span>
+                                        <?php endif ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -84,35 +86,51 @@
                     <div class="d-sm-flex justify-content-between align-items-start mb-3">
                         <h4 class="d-inline card-title card-title-dash text-center">Terakhir Diverifikasi</h4>
                     </div>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Pengaju</th>
-                            <th>Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($lastVerifikasi as $index => $permohonan): ?>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                             <tr>
-                                <td><?= ++$index ?></td>
-                                <td><?= $permohonan->tanggal ?></td>
-                                <td><?= $permohonan->nama_lengkap ?></td>
-                                <td>
-                                    <?php if ($permohonan->status == 'SUDAH DIPROSES'): ?>
-                                        <span class="badge badge-success"><?= $permohonan->status ?></span>
-                                    <?php else: ?>
-                                        <span class="badge badge-danger"><?= $permohonan->status ?></span>
-                                    <?php endif ?>
-                                </td>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th class="d-none d-md-table-cell">Pengaju</th>
+                                <th>Status</th>
                             </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($lastVerifikasi as $index => $permohonan): ?>
+                                <tr>
+                                    <td><?= ++$index ?></td>
+                                    <td><?= $permohonan->tanggal ?></td>
+                                    <td class="d-none d-md-table-cell"><?= $permohonan->nama_lengkap ?></td>
+                                    <td>
+                                        <?php if ($permohonan->status == 'SUDAH DIPROSES'): ?>
+                                            <span class="badge badge-success"><?= $permohonan->status ?></span>
+                                        <?php else: ?>
+                                            <span class="badge badge-danger"><?= $permohonan->status ?></span>
+                                        <?php endif ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+<?php $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+    <script>
+        // $(document).ready(function() {
+        //     $('.dashboardTable').DataTable({
+        //         "paging": false,
+        //         "searching": false,
+        //         "ordering": false,
+        //         "lengthChange": false,
+        //         "info": false,
+        //     });
+        // });
+    </script>
 <?php $this->endSection() ?>

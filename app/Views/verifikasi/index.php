@@ -23,82 +23,82 @@
             <div class="card-body">
                 <?php if (count($permohonans)): ?>
                     <div class="table-responsive-lg">
-                        <table class="table cell-border" style="width:100%">
+                        <table class="table cell-border dtable" style="width:100%">
                             <thead>
                             <tr>
                                 <th class="d-none">ID</th>
-                                <th>Tanggal</th>
-                                <th class="data-pengaju">Nama</th>
-                                <th class="d-none data-pengaju">No.KTP</th>
-                                <th class="d-none data-pengaju">No.KK</th>
-                                <th class="d-none data-pengaju">Jenis Kelamin</th>
-                                <th class="d-none data-pengaju">Tempat Lahir</th>
-                                <th class="d-none data-pengaju">Tgl Lahir</th>
-                                <th class="d-none data-pengaju">Alamat</th>
-                                <th class="d-none data-pengaju">Penghasilan</th>
-                                <th class="d-none data-pengaju">Pengeluaran</th>
-                                <th class="d-none data-pengaju">Status Kepemilikan Tanah</th>
-                                <th class="d-none data-pengaju">Status Kepemilikan Rumah</th>
-                                <th class="d-none data-pengaju">Bukti Kepemilikan Tanah</th>
-                                <th class="d-none data-pengaju">Aset Rumah</th>
-                                <th class="d-none data-pengaju">Aset Tanah</th>
-                                <th class="data-rumah">Total Skor</th>
-                                <th class="data-rumah">Status</th>
+                                <th>TANGGAL</th>
+                                <th class="data-pengaju">NAMA</th>
+                                <th class="d-none data-pengaju">NO KTP</th>
+                                <th class="d-none data-pengaju">NO KK</th>
+                                <th class="d-none data-pengaju">JENIS KELAMIN</th>
+                                <th class="d-none data-pengaju">TEMPAT LAHIR</th>
+                                <th class="d-none data-pengaju">TANGGAL LAHIR</th>
+                                <th class="d-none data-pengaju">ALAMAT</th>
+                                <th class="d-none data-pengaju">PENGHASILAN</th>
+                                <th class="d-none data-pengaju">PENGELUARAN</th>
+                                <th class="d-none data-pengaju">STATUS TANAH</th>
+                                <th class="d-none data-pengaju">STATUS RUMAH</th>
+                                <th class="d-none data-pengaju">BUKTI PEMILIK TANAH</th>
+                                <th class="d-none data-pengaju">ASET RUMAH</th>
+                                <th class="d-none data-pengaju">ASET TANAH</th>
+                                <th class="data-rumah">TOTAL SKOR</th>
+                                <th class="data-rumah">STATUS</th>
                                 <th>#</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php foreach ($permohonans as $permohonan): ?>
                                 <tr>
-                                    <td class="d-none"><?= $permohonan->id_permohonan ?></td>
-                                    <td><?= $permohonan->tanggal ?></td>
-                                    <td class="data-pengaju"><?= $permohonan->nama ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->no_ktp ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->no_kk ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->jenis_kelamin ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->tempat_lahir ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->tgl_lahir ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->alamat ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->penghasilan ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->pengeluaran ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->status_pemilik_tanah ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->status_pemilik_rumah ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->bukti_pemilik_tanah ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->aset_rumah ?></td>
-                                    <td class="d-none data-pengaju"><?= $permohonan->aset_tanah ?></td>
+                                    <td class="d-none"><?= $permohonan['id_permohonan'] ?></td>
+                                    <td><?= $permohonan['tanggal'] ?></td>
+                                    <td class="data-pengaju"><?= $permohonan['nama'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['no_ktp'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['no_kk'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['jenis_kelamin'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['tempat_lahir'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['tgl_lahir'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['alamat'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['penghasilan'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['pengeluaran'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['status_pemilik_tanah'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['status_pemilik_rumah'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['bukti_pemilik_tanah'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['aset_rumah'] ?></td>
+                                    <td class="d-none data-pengaju"><?= $permohonan['aset_tanah'] ?></td>
                                     <td>
                                         <?php foreach ($skors as $skor): ?>
-                                            <?php if ($skor['id_permohonan'] == $permohonan->id): ?>
+                                            <?php if ($skor['id_permohonan'] == $permohonan['id']): ?>
                                                 <?= $skor['total_bobot']?>
                                             <?php endif ?>
                                         <?php endforeach; ?>
                                     </td>
                                     <td>
-                                        <?php if ($permohonan->status === 'BELUM DIPROSES'): ?>
+                                        <?php if ($permohonan['status'] === 'BELUM DIPROSES'): ?>
                                             <form action="<?= base_url('verifikasi/proses') ?>" method="POST"
                                                   enctype="multipart/form-data" autocomplete="off" class="d-inline">
                                                 <input type="hidden" name="id_permohonan"
-                                                       value="<?= $permohonan->id_permohonan ?>">
+                                                       value="<?= $permohonan['id_permohonan'] ?>">
                                                 <input type="submit" class="btn btn-sm btn-success"
                                                        value="Verifikasi">
                                             </form>
                                         <?php else: ?>
                                             <label class="badge badge-success">
-                                                <strong><?= $permohonan->status ?></strong>
+                                                <strong><?= $permohonan['status'] ?></strong>
                                             </label>
                                         <?php endif; ?>
                                     </td>
                                     <td>
                                         <a class="btn btn-sm btn-primary fotoBtn"
-                                           data-foto="<?= $permohonan->id_permohonan ?>"
+                                           data-foto="<?= $permohonan['id_permohonan'] ?>"
                                            href="#">Foto</a>
                                         <a class="btn btn-sm btn-primary lihatBtn"
-                                           data-id-permohonan="<?= $permohonan->id_permohonan ?>"
+                                           data-id-permohonan="<?= $permohonan['id_permohonan'] ?>"
                                            href="#">Lihat</a>
                                         <a class="btn btn-sm btn-warning"
-                                           href="<?= base_url('permohonan/edit/' . $permohonan->id_permohonan) ?>">Edit</a>
+                                           href="<?= base_url('permohonan/edit/' . $permohonan['id_permohonan']) ?>">Edit</a>
                                         <a class="btn btn-sm btn-danger hapusBtn"
-                                           data-hapus="<?= base_url('permohonan/hapus/' . $permohonan->id_permohonan) ?>"
+                                           data-hapus="<?= base_url('permohonan/hapus/' . $permohonan['id_permohonan']) ?>"
                                            href="#">Hapus</a>
                                     </td>
                                 </tr>
@@ -116,7 +116,7 @@
         </div>
     </div>
 </div>
-<!-- Modal -->
+
 <div class="modal fade" id="lihatModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -129,7 +129,6 @@
     </div>
 </div>
 
-<!-- Modal -->
 <div class="modal fade" id="fotoModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -142,7 +141,6 @@
     </div>
 </div>
 
-<!-- HapusModal -->
 <div class="modal fade" id="hapusModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -190,7 +188,6 @@
             </div>
             `;
             }
-
             htmlModal += "</div>";
 
             var idPermohonan = $(event.target).data('id-permohonan');
@@ -198,16 +195,13 @@
             $.get("<?= base_url('permohonan/skor') ?>/" + idPermohonan,
                 function (data, status) {
                     data = JSON.parse(data);
-
                     htmlModal += "<div class='col-6'>";
-
                     data.forEach(function (k, v) {
                         htmlModal += `<div class='row mb-3'>
-                            <div class='col-6'><strong>${k.indikator}</strong></div>
+                            <div class='col-6'><strong>${k.indikator.toUpperCase()}</strong></div>
                             <div class='col-6'>: ${k.atribut} (${k.bobot})</div></div>`;
                         console.log(htmlModal)
                     });
-
                     htmlModal += "</div></div>";
                     lihatModalBody.html(htmlModal);
                 }

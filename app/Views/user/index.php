@@ -17,14 +17,14 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered dtable">
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Status</th>
-                            <th>Jabatan</th>
+                            <th>NAMA</th>
+                            <th>EMAIL</th>
+                            <th>STATUS</th>
+                            <th>JABATAN</th>
                             <th>#</th>
                         </tr>
                         </thead>

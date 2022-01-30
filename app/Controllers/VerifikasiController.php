@@ -11,12 +11,11 @@ class VerifikasiController extends BaseController
 {
     public function index($param = null)
     {
-        $builder = $this->db->table('permohonan');
         $permohonans = (new PermohonanModel())
             ->select('*')
             ->join('pengaju', 'pengaju.id_permohonan = permohonan.id')
             ->orderBy('permohonan.tanggal', 'desc')
-            ->get()->getResultObject();
+            ->get()->getResultArray();
 
 //        switch ($param) {
 //            case "tertinggi":

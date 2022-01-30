@@ -65,15 +65,19 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
 
     // === Skoring
     $routes->get('skoring', 'SkoringController::index');
-    $routes->post('skoring/indikator', 'SkoringController::indikator');
-    $routes->post('skoring/atribut', 'SkoringController::atribut');
-    $routes->get('skoring/indikator/edit/(:num)', 'SkoringController::indikatorEdit/$1');
-    $routes->get('skoring/atribut/edit/(:num)', 'SkoringController::atributEdit/$1');
-    $routes->get('skoring/indikator/update', 'SkoringController::indikatorUpdate');
-    $routes->get('skoring/atribut/update', 'SkoringController::atributUpdate');
 
-    // === Data Pengaju
-    $routes->get('data_pengaju', 'PengajuController::index');
+    $routes->post('skoring/indikator', 'SkoringController::indikator');
+    $routes->get('skoring/indikator/edit/(:num)', 'SkoringController::indikatorEdit/$1');
+    $routes->post('skoring/indikator/update', 'SkoringController::indikatorUpdate');
+    $routes->get('skoring/indikator/hapus/(:num)', 'SkoringController::indikatorHapus/$1');
+
+    $routes->post('skoring/atribut', 'SkoringController::atribut');
+    $routes->get('skoring/atribut/edit/(:num)', 'SkoringController::atributEdit/$1');
+    $routes->post('skoring/atribut/update', 'SkoringController::atributUpdate');
+    $routes->get('skoring/atribut/hapus/(:num)', 'SkoringController::atributHapus/$1');
+
+    // === Pengaju
+    $routes->get('pengaju', 'PengajuController::index');
 
     // === Users
     $routes->get('users', 'UserController::index');

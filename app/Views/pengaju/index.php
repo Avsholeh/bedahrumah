@@ -8,24 +8,24 @@
             <div class="card-body">
                 <?php if (count($data)): ?>
                     <div class="">
-                        <table class="table">
+                        <table class="table dtable">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nama</th>
-                                <th>No KTP</th>
-                                <th class="d-none">No.KK</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Tempat Lahir</th>
-                                <th>Tanggal Lahir</th>
-                                <th class="d-none">Alamat</th>
-                                <th class="d-none">Penghasilan</th>
-                                <th class="d-none">Pengeluaran</th>
-                                <th class="d-none">Status Kepemilikan Tanah</th>
-                                <th class="d-none">Status Kepemilikan Rumah</th>
-                                <th class="d-none">Bukti Kepemilikan Tanah</th>
-                                <th class="d-none">Aset Rumah</th>
-                                <th class="d-none">Aset Tanah</th>
+                                <th>NAMA</th>
+                                <th>NO KTP</th>
+                                <th class="d-none">NO KK</th>
+                                <th>JENIS KELAMIN</th>
+                                <th>TEMPAT LAHIR</th>
+                                <th>TANGGAL LAHIR</th>
+                                <th class="d-none">ALAMAT</th>
+                                <th class="d-none">PENGHASILAN</th>
+                                <th class="d-none">PENGELUARAN</th>
+                                <th class="d-none">STATUS TANAH</th>
+                                <th class="d-none">STATUS RUMAH</th>
+                                <th class="d-none">BUKTI PEMILIK TANAH</th>
+                                <th class="d-none">ASET RUMAH</th>
+                                <th class="d-none">ASET TANAH</th>
                                 <th>#</th>
                             </tr>
                             </thead>

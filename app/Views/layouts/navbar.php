@@ -17,18 +17,16 @@
             <?php if ($title === 'Dashboard'): ?>
                 <?php
                 $quotes = [
-                    'The secret of getting ahead is getting started. - Mark Twain',
-                    'Do what you feel in your heart to be right. - Eleanor Roosevelt',
-                    'Whatever you are, be a good one. - Abraham Lincoln',
-                    'One day or day one. You decide. – Unknown',
-                    'Focus on being productive instead of busy. – Tim Ferriss',
-                    'It’s never too late to be what you might’ve been. – George Eliot',
+					'Kejahatan akan menang bila orang yang benar tidak melakukan apa-apa. -Jenderal Sudirman',
+					'Pikiran kita ibarat parasut, hanya berfungsi ketika terbuka. - Walt Disney',
+					'Orang yang tak pernah membuat kesalahan, maka tak akan pernah mencoba sesuatu yang baru. - Albert Einstein',
+					'Bersabarlah, karena kesabaran adalah sebuah pilar keimanan. - Umar bin Khattab',
                 ];
                 ?>
                 <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
                     <h1 class="welcome-text">Welcome, <span
                                 class="text-black fw-bold"><?= session()->user['nama_lengkap'] ?></span></h1>
-                    <h3 class="welcome-sub-text"><?php echo $quotes[random_int(0, 5)] ?></h3>
+                    <h3 class="welcome-sub-text"><?php echo $quotes[random_int(0, 2)] ?></h3>
                 </li>
             <?php else: ?>
                 <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">

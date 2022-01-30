@@ -269,10 +269,10 @@
                                     <select class="form-select form-select-sm"
                                             name="<?= strtolower(str_replace(" ", "_", $indikator['indikator'])) ?>">
                                         <option value="" selected disabled>Pilih <?= $indikator['indikator'] ?></option>
-                                        <?php foreach (array_filter($atribut, function($value) use ($indikator){
+                                        <?php foreach (array_filter($atribut, function ($value) use ($indikator) {
                                             return $value['id_indikator'] == $indikator['id'];
-                                        }) as $item):?>
-                                            <option value="<?= $item['bobot']?>|<?= $item['atribut'] ?>"><?= $item['atribut'] ?></option>
+                                        }) as $item): ?>
+                                            <option value="<?= $item['bobot'] ?>|<?= $item['atribut'] ?>"><?= $item['atribut'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                     <?php if ($error = $validation->getError(strtolower(str_replace(" ", "_", $indikator['indikator'])))): ?>
@@ -337,6 +337,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
@@ -368,6 +369,7 @@
                             </div>
                         </div>
                     </div>
+
                     <input class="btn btn-primary mt-3" type="submit" value="Simpan">
                 </form>
             </div>
@@ -389,6 +391,23 @@
             reader.readAsDataURL(file);
         }
     }
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            var status = "Geolocation is not supported by this browser.";
+            console.log(status)
+        }
+    }
+
+    function showPosition(position) {
+        var _position = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+        console.log(_position)
+    }
+
+    getLocation();
 </script>
 <?php $this->endSection() ?>
 
