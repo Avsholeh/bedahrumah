@@ -51,16 +51,18 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
 
     // === Permohonan
     $routes->get('permohonan', 'PermohonanController::index');
+    $routes->post('permohonan', 'PermohonanController::index');
+    $routes->get('permohonan/tambah', 'PermohonanController::tambah');
     $routes->get('permohonan/edit/(:num)', 'PermohonanController::edit/$1');
     $routes->post('permohonan/update', 'PermohonanController::update');
     $routes->post('permohonan/simpan', 'PermohonanController::simpan');
     $routes->get('permohonan/hapus/(:num)', 'PermohonanController::hapus/$1');
     $routes->get('permohonan/gambar/(:num)', 'PermohonanController::gambar/$1');
     $routes->get('permohonan/skor/(:num)', 'PermohonanController::skor/$1');
+    $routes->get('permohonan/pelapor/(:num)', 'PermohonanController::pelapor/$1');
 
     // === Verifikasi
     $routes->get('verifikasi', 'VerifikasiController::index');
-    $routes->get('verifikasi/(:any)', 'VerifikasiController::index/$1');
     $routes->post('verifikasi/proses', 'VerifikasiController::verifikasi');
 
     // === Skoring
@@ -75,9 +77,6 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
     $routes->get('skoring/atribut/edit/(:num)', 'SkoringController::atributEdit/$1');
     $routes->post('skoring/atribut/update', 'SkoringController::atributUpdate');
     $routes->get('skoring/atribut/hapus/(:num)', 'SkoringController::atributHapus/$1');
-
-    // === Pengaju
-    $routes->get('pengaju', 'PengajuController::index');
 
     // === Users
     $routes->get('users', 'UserController::index');

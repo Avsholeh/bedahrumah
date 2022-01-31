@@ -35,6 +35,9 @@ class UserController extends BaseController
             'password_konfirmasi' => 'required|matches[password]',
             'status' => 'required',
             'jabatan' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required',
+            'ktp' => 'uploaded[ktp]',
         ]);
 
         if ($validation) {
@@ -45,6 +48,9 @@ class UserController extends BaseController
                 'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
                 'status' => $this->request->getPost('status'),
                 'jabatan' => $this->request->getPost('jabatan'),
+                'alamat' => $this->request->getPost('alamat'),
+                'no_telp' => $this->request->getPost('no_telp'),
+                'ktp' => base64_encode(file_get_contents($this->request->getFile('ktp'))),
             ]);
 
             return redirect('users')
@@ -62,6 +68,9 @@ class UserController extends BaseController
             'email' => 'required',
             'status' => 'required',
             'jabatan' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required',
+            'ktp' => 'uploaded[ktp]',
         ]);
 
         if ($validation) {
@@ -78,6 +87,9 @@ class UserController extends BaseController
                     'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
                     'status' => $this->request->getPost('status'),
                     'jabatan' => $this->request->getPost('jabatan'),
+                    'alamat' => $this->request->getPost('alamat'),
+                    'no_telp' => $this->request->getPost('no_telp'),
+                    'ktp' => base64_encode(file_get_contents($this->request->getFile('ktp'))),
                 ]);
             } else {
                 $user->update($this->request->getPost('id'), [
@@ -85,6 +97,9 @@ class UserController extends BaseController
                     'email' => $this->request->getPost('email'),
                     'status' => $this->request->getPost('status'),
                     'jabatan' => $this->request->getPost('jabatan'),
+                    'alamat' => $this->request->getPost('alamat'),
+                    'no_telp' => $this->request->getPost('no_telp'),
+                    'ktp' => base64_encode(file_get_contents($this->request->getFile('ktp'))),
                 ]);
             }
 

@@ -13,10 +13,35 @@ class PermohonanController extends BaseController
 {
     public function index()
     {
-        $indikators = (new IndikatorModel())->get()->getResultArray();
-        $atribut = (new AtributModel())->get()->getResultArray();
+        $permohonans = (new PermohonanModel())
+            ->select("permohonan.*, pengaju.*, sum(skor.bobot) as total_skor")
+            ->join('pengaju', 'pengaju.id_permohonan = permohonan.id')
+            ->join('skor', 'skor.id_permohonan = permohonan.id')
+            ->groupBy('permohonan.id, pengaju.id');
+
+        if ($this->request->getMethod() == 'post') {
+            $urutan = $this->request->getPost('urutan');
+            $jumlahData = $this->request->getPost('jumlah_data');
+            $permohonans->limit($jumlahData)->orderBy('total_skor', $urutan);
+        } else {
+            $permohonans
+                ->orderBy('permohonan.tanggal', 'desc');
+        }
+
+        $permohonans = $permohonans->get()->getResultArray();
+
         return view('permohonan/index', [
             'title' => 'Permohonan',
+            'data' => $permohonans,
+        ]);
+    }
+
+    public function tambah()
+    {
+        $indikators = (new IndikatorModel())->get()->getResultArray();
+        $atribut = (new AtributModel())->get()->getResultArray();
+        return view('permohonan/tambah', [
+            'title' => 'Tambah Permohonan',
             'indikators' => $indikators,
             'atribut' => $atribut,
         ]);
@@ -195,7 +220,7 @@ class PermohonanController extends BaseController
             } catch (\Exception $e) {
             }
 
-            return redirect('verifikasi')
+            return redirect('permohonan')
                 ->with('message-type', 'success')
                 ->with('message-text', 'Permohonan telah berhasil ditambahkan.');
         }
@@ -427,7 +452,7 @@ class PermohonanController extends BaseController
                     ]);
                 }
             }
-            return redirect('verifikasi')
+            return redirect('permohonan')
                 ->with('message-type', 'success')
                 ->with('message-text', 'Permohonan telah berhasil diperbarui.');
         }
@@ -448,7 +473,9 @@ class PermohonanController extends BaseController
         $dataGambar->where(['id_permohonan' => $id])->delete();
         $skor->where(['id_permohonan' => $id])->delete();
 
-        return redirect('verifikasi');
+        return redirect('permohonan')
+            ->with('message-type', 'success')
+            ->with('message-text', 'Permohonan telah berhasil dihapus.');
     }
 
     public function gambar($idPermohonan)
@@ -470,6 +497,16 @@ class PermohonanController extends BaseController
         $skors = (new SkorModel())->where('id_permohonan', $idPermohonan)
             ->get()->getResultArray();
         return json_encode($skors);
+    }
+
+    public function pelapor($idPermohonan)
+    {
+        $pelapor = (new PermohonanModel())
+            ->select('users.*')
+            ->join('users', 'users.id = permohonan.id_user')
+            ->where('permohonan.id', $idPermohonan)
+            ->first();
+        return json_encode($pelapor);
     }
 
 }

@@ -25753,7 +25753,7 @@ dl li {
 
 .tooltip-static-demo .bs-tooltip-right-demo .arrow:before,
 .tooltip-static-demo .bs-tooltip-left-demo .arrow:before {
-  top: calc((100%-0.8rem)/2);
+  top: calc((100% - 0.8rem)/2);
 }
 
 .tooltip {
@@ -29247,7 +29247,7 @@ div.tagsinput span.tag a {
   height: 34px;
   border-color: transparent;
   border-radius: 6px 0 0 6px;
-  background: r=transparent;
+  background: transparent;
   border-right: 1px solid #dee2e6;
 }
 

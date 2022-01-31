@@ -9,11 +9,12 @@ use Phpml\Dataset\CsvDataset;
 
 class VerifikasiController extends BaseController
 {
-    public function index($param = null)
+    public function index()
     {
         $permohonans = (new PermohonanModel())
             ->select('*')
             ->join('pengaju', 'pengaju.id_permohonan = permohonan.id')
+            ->where('permohonan.status', 'BELUM DIPROSES')
             ->orderBy('permohonan.tanggal', 'desc')
             ->get()->getResultArray();
 

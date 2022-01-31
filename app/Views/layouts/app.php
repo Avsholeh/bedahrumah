@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="<?= base_url('public/DataTables/datatables.min.css') ?>">
     <link rel="shortcut icon" href="<?= base_url('public/favicon.ico') ?>">
 </head>
+<style>
+    .btn-sm, .btn-group-sm > .btn, .ajax-upload-dragdrop .btn-group-sm > .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-group-sm > .swal2-styled {
+        padding: 0.5rem 0.81rem !important;
+        font-size: 0.812rem;
+        border-radius: 0.1875rem;
+    }
+</style>
 <body>
 <div class="container-scroller">
     <?= $this->include('layouts/navbar') ?>

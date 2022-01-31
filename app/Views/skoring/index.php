@@ -147,7 +147,7 @@
                             <div class="col-md-8 mb-3">
                                 <?php if (count($atribut)): ?>
                                     <div class="table-responsive">
-                                        <table id="tableAtribut" class="table table-bordered dtable">
+                                        <table id="tableAtribut" class="table cell-border dtable">
                                             <thead>
                                             <tr>
                                                 <th>ID</th>

@@ -16,8 +16,8 @@
                     </div>
                 </div>
 
-                <div class="table-responsive">
-                    <table class="table table-bordered dtable">
+                <div class="table-responsive-lg">
+                    <table class="table cell-border dtable">
                         <thead>
                         <tr>
                             <th>ID</th>

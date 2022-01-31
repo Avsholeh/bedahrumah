@@ -12,8 +12,7 @@ class PengajuController extends BaseController
             ->get()->getResultObject();
 
         return view('pengaju/index', [
-            'title' => 'Data Pengaju',
-            'desc' => 'Data pengaju yang telah terdaftar disistem.',
+            'title' => 'Pengaju',
             'data' => $pengajus
         ]);
     }

@@ -11,5 +11,14 @@ class UserModel extends Model
     protected $primaryKey           = 'id';
     protected $useAutoIncrement     = true;
     protected $returnType           = 'object';
-    protected $allowedFields        = ['nama_lengkap', 'email', 'password', 'status', 'jabatan'];
+    protected $allowedFields        = [
+        'nama_lengkap',
+        'email',
+        'password',
+        'status',
+        'jabatan',
+        'alamat',
+        'no_telp',
+        'ktp',
+    ];
 }
