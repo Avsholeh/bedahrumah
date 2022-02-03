@@ -31,7 +31,7 @@
     </tr>
     <?php foreach ($permohonans as $permohonan): ?>
         <tr>
-            <td><?= Carbon::createFromFormat('Y-m-d H:i:s', $permohonan['tanggal'])->locale('id')->isoFormat('dddd, D MMMM YYYY'); ?></td>
+            <td><?= Carbon::createFromFormat('Y-m-d H:i:s', $permohonan['tanggal'])->locale('id')->isoFormat('dddd, DD MMMM YYYY'); ?></td>
             <td><?= $permohonan['nama'] ?></td>
             <td><?= $permohonan['no_ktp'] ?></td>
             <td><?= $permohonan['no_kk'] ?></td>

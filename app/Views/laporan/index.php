@@ -1,3 +1,8 @@
+<?php
+
+use Carbon\Carbon;
+
+?>
 <?= $this->extend('layouts/app') ?>
 
 <?= $this->section('content') ?>
@@ -108,7 +113,7 @@
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <small class="text-muted d-block">Tanggal</small>
-                                                                    <?= $permohonan['tanggal'] ?>
+                                                                    <?= Carbon::createFromFormat('Y-m-d H:i:s', $permohonan['tanggal'])->locale('id')->isoFormat('dddd, DD MMMM YYYY') ?>
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <small class="text-muted d-block">Alamat</small>
@@ -130,7 +135,7 @@
                                             </div>
                                         <?php endforeach; ?>
 
-                                        <?= $pager->links() ?>
+                                        <?= !isset($jumlahData) ? $pager->links() : ''?>
 
                                     <?php else: ?>
                                         <div class="d-flex justify-content-center align-items-center flex-column my-5">

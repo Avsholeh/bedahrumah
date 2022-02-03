@@ -8,6 +8,7 @@ use App\Models\IndikatorModel;
 use App\Models\PengajuModel;
 use App\Models\PermohonanModel;
 use App\Models\SkorModel;
+use Carbon\Carbon;
 
 class PermohonanController extends BaseController
 {
@@ -119,7 +120,7 @@ class PermohonanController extends BaseController
             $permohonan = new \App\Models\PermohonanModel();
             $permohonan->insert([
                 'id_user' => $this->session->get('user')['id'],
-                'tanggal' => date('Y-m-d H:m:s'),
+                'tanggal' => Carbon::now()->format('Y-m-d H:m:s'), //date('Y-m-d H:m:s'),
                 'status' => 'BELUM DIPROSES',
             ]);
 
@@ -236,6 +237,7 @@ class PermohonanController extends BaseController
             $permohonan = new \App\Models\PermohonanModel();
             $permohonan->update($idPermohonan, [
                 'id_user' => (int)$this->session->get('user')['id'],
+                'tanggal' => Carbon::now()->format('Y-m-d H:m:s'),
                 'status' => 'BELUM DIPROSES',
             ]);
 

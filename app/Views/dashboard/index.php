@@ -64,7 +64,7 @@
                             <?php foreach ($lastPermohonan as $index => $permohonan): ?>
                                 <tr>
                                     <td><?= ++$index ?></td>
-                                    <td><?= Carbon::createFromFormat('Y-m-d H:i:s', $permohonan->tanggal, 'Asia/Jakarta')->locale('id')->diffForHumans() ?></td>
+                                    <td><?= Carbon::createFromFormat('Y-m-d H:m:s', $permohonan->tanggal)->locale('id')->diffForHumans() ?></td>
                                     <td class="d-none d-md-table-cell"><?= $permohonan->nama_lengkap ?></td>
                                     <td>
                                         <?php if ($permohonan->status == 'SUDAH DIPROSES'): ?>
@@ -101,7 +101,7 @@
                             <?php foreach ($lastVerifikasi as $index => $permohonan): ?>
                                 <tr>
                                     <td><?= ++$index ?></td>
-                                    <td><?= Carbon::createFromFormat('Y-m-d H:i:s', $permohonan->tanggal, 'Asia/Jakarta')->locale('id')->diffForHumans() ?></td>
+                                    <td><?= Carbon::createFromFormat('Y-m-d H:m:s', $permohonan->tanggal)->locale('id')->diffForHumans() ?></td>
                                     <td class="d-none d-md-table-cell"><?= $permohonan->nama_lengkap ?></td>
                                     <td>
                                         <?php if ($permohonan->status == 'SUDAH DIPROSES'): ?>

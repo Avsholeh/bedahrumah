@@ -1,21 +1,11 @@
+<?php
+
+use Carbon\Carbon;
+
+?>
 <?= $this->extend('layouts/app') ?>
 
 <?= $this->section('content') ?>
-
-<!--<ul class="nav nav-pills border-0">-->
-<!--    <li class="nav-item">-->
-<!--        <a class="nav-link --><?//= url_is('verifikasi/tertinggi') ? 'active' : '' ?><!--"-->
-<!--           href="--><?//= base_url('verifikasi/tertinggi') ?><!--">-->
-<!--            Skor Tertinggi-->
-<!--        </a>-->
-<!--    </li>-->
-<!--    <li class="nav-item">-->
-<!--        <a class="nav-link --><?//= url_is('verifikasi/terendah') ? 'active' : '' ?><!--"-->
-<!--           href="--><?//= base_url('verifikasi/terendah') ?><!--">-->
-<!--            Skor Terendah-->
-<!--        </a>-->
-<!--    </li>-->
-<!--</ul>-->
 
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
@@ -53,7 +43,7 @@
                             <?php foreach ($permohonans as $permohonan): ?>
                                 <tr>
                                     <td class="d-none"><?= $permohonan['id_permohonan'] ?></td>
-                                    <td><?= $permohonan['tanggal'] ?></td>
+                                    <td><?= Carbon::createFromFormat('Y-m-d H:i:s', $permohonan['tanggal'])->locale('id')->isoFormat('dddd, DD MMMM YYYY') ?></td>
                                     <td class="show-info"><?= $permohonan['nama'] ?></td>
                                     <td class="d-none show-info"><?= $permohonan['no_ktp'] ?></td>
                                     <td class="d-none show-info"><?= $permohonan['no_kk'] ?></td>

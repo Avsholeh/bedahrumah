@@ -30,6 +30,24 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="logoutModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Apakah anda yakin ingin logout ?</h5>
+            </div>
+            <div class="modal-footer">
+                <button id="btnModalLogout" type="button" class="btn btn-primary">Ya</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="<?= base_url('public/vendors/js/vendor.bundle.base.js') ?>"></script>
 <script src="<?= base_url('public/js/off-canvas.js') ?>"></script>
 <script src="<?= base_url('public/js/template.js') ?>"></script>
@@ -56,8 +74,20 @@
         confirmButtonText: 'OK',
         padding: '1.5rem'
     })
+
+
 </script>
 <?php endif?>
+<script>
+    var logoutBtn = $(".logoutBtn");
+    var logoutModal = new bootstrap.Modal(document.getElementById('logoutModal'), {});
+    logoutBtn.click(function (event) {
+        logoutModal.show();
+        $('#btnModalLogout').click(function () {
+            window.location = "<?= base_url('logout') ?>";
+        });
+    });
+</script>
 <?= $this->renderSection('scripts') ?>
 </body>
 </html>

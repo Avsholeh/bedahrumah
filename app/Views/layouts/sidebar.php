@@ -32,7 +32,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('laporan') ?>">
-                    <i class="icon-people me-2"></i>
+                    <i class="icon-printer me-2"></i>
                     <span class="menu-title fs-6">Laporan</span>
                 </a>
             </li>
@@ -46,7 +46,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('logout') ?>">
+            <a class="nav-link logoutBtn" href="#">
                 <i class="icon-logout me-2"></i>
                 <span class="menu-title fs-6">Logout</span>
             </a>

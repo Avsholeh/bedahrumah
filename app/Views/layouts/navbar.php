@@ -46,7 +46,7 @@
                         <p class="mb-1 mt-3 font-weight-semibold"><?= session()->user['nama_lengkap'] ?></p>
                         <p class="fw-light text-muted mb-0"><?= session()->user['email'] ?></p>
                     </div>
-                    <a href="<?= base_url('logout') ?>" class="dropdown-item">
+                    <a href="#" class="dropdown-item logoutBtn">
                         <i class="dropdown-item-icon icon-power me-2"></i> Logout
                     </a>
                 </div>

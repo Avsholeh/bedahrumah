@@ -53,7 +53,7 @@ class SkoringController extends BaseController
     {
         $indikator = (new IndikatorModel())->find($id);
         return view('skoring/edit', [
-            'title' => 'Skoring',
+            'title' => 'Edit Skoring',
             'indikator' => $this->indikator,
             'atribut' => $this->atribut,
             'edit' => $indikator,
@@ -119,7 +119,7 @@ class SkoringController extends BaseController
     {
         $atribut = (new AtributModel())->find($id);
         return view('skoring/edit', [
-            'title' => 'Skoring',
+            'title' => 'Edit Skoring',
             'indikator' => $this->indikator,
             'atribut' => $this->atribut,
             'edit' => $atribut,

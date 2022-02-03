@@ -24,16 +24,22 @@ class LaporanController extends BaseController
             ->where('permohonan.tanggal >=', $dariTanggal)
             ->where('permohonan.tanggal <=', $sampaiTanggal);
 
-        if ($status) $permohonans = $permohonans->where('permohonan.status', $status);
-        if ($jumlahData) $permohonans = $permohonans->limit($jumlahData);
+        if ($status) {
+            $permohonans = $permohonans->where('permohonan.status', $status);
+        }
+
+        if ($jumlahData) {
+            $permohonans = $permohonans->limit($jumlahData);
+        }
 
         return view('laporan/index', [
             'title' => 'Laporan',
-            'permohonans' => $permohonans->paginate(10),
+            'permohonans' => $jumlahData ? $permohonans->paginate($jumlahData) : $permohonans->paginate(10),
             'dariTanggal' => $dariTanggal,
             'sampaiTanggal' => $sampaiTanggal,
             'status' => $status,
-            'countPermohonan' => $permohonans->countAll(),
+            'countPermohonan' => $jumlahData ? $jumlahData : $permohonans->countAll(),
+            'jumlahData' => $jumlahData,
             'pager' => $permohonans->pager,
         ]);
     }

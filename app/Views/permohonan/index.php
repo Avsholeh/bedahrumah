@@ -1,3 +1,8 @@
+<?php
+
+use Carbon\Carbon;
+
+?>
 <?= $this->extend('layouts/app') ?>
 
 <?= $this->section('content') ?>
@@ -76,7 +81,7 @@
                             <?php foreach ($data as $permohonan): ?>
                                 <tr>
                                     <td class="show-info"><?= $permohonan['id'] ?></td>
-                                    <td class="show-info"><?= $permohonan['tanggal'] ?></td>
+                                    <td class="show-info"><?= Carbon::createFromFormat('Y-m-d H:i:s', $permohonan['tanggal'])->locale('id')->isoFormat('dddd, D MMMM YYYY') ?></td>
                                     <td class="show-info"><?= $permohonan['nama'] ?></td>
                                     <td class="d-none show-info"><?= $permohonan['no_ktp'] ?></td>
                                     <td class="d-none show-info"><?= $permohonan['no_kk'] ?></td>
