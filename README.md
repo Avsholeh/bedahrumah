@@ -1,26 +1,14 @@
 # Bedah Rumah
 
+Bedah Rumah adalah aplikasi berbasis web yang digunakan untuk melakukan pendataan rumah yang akan dibedah. Aplikasi ini dibuat menggunakan framework CodeIgniter 4. 
 
-## Timeline
-1. CRUD Users
-  - Create/Tambah
-  - Read/Lihat
-  - Update/Edit/Perbarui
-  - Delete/Hapus
+## Instalasi
 
-2. CRUD Data Pengaju
-  - Create/Tambah [OK]
-  - Read/Lihat
-  - Update/Edit/Perbarui
-  - Delete/Hapus
-
-3. CRUD Data Rumah
-  - Create/Tambah [OK]
-  - Read/Lihat
-  - Update/Edit/Perbarui
-  - Delete/Hapus 
-
-4. Validasi (Algoritma Naive Bayes)
-
-## Notes
-1. Tambahkan old() pada masing-masing atribut.
+1. Clone repository ini
+2. Masuk ke direktori aplikasi
+3. Jalankan perintah `composer install`
+4. Salin file `.env.example` menjadi `.env`
+5. Sesuaikan konfigurasi database pada file `.env`
+6. Import file `bedahrumah.sql` ke database yang telah disiapkan
+7. Jalankan perintah `php spark serve` untuk menjalankan aplikasi
+8. Buka browser dan akses `http://localhost:8080`
