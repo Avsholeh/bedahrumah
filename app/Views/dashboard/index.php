@@ -1,6 +1,7 @@
 <?= $this->extend('layouts/app') ?>
 
 <?= $this->section('content') ?>
+<?php use Carbon\Carbon; ?>
     <div class="row">
         <div class="col-sm-6 col-md-4 py-3">
             <div class="card bg-gradient-primary card-rounded">
@@ -63,7 +64,7 @@
                             <?php foreach ($lastPermohonan as $index => $permohonan): ?>
                                 <tr>
                                     <td><?= ++$index ?></td>
-                                    <td><?= $permohonan->tanggal ?></td>
+                                    <td><?= Carbon::createFromFormat('Y-m-d H:i:s', $permohonan->tanggal, 'Asia/Jakarta')->locale('id')->diffForHumans() ?></td>
                                     <td class="d-none d-md-table-cell"><?= $permohonan->nama_lengkap ?></td>
                                     <td>
                                         <?php if ($permohonan->status == 'SUDAH DIPROSES'): ?>
@@ -100,7 +101,7 @@
                             <?php foreach ($lastVerifikasi as $index => $permohonan): ?>
                                 <tr>
                                     <td><?= ++$index ?></td>
-                                    <td><?= $permohonan->tanggal ?></td>
+                                    <td><?= Carbon::createFromFormat('Y-m-d H:i:s', $permohonan->tanggal, 'Asia/Jakarta')->locale('id')->diffForHumans() ?></td>
                                     <td class="d-none d-md-table-cell"><?= $permohonan->nama_lengkap ?></td>
                                     <td>
                                         <?php if ($permohonan->status == 'SUDAH DIPROSES'): ?>

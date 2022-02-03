@@ -5,21 +5,9 @@
 <ul class="nav nav-pills border-0">
     <li class="nav-item">
         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#filter">
-            <i class="icon icon-arrow-down"></i>
+            <i class="icon icon-arrow-down me-3"></i>Urutkan
         </a>
     </li>
-<!--    <li class="nav-item">-->
-<!--        <a class="nav-link --><?//= url_is('permohonan/tertinggi') ? 'active' : '' ?><!--"-->
-<!--           href="--><?//= base_url('permohonan/tertinggi') ?><!--">-->
-<!--            Skor Tertinggi-->
-<!--        </a>-->
-<!--    </li>-->
-<!--    <li class="nav-item">-->
-<!--        <a class="nav-link --><?//= url_is('permohonan/terendah') ? 'active' : '' ?><!--"-->
-<!--           href="--><?//= base_url('permohonan/terendah') ?><!--">-->
-<!--            Skor Terendah-->
-<!--        </a>-->
-<!--    </li>-->
 </ul>
 
 <div class="row">

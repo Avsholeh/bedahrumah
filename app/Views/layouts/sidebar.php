@@ -29,9 +29,14 @@
                     <span class="menu-title fs-6">Skoring</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('laporan') ?>">
+                    <i class="icon-people me-2"></i>
+                    <span class="menu-title fs-6">Laporan</span>
+                </a>
+            </li>
         <?php endif ?>
-
-
 
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url('users') ?>">

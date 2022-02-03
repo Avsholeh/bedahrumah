@@ -50,6 +50,6 @@ class BaseController extends Controller
         $this->session = \Config\Services::session();
         $this->validator = \Config\Services::validation();
         $this->db = \Config\Database::connect();
-
+        $this->pager = \Config\Services::pager();
     }
 }

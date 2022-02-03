@@ -86,6 +86,11 @@ $routes->group('/', ['filter' => 'auth'], function ($routes) {
     $routes->post('users/update', 'UserController::update');
     $routes->get('users/hapus/(:num)', 'UserController::hapus/$1');
 
+    // === Users
+    $routes->get('laporan', 'LaporanController::index');
+    $routes->get('laporan/proses', 'LaporanController::proses');
+    $routes->get('laporan/cetak', 'LaporanController::cetak');
+
 });
 
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
